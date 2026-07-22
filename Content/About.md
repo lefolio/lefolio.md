@@ -1,23 +1,10 @@
 ---
-title: "About"
-order: 2
+title: About
 ---
-![[profile.jpg|200|wrap|left]]
 
-My name is Olivier, and I'm a Software Engineer with experience in Academia. I was a PhD Student in Computer Graphics at TU Berlin, where I worked in the Computer Graphics team under the supervision of Bernd Bickel and Marc Alexa.
+LeFolio is a suite of tools and templates for publishing sites from Markdown, designed to feel natural in Obsidian.
 
-I worked at several companies as a Software Engineer, mainly using C++. The two main threads in my career have been UI and 3D technologies. On one side, I participated in building in-house UI engines for mobile applications; on the other side, I worked on 3D graphics, shaders, and game engines.
+This marketing and documentation site runs on the **showcase** template. Academic portfolio sites use the **academic** template in the same engine.
 
-Notably, I worked at Massive Entertainment, a Ubisoft Studio, on the Game Engine for Avatar: Frontiers of Pandora, and at Abstract on the RSX engine.
-
-Nowadays, I am focused on making the academic publishing site feel effortless and smooth, freeing academics' creativity so they can showcase their best work and focus on their craft
-
-## About this Page
-This page is built using my template **[LeFolio Academic](https://oilandrust.github.io/academic-sites/)**. It is designed to be easy for academics to edit and publish. Learn more about how to use it [here](https://github.com/oilandrust/lefolio-academic).
-## How it works
-
-```mermaid
-flowchart LR
-  Setup[One Click Setup] --> RawData[Edit locally in Obsidian] --> Clean[Changes are applied live with Live Preview]
-  Clean --> Explore[Easy Publish on GitHub Pages]
-```
+- Engine & academic template: [lefolio-academic](https://github.com/oilandrust/lefolio-academic)
+- Domain: [lefolio.md](https://lefolio.md)
