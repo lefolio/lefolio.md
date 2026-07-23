@@ -72,6 +72,11 @@ function CodeBlock({ className, children, ...props }: React.ComponentPropsWithou
   );
 }
 
+function isExternalHref(href: string | undefined): boolean {
+  if (!href) return false;
+  return /^(https?:|mailto:|tel:)/i.test(href);
+}
+
 export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
   return (
     <div className="prose-content">
@@ -85,6 +90,20 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
             return <>{children}</>;
           },
           code: CodeBlock,
+          a({ href, children, ...props }) {
+            const external = isExternalHref(href);
+            return (
+              <a
+                href={href}
+                {...props}
+                {...(external
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
+              >
+                {children}
+              </a>
+            );
+          },
         }}
       >
         {content}

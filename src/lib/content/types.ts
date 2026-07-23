@@ -26,6 +26,11 @@ export interface ThemeConfig {
   overrides?: Record<string, string>;
 }
 
+export interface AnalyticsConfig {
+  /** GA4 measurement ID, e.g. G-XXXXXXXXXX */
+  google?: string;
+}
+
 export interface ContentConfig {
   site: SiteConfig;
   home: string;
@@ -33,6 +38,7 @@ export interface ContentConfig {
   navigation: NavigationConfig;
   template?: string;
   theme?: ThemeConfig | string;
+  analytics?: AnalyticsConfig;
   /** Obsidian vault root for wikilink/embed resolution (relative to content dir, or absolute). */
   vault?: string;
 }

@@ -205,6 +205,45 @@ function contentHref(page, basePath, homePath) {
   return route === '/' ? `${basePath}/` : `${basePath}${route}`;
 }
 
+/** File extensions that should not be treated as bare web domains. */
+const ASSET_LINK_EXT = new Set([
+  'png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'ico',
+  'pdf', 'mp4', 'webm', 'csv', 'json', 'html', 'css', 'js', 'ts', 'tsx',
+  'mjs', 'cjs', 'yaml', 'yml', 'toml', 'txt', 'zip', 'wasm', 'woff', 'woff2',
+]);
+
+/**
+ * Turn protocol-less external URLs (www.example.com, obsidian.md) into https://…
+ * and resolve relative note paths to site routes when they exist in the vault.
+ */
+function normalizeMarkdownLinkHref(href, ctx, vaultRoot, pagesByPath, basePath, homePath) {
+  const dest = String(href || '').trim();
+  if (!dest) return dest;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(dest)) return dest;
+  if (dest.startsWith('#') || dest.startsWith('?') || dest.startsWith('/')) return dest;
+
+  const resolved = resolveAsset(dest, ctx);
+  if (resolved?.vaultPath?.endsWith('.md')) {
+    const page = findPageForVaultPath(resolved.vaultPath, vaultRoot, pagesByPath);
+    if (page) return contentHref(page, basePath, homePath);
+    return dest;
+  }
+
+  if (/^www\./i.test(dest)) return `https://${dest}`;
+
+  const domainLike = /^(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/.*)?$/i.test(dest);
+  if (!resolved && domainLike) {
+    const host = dest.split('/')[0];
+    const ext = host.split('.').pop()?.toLowerCase() || '';
+    // Unresolved *.md hosts are treated as Moldova-TLD sites (obsidian.md, lefolio.md).
+    if (ext === 'md' || !ASSET_LINK_EXT.has(ext)) {
+      return `https://${dest}`;
+    }
+  }
+
+  return dest;
+}
+
 function normalizeNavigationEntries(navigation) {
   if (!navigation) return [];
 
@@ -434,6 +473,12 @@ function preprocessMarkdown(
       return `[${alias || path.basename(vaultPath)}](${basePath}${publicPath})`;
     }
     return alias || target;
+  });
+
+  // Protocol-less domains (www.x.com, obsidian.md) → https://; relative notes → site routes
+  processed = processed.replace(/\[([^\]]*)\]\(([^)\s]+)\)/g, (full, text, href) => {
+    const next = normalizeMarkdownLinkHref(href, ctx, vaultRoot, pagesByPath, basePath, homePath);
+    return next === href ? full : `[${text}](${next})`;
   });
 
   processed = processed

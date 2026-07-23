@@ -100,6 +100,9 @@ navigation:
   - Publications
   - CV
   - Guide: "Pages/Guide.md"
+
+analytics:
+  google: "G-XXXXXXXXXX"   # optional GA4 measurement ID
 ```
 
 ## Frontmatter

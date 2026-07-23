@@ -45,6 +45,15 @@ theme:
   mode: light
 ```
 
+## Analytics
+
+```yaml
+analytics:
+  google: "G-XXXXXXXXXX"   # GA4 measurement ID
+```
+
+Injected by the core layout (all templates). Omit the key to disable tracking.
+
 ## Deploy
 
 Push to `main` — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and deploys `out/` to GitHub Pages. In repo **Settings → Pages**, set source to **GitHub Actions**, then point the `lefolio.md` domain at Pages.

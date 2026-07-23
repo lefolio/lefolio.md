@@ -12,6 +12,9 @@ theme:
 
 home: "Home.md"
 
+analytics:
+  google: G-CZGKWBFQLF
+
 author:
   name: "LeFolio"
   bio: "Obsidian-friendly site publishing for academics and makers."

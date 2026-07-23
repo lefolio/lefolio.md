@@ -14,6 +14,7 @@
 | `vault` | Obsidian vault root (relative or absolute) |
 | `author.*` | Sidebar profile |
 | `navigation` | Navbar entries |
+| `analytics.google` | GA4 measurement ID (`G-XXXXXXXXXX`); core layout injects gtag when set |
 
 ## Author link keys
 
