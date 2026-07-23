@@ -13,12 +13,12 @@ theme:
 home: "Home.md"
 
 analytics:
-  google: G-CZGKWBFQLF
+  google: G-SNRDM00LCC
 
 author:
   name: "LeFolio"
   bio: "Obsidian-friendly site publishing for academics and makers."
-  avatar: "Assets/lefolio_logo_transparent.png"
+  avatar: "Assets/lefolio_logo_min.png"
   links:
     github: "https://github.com/oilandrust/lefolio-academic"
 
