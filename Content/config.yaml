@@ -23,5 +23,6 @@ author:
     github: "https://github.com/oilandrust/lefolio-academic"
 
 navigation:
+  - Templates
+  - Getting Started
   - Docs
-  - About: "About.md"

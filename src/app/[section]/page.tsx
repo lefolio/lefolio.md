@@ -37,8 +37,10 @@ export default async function SectionIndexPage({
   const title = section.index?.title || section.name;
   const showDefaultIntro = !section.index?.processedBody;
 
+  const wide = templateId === 'showcase' && section.display === 'grid';
+
   return (
-    <article>
+    <article className={wide ? 'showcase-wide' : undefined}>
       <h1 className="text-heading mb-2 text-3xl font-bold">{title}</h1>
 
       {section.index?.processedBody ? (

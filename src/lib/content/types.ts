@@ -53,6 +53,8 @@ export interface PageFrontmatter {
   journal?: string;
   proceedings?: string;
   thumbnail?: string;
+  live_url?: string;
+  github_url?: string;
   display?: string;
   sort?: string;
   preview?: string;
