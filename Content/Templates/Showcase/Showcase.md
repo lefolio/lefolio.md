@@ -2,7 +2,7 @@
 title: Showcase
 subtitle: Product and docs site — this template
 order: 3
-thumbnail: screenshot.jpg
+thumbnail: "[[screenshot.png]]"
 live_url: https://lefolio.md
 github_url: https://github.com/oilandrust/lefolio.md
 ---
