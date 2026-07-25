@@ -1,7 +1,7 @@
 ---
 title: Developer
 subtitle: Developer portfolio — projects, writing, links
-order: 4
+order: 5
 thumbnail: screenshot.jpg
 live_url: https://oilandrust.github.io/portfolio/
 github_url: https://github.com/oilandrust/portfolio

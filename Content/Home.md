@@ -8,7 +8,7 @@ LeFolio turns an Obsidian vault into a polished static website. Edit notes and e
 ## Why LeFolio
 
 - **Vault as CMS** — markdown, YAML, and wikilinks stay in Obsidian
-- **Templates** — [academic, lab, showcase, developer, marketing](/Templates/) starting points
+- **Templates** — [academic, lab, showcase, developer, marketing, treasure](/Templates/) starting points
 - **Themes** — slate, latex, and more via `config.yaml`
 - **Static export** — Next.js → GitHub Pages with a matching `basePath`
 
