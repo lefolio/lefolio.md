@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "sync-content": "node scripts/lefolio.mjs sync",
-    "dev": "node scripts/lefolio.mjs dev",
+    "dev": "node scripts/lefolio.mjs dev --turbopack",
     "build": "node scripts/lefolio.mjs build",
     "start": "next start",
     "lint": "next lint"
