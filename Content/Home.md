@@ -1,5 +1,6 @@
 ---
 title: LeFolio
+hero_image: Assets/live_update_showcase.gif
 ---
 
 LeFolio turns an Obsidian vault into a polished static website. Edit notes and embeds as usual; the engine syncs content, resolves assets, and deploys to GitHub Pages.

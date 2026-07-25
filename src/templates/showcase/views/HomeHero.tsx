@@ -12,6 +12,8 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
     config.author?.links?.github || 'https://github.com/oilandrust/lefolio-academic';
   const docsHref =
     manifest.navigation.find((item) => /docs/i.test(item.label))?.href || '/Docs/';
+  const heroMedia = home?.heroImage || authorAvatar;
+  const heroIsDemo = Boolean(home?.heroImage);
 
   if (!home) {
     return (
@@ -32,12 +34,12 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
     <>
       <section className="showcase-hero">
         <div className="showcase-container showcase-hero-row py-12 sm:py-16 lg:py-20">
-          {authorAvatar ? (
+          {heroMedia ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={authorAvatar}
-              alt={config.site.title}
-              className="showcase-hero-logo"
+              src={heroMedia}
+              alt={heroIsDemo ? `${config.site.title} live update demo` : config.site.title}
+              className={heroIsDemo ? 'showcase-hero-demo' : 'showcase-hero-logo'}
             />
           ) : null}
           <div className="showcase-hero-copy">

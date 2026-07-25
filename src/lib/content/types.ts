@@ -55,6 +55,7 @@ export interface PageFrontmatter {
   thumbnail?: string;
   live_url?: string;
   github_url?: string;
+  hero_image?: string;
   display?: string;
   sort?: string;
   preview?: string;
@@ -124,6 +125,7 @@ export interface ContentManifest {
     relativePath: string;
     title: string;
     processedBody: string;
+    heroImage?: string | null;
   } | null;
   navigation: NavItem[];
   sections: NavSection[];

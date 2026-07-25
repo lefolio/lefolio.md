@@ -16,5 +16,3 @@ Showcase your publications with *very clickable* thumbnails. Surface the beauty 
 ## Project grid with large thumbnails
 Your ongoing or past projects also have beautiful figures and diagrams to show; make them visible with the project grid with large thumbnails.
 ![[project_grid.png|500|center]]
-**Live:** [Demo](https://oilandrust.github.io/lefolio-academic/)  
-**Source:** [GitHub](https://github.com/oilandrust/lefolio-academic)

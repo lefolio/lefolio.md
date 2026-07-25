@@ -563,6 +563,14 @@ function scanPages(config, vaultRoot) {
     resolveAndCopyAsset(config.author.avatar.replace(/\\/g, '/'), avatarCtx, assetMap);
   }
 
+  const homeHeroRaw =
+    (standaloneHomePage?.frontmatter?.hero_image ||
+      pagesByPath.get(homePath)?.frontmatter?.hero_image ||
+      '') + '';
+  if (homeHeroRaw.trim()) {
+    resolveAndCopyAsset(homeHeroRaw.replace(/\\/g, '/').trim(), avatarCtx, assetMap);
+  }
+
   const pages = rawPages.map((page) => ({
     ...page,
     title: page.frontmatter.title || page.slug,
@@ -702,6 +710,14 @@ function scanPages(config, vaultRoot) {
           relativePath: homePage.relativePath,
           title: homePage.title,
           processedBody: homePage.processedBody,
+          heroImage: (() => {
+            const raw = homePage.frontmatter?.hero_image;
+            if (!raw || typeof raw !== 'string') return null;
+            const resolved = resolveAsset(raw.replace(/\\/g, '/'), avatarCtx);
+            if (!resolved) return null;
+            const publicPath = assetMap[resolved.vaultPath];
+            return publicPath ? `${basePath}${publicPath}` : null;
+          })(),
         }
       : null,
     navigation,
