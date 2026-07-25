@@ -2,6 +2,7 @@
   --sidebar-width: 0;
   --font-sans: 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
   --font-heading: 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+  --font-brand: "Outfit", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-scale: 1;
   --text-base: 1rem;
@@ -11,6 +12,8 @@
   --leading-body: 1.7;
   --content-max-width: 48rem;
   --showcase-max: 72rem;
+  --brand-navy: #001850;
+  --brand-blue: #1880f8;
 }
 
 [data-template="showcase"] .showcase-container {
@@ -23,8 +26,31 @@
   background: color-mix(in srgb, var(--color-bg) 92%, transparent);
 }
 
-[data-template="showcase"] .showcase-brand:hover span {
-  color: var(--color-primary);
+[data-template="showcase"] .showcase-brand:hover .showcase-brand-name-core {
+  color: var(--brand-navy);
+}
+
+[data-template="showcase"] .showcase-brand:hover .showcase-brand-name-ext {
+  color: var(--color-primary-hover);
+}
+
+[data-template="showcase"] .showcase-brand-name {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+[data-template="showcase"] .showcase-brand-name--nav {
+  font-size: 1.2rem;
+}
+
+[data-template="showcase"] .showcase-brand-name-core {
+  color: var(--brand-navy);
+}
+
+[data-template="showcase"] .showcase-brand-name-ext {
+  color: var(--brand-blue);
 }
 
 [data-template="showcase"] .showcase-nav {
@@ -78,7 +104,26 @@
 
 [data-template="showcase"] .showcase-hero-copy {
   min-width: 0;
-  max-width: 36rem;
+  max-width: 40rem;
+}
+
+[data-template="showcase"] .showcase-hero-title {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+[data-template="showcase"] .showcase-hero-description {
+  font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+  line-height: 1.45;
+}
+
+[data-template="showcase"] .showcase-hero-accent {
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -100,7 +145,7 @@
 
   [data-template="showcase"] .showcase-hero-copy {
     flex: 1;
-    max-width: 28rem;
+    max-width: 34rem;
   }
 }
 
@@ -118,7 +163,7 @@
   }
 
   [data-template="showcase"] .showcase-hero-copy {
-    max-width: 32rem;
+    max-width: 38rem;
   }
 }
 

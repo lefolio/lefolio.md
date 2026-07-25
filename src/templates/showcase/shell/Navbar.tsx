@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ContentManifest } from '@/lib/content/types';
+import BrandName from './BrandName';
 
 function isActive(pathname: string, href: string) {
   const normalized = href.replace(/\/$/, '') || '/';
@@ -17,7 +18,7 @@ interface NavbarProps {
 
 export default function Navbar({ manifest }: NavbarProps) {
   const pathname = usePathname();
-  const { config, authorAvatar, navigation } = manifest;
+  const { config, navigation } = manifest;
   const siteTitle = config.site.title;
   const github =
     config.author?.links?.github || 'https://github.com/oilandrust/lefolio-academic';
@@ -26,11 +27,7 @@ export default function Navbar({ manifest }: NavbarProps) {
     <header className="showcase-header sticky top-0 z-50 border-b backdrop-blur">
       <div className="showcase-container flex items-center justify-between gap-6 py-4">
         <Link href="/" className="showcase-brand flex items-center gap-3 no-underline">
-          {authorAvatar ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={authorAvatar} alt="" className="h-9 w-9 object-contain" />
-          ) : null}
-          <span className="text-heading text-lg font-semibold tracking-tight">{siteTitle}</span>
+          <BrandName name={siteTitle} className="showcase-brand-name--nav" />
         </Link>
 
         <nav className="flex items-center gap-6" aria-label="Main">

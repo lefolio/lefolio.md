@@ -1,9 +1,46 @@
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import type { ContentManifest } from '@/lib/content/types';
+import BrandName from '../shell/BrandName';
 
 interface HomeHeroProps {
   manifest: ContentManifest;
+}
+
+/** Render `**bold**` spans with the showcase accent color. */
+function AccentedDescription({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  const pattern = /\*\*([^*]+)\*\*/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) {
+      nodes.push(text.slice(last, match.index));
+    }
+    nodes.push(
+      <strong key={key} className="showcase-hero-accent">
+        {match[1]}
+      </strong>
+    );
+    key += 1;
+    last = match.index + match[0].length;
+  }
+
+  if (last < text.length) {
+    nodes.push(text.slice(last));
+  }
+
+  return <>{nodes}</>;
+}
+
+function heroBrandName(homeTitle: string | undefined, siteTitle: string) {
+  const title = homeTitle?.trim() || siteTitle;
+  if (/\.md$/i.test(title)) return title;
+  if (/^lefolio$/i.test(title) && /\.md$/i.test(siteTitle)) return siteTitle;
+  return title;
 }
 
 export default function HomeHero({ manifest }: HomeHeroProps) {
@@ -14,15 +51,14 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
     manifest.navigation.find((item) => /docs/i.test(item.label))?.href || '/Docs/';
   const heroMedia = home?.heroImage || authorAvatar;
   const heroIsDemo = Boolean(home?.heroImage);
+  const brand = heroBrandName(home?.title, config.site.title);
 
   if (!home) {
     return (
       <section className="showcase-hero">
         <div className="showcase-container py-20 text-center">
-          <h1 className="text-heading text-4xl font-semibold tracking-tight sm:text-5xl">
-            {config.site.title}
-          </h1>
-          <p className="text-muted mx-auto mt-4 max-w-xl text-lg">
+          <BrandName name={brand} as="h1" className="showcase-hero-title" />
+          <p className="showcase-hero-description text-muted mx-auto mt-4 max-w-xl">
             Configure <code>home</code> in config.yaml.
           </p>
         </div>
@@ -43,12 +79,10 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
             />
           ) : null}
           <div className="showcase-hero-copy">
-            <h1 className="text-heading text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              {home.title}
-            </h1>
+            <BrandName name={brand} as="h1" className="showcase-hero-title" />
             {config.site.description ? (
-              <p className="text-muted mt-5 max-w-xl text-lg leading-relaxed sm:text-xl">
-                {config.site.description}
+              <p className="showcase-hero-description text-muted mt-5 max-w-2xl leading-relaxed">
+                <AccentedDescription text={config.site.description} />
               </p>
             ) : null}
             <div className="mt-8 flex flex-wrap items-center gap-4">

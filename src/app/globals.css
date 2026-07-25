@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap");
 @import "../templates/academic/themes/latex-fonts.css";
 @import "../templates/academic/themes/slate-light.css";
 @import "../templates/academic/themes/slate-dark.css";

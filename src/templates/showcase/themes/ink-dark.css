@@ -8,6 +8,9 @@
   --color-primary: #2890f8;
   --color-primary-hover: #4aa0ff;
   --color-on-primary: #0a1220;
+  /* On dark surfaces, keep the navy readable as near-white with blue .md */
+  --brand-navy: #e8eef8;
+  --brand-blue: #2890f8;
 }
 
 [data-template="showcase"][data-theme="ink-dark"] .prose-content {

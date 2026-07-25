@@ -1,6 +1,6 @@
 site:
   title: "LeFolio.md"
-  description: "Publish a beautiful website in a breeze from the comfort of Obsidian. -- And focus on bringing what matters to the forefront, not on the tech."
+  description: "Publish a beautiful website in a breeze from the comfort of **Obsidian**. -- And focus on **bringing what matters to the forefront**, not on the tech."
   url: "https://lefolio.md"
   basePath: ""
 
@@ -8,7 +8,7 @@ template: showcase
 
 theme:
   preset: ink
-  mode: light
+  mode: dark
 
 home: "Home.md"
 
@@ -16,7 +16,7 @@ analytics:
   google: G-SNRDM00LCC
 
 author:
-  name: "LeFolio"
+  name: "LeFolio.md"
   bio: "Obsidian-friendly site publishing for academics and makers."
   avatar: "Assets/lefolio_logo_min.png"
   links:

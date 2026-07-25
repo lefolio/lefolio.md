@@ -9,6 +9,8 @@
   --color-primary: #1880f8;
   --color-primary-hover: #0068f8;
   --color-on-primary: #ffffff;
+  --brand-navy: #001850;
+  --brand-blue: #1880f8;
 }
 
 [data-template="showcase"][data-theme="ink-light"] .prose-content {
