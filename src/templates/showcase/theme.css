@@ -12,6 +12,7 @@
   --leading-body: 1.7;
   --content-max-width: 48rem;
   --showcase-max: 72rem;
+  --showcase-home-max: 60rem;
   --brand-navy: #001850;
   --brand-blue: #1880f8;
 }
@@ -175,6 +176,42 @@
 
 [data-template="showcase"] .showcase-main > article.showcase-wide {
   width: min(100% - 2rem, var(--showcase-max));
+}
+
+[data-template="showcase"] .showcase-home-body.showcase-container {
+  width: min(100% - 2rem, var(--showcase-home-max));
+}
+
+[data-template="showcase"] .showcase-home-body .content-columns--2 {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+[data-template="showcase"] .showcase-home-body .prose-content .content-columns {
+  margin-block: 1.25rem;
+}
+
+[data-template="showcase"] .showcase-home-body .prose-content > .content-columns:first-child {
+  margin-top: 0;
+}
+
+[data-template="showcase"] .showcase-home-body .prose-content :where(h2) {
+  font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: normal;
+  color: var(--color-text-muted);
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+[data-template="showcase"] .showcase-home-body .prose-content > :where(h2):first-child {
+  margin-top: 0;
+}
+
+[data-template="showcase"] .showcase-home-body .prose-content :where(h2) strong {
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 [data-template="showcase"] .showcase-template-grid {

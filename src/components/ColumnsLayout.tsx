@@ -12,7 +12,7 @@ export default function ColumnsLayout({ columns }: ColumnsLayoutProps) {
 
   return (
     <div
-      className="content-columns"
+      className={`content-columns content-columns--${columns.length}`}
       style={{ '--content-columns': columns.length } as CSSProperties}
     >
       {columns.map((column, index) => (
