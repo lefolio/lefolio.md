@@ -1,11 +1,12 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import Navbar from './Navbar';
 import type { ContentManifest } from '@/lib/content/types';
 
 interface SiteShellProps {
   manifest: ContentManifest;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function SiteShell({ manifest, children }: SiteShellProps) {
@@ -17,14 +18,14 @@ export default function SiteShell({ manifest, children }: SiteShellProps) {
         <div className="showcase-container flex flex-wrap items-center justify-between gap-3 py-8 text-sm">
           <p className="text-muted">{manifest.config.site.title}</p>
           <p className="text-muted">
-            Engine:{' '}
+            Built with:{' '}
             <a
               className="link-primary"
-              href="https://github.com/oilandrust/lefolio-academic"
+              href="https://github.com/oilandrust/lefolio.md"
               target="_blank"
               rel="noreferrer"
             >
-              lefolio-academic
+              lefolio.md
             </a>
           </p>
         </div>

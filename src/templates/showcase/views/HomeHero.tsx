@@ -47,7 +47,7 @@ function heroBrandName(homeTitle: string | undefined, siteTitle: string) {
 export default function HomeHero({ manifest }: HomeHeroProps) {
   const { home, authorAvatar, config } = manifest;
   const github =
-    config.author?.links?.github || 'https://github.com/oilandrust/lefolio-academic';
+    config.author?.links?.github || 'https://github.com/oilandrust/lefolio.md';
   const docsHref =
     manifest.navigation.find((item) => /docs/i.test(item.label))?.href || '/Docs/';
   const heroMedia = home?.heroImage || authorAvatar;
@@ -100,11 +100,8 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
                 target="_blank"
                 rel="noreferrer"
               >
-                View on GitHub
+                Start Building Your Website
               </a>
-              <Link href={docsHref} className="showcase-cta-secondary">
-                Documentation
-              </Link>
             </div>
           </div>
         </div>
