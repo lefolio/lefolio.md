@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import type { ContentManifest } from '@/lib/content/types';
 import BrandName from '../shell/BrandName';
+import HeroDemoLightbox from './HeroDemoLightbox';
 
 interface HomeHeroProps {
   manifest: ContentManifest;
@@ -71,12 +72,19 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
       <section className="showcase-hero">
         <div className="showcase-container showcase-hero-row py-12 sm:py-16 lg:py-20">
           {heroMedia ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={heroMedia}
-              alt={heroIsDemo ? `${config.site.title} live update demo` : config.site.title}
-              className={heroIsDemo ? 'showcase-hero-demo' : 'showcase-hero-logo'}
-            />
+            heroIsDemo ? (
+              <HeroDemoLightbox
+                src={heroMedia}
+                alt={`${config.site.title} live update demo`}
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={heroMedia}
+                alt={config.site.title}
+                className="showcase-hero-logo"
+              />
+            )
           ) : null}
           <div className="showcase-hero-copy">
             <BrandName name={brand} as="h1" className="showcase-hero-title" />
