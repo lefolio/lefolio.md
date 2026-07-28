@@ -50,6 +50,73 @@ body {
   @apply float-right mt-0 mr-0 mb-4 ml-6;
 }
 
+.content-columns {
+  display: grid;
+  gap: 1.5rem 2rem;
+  margin: 1.75rem 0;
+  grid-template-columns: repeat(var(--content-columns, 2), minmax(0, 1fr));
+}
+
+@media (max-width: 767px) {
+  .content-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.content-column {
+  min-width: 0;
+}
+
+.content-column > :first-child {
+  margin-top: 0;
+}
+
+.content-column > :last-child {
+  margin-bottom: 0;
+}
+
+.prose-content .inline-code {
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875em;
+  font-weight: 400;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+}
+
+.prose-content pre.code-block,
+.prose-content .syntax-block {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose-content pre.code-block code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose-content .syntax-block-code {
+  background: transparent !important;
+}
+
+.prose-content .syntax-block .token.comment,
+.prose-content .syntax-block .token.prolog,
+.prose-content .syntax-block .token.doctype,
+.prose-content .syntax-block .token.cdata {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 .link-primary {
   color: var(--color-primary);
 }

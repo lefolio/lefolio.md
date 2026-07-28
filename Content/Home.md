@@ -2,20 +2,38 @@
 title: LeFolio
 hero_image: Assets/live_update_showcase.gif
 ---
+## How it works
+::: columns
+### Easy editing with Markdown
+LeFolio helps you build static websites using templates and editing [Markdown](https://www.markdownguide.org/basic-syntax/). Each `.md` file turns into a web page using simple syntax for images, links, etc. The engine applies the styling defined by the template.
+:::
+### No Hosting Costs
+The site is static, so you can host it for free on [GitHub Pages](https://docs.github.com/en/pages), Netlify, or similar services. Or you can upload it on your own server if you have one. No hosting cost; you own the content, and the code is Open Source.
+:::
+### Publish with a few clicks
+Choose your template, edit a short configuration, push the content to GitHub, and the site is live. This can be done with a few terminal commands or, with a button click using the Obsidian Plugin.
+:::
+::: columns
+### Why Markdown
+Nobody likes editing web content in HTML, and live editors such as WordPress, Squarespace, etc. come with a monthly subscription.
+With LeFolio and Markdown, the content is on your computer, and you can edit it with a simple text editor (though we strongly recommend Obsidian).
+:::
+### Why Obsidian
+Obsidian is a note-taking app and much more; it is designed to edit Markdown with live preview. You can also create links between notes, embed content, and more.
+In Obsidian, you can drag and drop an image into your `.md`. All your content is easily available so you can focus on writing without distraction.
+Our Obsidian plugin lets you publish changes in a single click.
+:::
 
-LeFolio turns an Obsidian vault into a polished static website. Edit notes and embeds as usual; the engine syncs content, resolves assets, and deploys to GitHub Pages.
+## Get your site up in Minutes for Free
+Ready to publish your site and start writing content? Open your terminal and your site will be up in a few minutes:
 
-## Why LeFolio
+```bash
+npm install lefolio
+npm create lefolio-site MySite
+cd MySite
+npm run dev
+# => Now browse to http://localhost:3000
+```
 
-- **Vault as CMS** — markdown, YAML, and wikilinks stay in Obsidian
-- **Templates** — [academic, lab, showcase, developer, marketing, treasure](/Templates/) starting points
-- **Themes** — slate, latex, and more via `config.yaml`
-- **Static export** — Next.js → GitHub Pages with a matching `basePath`
+See [[Getting-started]] and [[Docs|the documentation]] for more details about choosing a template, configuring your site, and editing your content.
 
-## Get the engine
-
-The reference engine and academic template live in the open repository:
-
-[github.com/oilandrust/lefolio-academic](https://github.com/oilandrust/lefolio-academic)
-
-This site (`lefolio.md`) is a **content vault** that points the engine at its `Content/` folder with the **showcase** template.

@@ -7,6 +7,7 @@ import { loadManifest } from '@/lib/content/load-manifest';
 import { CONTENT_VERSION } from '@/lib/content/content-version';
 import { getTemplate } from '@/lib/templates/registry';
 import { themeOverrideStyle } from '@/lib/theme/resolve-theme';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export function generateMetadata(): Metadata {
   const manifest = loadManifest();
@@ -36,7 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body suppressHydrationWarning>
         {googleAnalyticsId ? <GoogleAnalytics measurementId={googleAnalyticsId} /> : null}
-        <Shell manifest={manifest}>{children}</Shell>
+        <ThemeProvider themeId={themeId}>
+          <Shell manifest={manifest}>{children}</Shell>
+        </ThemeProvider>
       </body>
     </html>
   );
