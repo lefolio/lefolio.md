@@ -1,5 +1,6 @@
 import MarkdownRenderer from '@/components/MarkdownRenderer';
-import { getAllPageParams, getPage } from '@/lib/content/load-manifest';
+import { getAllPageParams, getPage, loadManifest } from '@/lib/content/load-manifest';
+import ShowcaseContentPage from '@/templates/showcase/views/ShowcaseContentPage';
 
 export function generateStaticParams() {
   return getAllPageParams();
@@ -15,6 +16,13 @@ export default async function ContentPage({
 
   if (!page) {
     return <p className="text-muted">Page not found.</p>;
+  }
+
+  const manifest = loadManifest();
+  const templateId = manifest.template ?? manifest.config.template ?? 'academic';
+
+  if (templateId === 'showcase') {
+    return <ShowcaseContentPage page={page} />;
   }
 
   return (

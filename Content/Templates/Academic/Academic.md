@@ -6,8 +6,6 @@ thumbnail: screenshot.jpg
 live_url: https://oilandrust.github.io/lefolio-academic/
 github_url: https://github.com/oilandrust/lefolio-academic
 ---
-## A full-featured modern template for academics and researchers
-[Use this template](https://oilandrust.github.io/lefolio-academic/)
 ![[lefolio.md/Content/Templates/Academic/screenshot.jpg|center]]
 The Academic template is designed for researchers with a clean, readable style and project and publication listings.
 ## Publication list with thumbnails
