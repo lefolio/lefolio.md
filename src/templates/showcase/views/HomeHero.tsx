@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import type { ContentManifest } from '@/lib/content/types';
@@ -48,8 +47,7 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
   const { home, authorAvatar, config } = manifest;
   const github =
     config.author?.links?.github || 'https://github.com/oilandrust/lefolio.md';
-  const docsHref =
-    manifest.navigation.find((item) => /docs/i.test(item.label))?.href || '/Docs/';
+  const playgroundHref = 'https://oilandrust.github.io/lefolio-app/';
   const heroMedia = home?.heroImage || authorAvatar;
   const heroIsDemo = Boolean(home?.heroImage);
   const brand = heroBrandName(home?.title, config.site.title);
@@ -100,7 +98,15 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
                 target="_blank"
                 rel="noreferrer"
               >
-                Start Building Your Website
+                Fork it on GitHub
+              </a>
+              <a
+                href={playgroundHref}
+                className="showcase-cta-secondary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Try it in our Playground
               </a>
             </div>
           </div>
