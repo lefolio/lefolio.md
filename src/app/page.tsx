@@ -1,10 +1,15 @@
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { loadManifest } from '@/lib/content/load-manifest';
 import HomeHero from '@/templates/showcase/views/HomeHero';
+import HomeView from '@/templates/treasure/views/HomeView';
 
 export default function HomePage() {
   const manifest = loadManifest();
   const templateId = manifest.template ?? manifest.config.template ?? 'academic';
+
+  if (templateId === 'treasure') {
+    return <HomeView manifest={manifest} />;
+  }
 
   if (templateId === 'showcase') {
     return <HomeHero manifest={manifest} />;

@@ -24,6 +24,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SKIP_DIRS = new Set(['Assets', '.obsidian']);
 const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg']);
+const AUDIO_EXT = new Set(['.mp3', '.wav', '.ogg', '.m4a', '.aac', '.flac', '.opus']);
 
 function slugify(name) {
   return name
@@ -83,6 +84,22 @@ function normalizeAuthors(authors) {
 
 function isImagePath(relativePath) {
   return IMAGE_EXT.has(path.extname(relativePath).toLowerCase());
+}
+
+function isAudioPath(relativePath) {
+  return AUDIO_EXT.has(path.extname(relativePath).toLowerCase());
+}
+
+function escapeHtmlAttr(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function audioTitleFromPath(vaultPath) {
+  return path.basename(vaultPath, path.extname(vaultPath)).replace(/[_-]/g, ' ');
 }
 
 function makeResolveCtx(vaultRoot, vaultIndex, sourceContentPath) {
@@ -361,6 +378,7 @@ function parseEmbedTarget(value) {
   let width = null;
   let align = null;
   let wrap = false;
+  let alias = null;
 
   for (const token of parts.slice(1)) {
     const lower = token.toLowerCase();
@@ -370,11 +388,13 @@ function parseEmbedTarget(value) {
       align = lower;
     } else if (lower === 'wrap') {
       wrap = true;
+    } else if (!alias) {
+      alias = token;
     }
   }
 
   if (wrap && !align) align = 'right';
-  return { target, width, align, wrap };
+  return { target, width, align, wrap, alias };
 }
 
 function findPageForVaultPath(vaultPath, vaultRoot, pagesByPath) {
@@ -411,7 +431,7 @@ function preprocessMarkdown(
   const ctx = makeResolveCtx(vaultRoot, vaultIndex, sourceFile);
 
   processed = processed.replace(/!\[\[([^\]]+)\]\]/g, (_, raw) => {
-    const { target, width, align, wrap } = parseEmbedTarget(raw);
+    const { target, width, align, wrap, alias } = parseEmbedTarget(raw);
     const resolved = resolveAsset(target, ctx);
     if (!resolved) return `\n\n*[Missing embed: ${target}]*\n\n`;
 
@@ -435,6 +455,14 @@ function preprocessMarkdown(
       const imgWidthAttr = width ? ` width="${width}"` : '';
 
       return `\n\n<figure class="${figureClasses.join(' ')}"${figureStyle}><img src="${src}" alt="${alt}"${imgWidthAttr} loading="lazy" /></figure>\n\n`;
+    }
+
+    if (isAudioPath(vaultPath)) {
+      const publicPath = copyAssetFromVault(vaultPath, vaultRoot, ASSETS_OUT, assetMap);
+      if (!publicPath) return `\n\n*[Missing embed: ${target}]*\n\n`;
+      const src = `${basePath || ''}${publicPath}`;
+      const title = (alias && String(alias).trim()) || audioTitleFromPath(vaultPath);
+      return `\n\n<audio class="content-audio" controls preload="metadata" src="${escapeHtmlAttr(src)}" title="${escapeHtmlAttr(title)}"></audio>\n\n`;
     }
 
     if (vaultPath.endsWith('.md')) {

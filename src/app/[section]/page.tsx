@@ -1,6 +1,7 @@
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import AcademicSectionPageList from '@/templates/academic/views/SectionPageList';
 import ShowcaseSectionPageList from '@/templates/showcase/views/SectionPageList';
+import TreasureSectionPageList from '@/templates/treasure/views/SectionPageList';
 import { loadManifest, getSectionRoutes } from '@/lib/content/load-manifest';
 
 export function generateStaticParams() {
@@ -53,7 +54,9 @@ export default async function SectionIndexPage({
         <p className="text-muted mb-8">Pages in this section.</p>
       ) : null}
 
-      {templateId === 'showcase' ? (
+      {templateId === 'treasure' ? (
+        <TreasureSectionPageList display={section.display} pages={section.pages} />
+      ) : templateId === 'showcase' ? (
         <ShowcaseSectionPageList display={section.display} pages={section.pages} />
       ) : (
         <AcademicSectionPageList

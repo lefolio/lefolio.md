@@ -10,6 +10,8 @@
 @import "../templates/showcase/themes/ink-light.css";
 @import "../templates/showcase/themes/ink-dark.css";
 @import "../templates/showcase/theme.css";
+@import "../templates/treasure/themes/pearl-light.css";
+@import "../templates/treasure/theme.css";
 
 html {
   font-size: calc(var(--text-base, 1rem) * var(--font-scale, 1));
@@ -115,6 +117,78 @@ body {
 .prose-content .syntax-block .token.cdata {
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+.content-audio {
+  display: flex;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.content-audio-title {
+  flex: 0 1 14rem;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.content-audio-element {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.content-shorts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  align-items: flex-start;
+}
+
+.content-short {
+  flex: 1 1 10rem;
+  width: 100%;
+  max-width: 14rem;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.content-short iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.content-soundcloud {
+  margin: 1.25rem 0;
+  width: 100%;
+  max-width: 42rem;
+}
+
+.content-soundcloud iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  overflow: hidden;
+}
+
+.content-soundcloud--loading {
+  height: 166px;
+  background: color-mix(in srgb, var(--color-text, #111) 6%, transparent);
+}
+
+.content-soundcloud--fallback {
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
 }
 
 .link-primary {

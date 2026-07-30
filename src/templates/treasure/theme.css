@@ -1,0 +1,197 @@
+[data-template="treasure"] {
+  --sidebar-width: 0;
+  --font-sans: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-heading: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-scale: 1;
+  --text-base: 1.0625rem;
+  --text-h1: 2.75rem;
+  --text-h2: 1.75rem;
+  --text-h3: 1.25rem;
+  --leading-body: 1.7;
+  --content-max-width: 42rem;
+  --treasure-max: 64rem;
+}
+
+[data-template="treasure"] .treasure-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+[data-template="treasure"] .treasure-container {
+  width: min(100% - 2rem, var(--treasure-max));
+  margin-inline: auto;
+}
+
+[data-template="treasure"] .treasure-header {
+  border-bottom: none;
+  background: var(--color-bg);
+}
+
+[data-template="treasure"] .treasure-brand {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+[data-template="treasure"] .treasure-brand:hover {
+  opacity: 0.7;
+}
+
+[data-template="treasure"] .treasure-nav {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+[data-template="treasure"] .treasure-nav:hover,
+[data-template="treasure"] .treasure-nav-active {
+  color: var(--color-text);
+}
+
+[data-template="treasure"] .treasure-nav-active {
+  font-weight: 600;
+}
+
+[data-template="treasure"] .treasure-main {
+  flex: 1;
+}
+
+[data-template="treasure"] .treasure-main > article {
+  width: min(100% - 2rem, var(--content-max-width));
+  margin-inline: auto;
+  padding-block: 2.5rem 4rem;
+}
+
+[data-template="treasure"] .treasure-home {
+  width: min(100% - 2rem, var(--treasure-max));
+  margin-inline: auto;
+  padding-block: 3rem 4.5rem;
+}
+
+[data-template="treasure"] .treasure-handle {
+  margin: 0 0 2.5rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+[data-template="treasure"] .treasure-interests {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 720px) {
+  [data-template="treasure"] .treasure-interests {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  [data-template="treasure"] .treasure-interest--solo {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 2rem) / 2);
+  }
+}
+
+[data-template="treasure"] .treasure-interest-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+[data-template="treasure"] .treasure-interest-shot {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+}
+
+[data-template="treasure"] .treasure-interest-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+[data-template="treasure"] .treasure-interest-card:hover .treasure-interest-shot img {
+  transform: scale(1.02);
+}
+
+[data-template="treasure"] .treasure-interest-shot-empty {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+[data-template="treasure"] .treasure-interest-title {
+  margin: 0.85rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+[data-template="treasure"] .treasure-footer {
+  border-top: none;
+  background: var(--color-bg);
+}
+
+[data-template="treasure"] .treasure-footer-credit {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+[data-template="treasure"] .treasure-footer-credit:hover {
+  opacity: 0.7;
+}
+
+[data-template="treasure"] .text-muted {
+  color: var(--color-text-muted);
+}
+
+[data-template="treasure"] .text-heading {
+  color: var(--color-text);
+}
+
+[data-template="treasure"] .prose-content {
+  @apply prose max-w-none prose-headings:scroll-mt-20;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: var(--leading-body);
+}
+
+[data-template="treasure"] .prose-content :where(a) {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+[data-template="treasure"] .prose-content :where(code):not(:where(pre *, .code-block *))::before,
+[data-template="treasure"] .prose-content :where(code):not(:where(pre *, .code-block *))::after {
+  content: none;
+}
+
+[data-template="treasure"] .border-default {
+  border-color: var(--color-border);
+}
