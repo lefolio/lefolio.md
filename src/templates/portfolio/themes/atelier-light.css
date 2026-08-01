@@ -1,0 +1,27 @@
+/* Navy + gold atelier — sampled from alistairkeane.com */
+[data-template="portfolio"][data-theme="atelier-light"] {
+  --color-bg: #faf9f6;
+  --color-bg-alt: #f3f1eb;
+  --color-bg-elevated: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5c5c5c;
+  --color-border: #e2ddd0;
+  --color-primary: #001f3d;
+  --color-primary-hover: #00305c;
+  --color-on-primary: #faf9f6;
+  --color-navy: #001f3d;
+  --color-gold: #cfb53b;
+  --color-cream: #faf9f6;
+}
+
+[data-template="portfolio"][data-theme="atelier-light"] .prose-content {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-navy);
+  --tw-prose-links: var(--color-navy);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-bg: var(--color-bg-alt);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text-muted);
+  --tw-prose-quote-borders: var(--color-gold);
+}

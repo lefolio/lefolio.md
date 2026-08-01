@@ -2,6 +2,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { loadManifest } from '@/lib/content/load-manifest';
 import HomeHero from '@/templates/showcase/views/HomeHero';
 import HomeView from '@/templates/treasure/views/HomeView';
+import PortfolioHome from '@/templates/portfolio/views/PortfolioHome';
 
 export default function HomePage() {
   const manifest = loadManifest();
@@ -13,6 +14,10 @@ export default function HomePage() {
 
   if (templateId === 'showcase') {
     return <HomeHero manifest={manifest} />;
+  }
+
+  if (templateId === 'portfolio') {
+    return <PortfolioHome manifest={manifest} />;
   }
 
   const home = manifest.home;

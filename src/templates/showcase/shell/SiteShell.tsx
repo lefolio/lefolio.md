@@ -21,7 +21,7 @@ export default function SiteShell({ manifest, children }: SiteShellProps) {
             Built with:{' '}
             <a
               className="link-primary"
-              href="https://github.com/oilandrust/lefolio.md"
+              href="https://github.com/lefolio/lefolio.md"
               target="_blank"
               rel="noreferrer"
             >

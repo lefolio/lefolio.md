@@ -12,6 +12,9 @@
 @import "../templates/showcase/theme.css";
 @import "../templates/treasure/themes/pearl-light.css";
 @import "../templates/treasure/theme.css";
+@import "../templates/portfolio/themes/atelier-light.css";
+@import "../templates/portfolio/themes/atelier-dark.css";
+@import "../templates/portfolio/theme.css";
 
 html {
   font-size: calc(var(--text-base, 1rem) * var(--font-scale, 1));

@@ -1,6 +1,7 @@
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { getAllPageParams, getPage, loadManifest } from '@/lib/content/load-manifest';
 import ShowcaseContentPage from '@/templates/showcase/views/ShowcaseContentPage';
+import PortfolioContentPage from '@/templates/portfolio/views/PortfolioContentPage';
 
 export function generateStaticParams() {
   return getAllPageParams();
@@ -23,6 +24,10 @@ export default async function ContentPage({
 
   if (templateId === 'showcase') {
     return <ShowcaseContentPage page={page} />;
+  }
+
+  if (templateId === 'portfolio') {
+    return <PortfolioContentPage page={page} />;
   }
 
   return (

@@ -1,0 +1,39 @@
+[data-template="portfolio"][data-theme="atelier-dark"] {
+  --color-bg: #0c1522;
+  --color-bg-alt: #141e2e;
+  --color-bg-elevated: #162033;
+  --color-text: #f0ece3;
+  --color-text-muted: #a8a194;
+  --color-border: #2a3648;
+  --color-primary: #cfb53b;
+  --color-primary-hover: #e0c85a;
+  --color-on-primary: #001f3d;
+  --color-navy: #001f3d;
+  --color-gold: #cfb53b;
+  --color-cream: #faf9f6;
+}
+
+[data-template="portfolio"][data-theme="atelier-dark"] .prose-content {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-cream);
+  --tw-prose-links: var(--color-gold);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-bg: var(--color-bg-alt);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text-muted);
+  --tw-prose-quote-borders: var(--color-gold);
+}
+
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-section h2,
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-page > h1,
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-card h3,
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-entry-list h2,
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-mission p,
+[data-template="portfolio"][data-theme="atelier-dark"] .text-heading {
+  color: var(--color-cream);
+}
+
+[data-template="portfolio"][data-theme="atelier-dark"] .portfolio-main {
+  background: var(--color-bg);
+}

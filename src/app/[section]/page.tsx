@@ -2,6 +2,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import AcademicSectionPageList from '@/templates/academic/views/SectionPageList';
 import ShowcaseSectionPageList from '@/templates/showcase/views/SectionPageList';
 import TreasureSectionPageList from '@/templates/treasure/views/SectionPageList';
+import PortfolioSectionPageList from '@/templates/portfolio/views/SectionPageList';
 import { loadManifest, getSectionRoutes } from '@/lib/content/load-manifest';
 
 export function generateStaticParams() {
@@ -21,6 +22,15 @@ export default async function SectionIndexPage({
     (page) => page.segment === sectionName
   );
   if (standalonePage) {
+    if (templateId === 'portfolio') {
+      return (
+        <article className="portfolio-container portfolio-page">
+          <p className="portfolio-eyebrow">Page</p>
+          <h1>{standalonePage.title}</h1>
+          <MarkdownRenderer content={standalonePage.processedBody} />
+        </article>
+      );
+    }
     return (
       <article>
         <h1 className="text-heading mb-6 text-3xl font-bold">{standalonePage.title}</h1>
@@ -39,9 +49,15 @@ export default async function SectionIndexPage({
   const showDefaultIntro = !section.index?.processedBody;
 
   const wide = templateId === 'showcase' && section.display === 'grid';
+  const portfolioWrap = templateId === 'portfolio';
 
   return (
-    <article className={wide ? 'showcase-wide' : undefined}>
+    <article
+      className={
+        portfolioWrap ? 'portfolio-container portfolio-page' : wide ? 'showcase-wide' : undefined
+      }
+    >
+      {portfolioWrap ? <p className="portfolio-eyebrow">{section.name}</p> : null}
       <h1 className="text-heading mb-2 text-3xl font-bold">{title}</h1>
 
       {section.index?.processedBody ? (
@@ -58,6 +74,8 @@ export default async function SectionIndexPage({
         <TreasureSectionPageList display={section.display} pages={section.pages} />
       ) : templateId === 'showcase' ? (
         <ShowcaseSectionPageList display={section.display} pages={section.pages} />
+      ) : templateId === 'portfolio' ? (
+        <PortfolioSectionPageList display={section.display} pages={section.pages} />
       ) : (
         <AcademicSectionPageList
           display={section.display}

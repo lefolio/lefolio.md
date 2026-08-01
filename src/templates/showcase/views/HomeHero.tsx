@@ -46,7 +46,7 @@ function heroBrandName(homeTitle: string | undefined, siteTitle: string) {
 export default function HomeHero({ manifest }: HomeHeroProps) {
   const { home, authorAvatar, config } = manifest;
   const github =
-    config.author?.links?.github || 'https://github.com/oilandrust/lefolio.md';
+    config.author?.links?.github || 'https://github.com/lefolio/lefolio.md';
   const playgroundHref = 'https://oilandrust.github.io/lefolio-app/';
   const heroMedia = home?.heroImage || authorAvatar;
   const heroIsDemo = Boolean(home?.heroImage);

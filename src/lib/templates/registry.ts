@@ -2,11 +2,13 @@ import type { TemplateModule } from './types';
 import { academicTemplate } from '@/templates/academic';
 import { showcaseTemplate } from '@/templates/showcase';
 import { treasureTemplate } from '@/templates/treasure';
+import { portfolioTemplate } from '@/templates/portfolio';
 
 const templates: Record<string, TemplateModule> = {
   academic: academicTemplate,
   showcase: showcaseTemplate,
   treasure: treasureTemplate,
+  portfolio: portfolioTemplate,
 };
 
 export function getTemplate(id: string): TemplateModule {
