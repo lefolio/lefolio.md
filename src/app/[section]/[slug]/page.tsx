@@ -1,7 +1,5 @@
-import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { getAllPageParams, getPage, loadManifest } from '@/lib/content/load-manifest';
-import ShowcaseContentPage from '@/templates/showcase/views/ShowcaseContentPage';
-import PortfolioContentPage from '@/templates/portfolio/views/PortfolioContentPage';
+import { getTemplate, resolveTemplateId } from '@/lib/templates/registry';
 
 export function generateStaticParams() {
   return getAllPageParams();
@@ -20,21 +18,6 @@ export default async function ContentPage({
   }
 
   const manifest = loadManifest();
-  const templateId = manifest.template ?? manifest.config.template ?? 'academic';
-
-  if (templateId === 'showcase') {
-    return <ShowcaseContentPage page={page} />;
-  }
-
-  if (templateId === 'portfolio') {
-    return <PortfolioContentPage page={page} />;
-  }
-
-  return (
-    <article>
-      <p className="text-muted mb-2 text-sm uppercase tracking-wide">{page.section}</p>
-      <h1 className="text-heading mb-6 text-3xl font-bold">{page.title}</h1>
-      <MarkdownRenderer content={page.processedBody} />
-    </article>
-  );
+  const { ContentPage: TemplateContentPage } = getTemplate(resolveTemplateId(manifest));
+  return <TemplateContentPage page={page} />;
 }

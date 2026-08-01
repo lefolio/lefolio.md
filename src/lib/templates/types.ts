@@ -1,10 +1,44 @@
-import type { ContentManifest } from '@/lib/content/types';
+import type { ContentManifest, ManifestPage, NavSection, StandalonePage } from '@/lib/content/types';
 
+export interface TemplateShellProps {
+  manifest: ContentManifest;
+  children: React.ReactNode;
+}
+
+export interface TemplateHomeProps {
+  manifest: ContentManifest;
+}
+
+export interface TemplateSectionIndexProps {
+  manifest: ContentManifest;
+  section: NavSection;
+}
+
+export interface TemplateStandalonePageProps {
+  manifest: ContentManifest;
+  page: StandalonePage;
+}
+
+export interface TemplateContentPageProps {
+  page: ManifestPage;
+}
+
+/**
+ * Template contract. Shell is required; page views are optional and fall back to
+ * engine defaults via `getTemplate()` so App Router routes stay template-agnostic.
+ */
 export interface TemplateModule {
   id: string;
   routing: 'multipage' | 'singlepage';
-  Shell: React.FC<{
-    manifest: ContentManifest;
-    children: React.ReactNode;
-  }>;
+  Shell: React.FC<TemplateShellProps>;
+  Home?: React.FC<TemplateHomeProps>;
+  SectionIndex?: React.FC<TemplateSectionIndexProps>;
+  StandalonePage?: React.FC<TemplateStandalonePageProps>;
+  ContentPage?: React.FC<TemplateContentPageProps>;
 }
+
+/** Template with view slots filled (defaults applied). */
+export type ResolvedTemplateModule = TemplateModule &
+  Required<
+    Pick<TemplateModule, 'Home' | 'SectionIndex' | 'StandalonePage' | 'ContentPage'>
+  >;

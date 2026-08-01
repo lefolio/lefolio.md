@@ -1,9 +1,5 @@
-import MarkdownRenderer from '@/components/MarkdownRenderer';
-import AcademicSectionPageList from '@/templates/academic/views/SectionPageList';
-import ShowcaseSectionPageList from '@/templates/showcase/views/SectionPageList';
-import TreasureSectionPageList from '@/templates/treasure/views/SectionPageList';
-import PortfolioSectionPageList from '@/templates/portfolio/views/SectionPageList';
 import { loadManifest, getSectionRoutes } from '@/lib/content/load-manifest';
+import { getTemplate, resolveTemplateId } from '@/lib/templates/registry';
 
 export function generateStaticParams() {
   return getSectionRoutes();
@@ -16,27 +12,13 @@ export default async function SectionIndexPage({
 }) {
   const { section: sectionName } = await params;
   const manifest = loadManifest();
-  const templateId = manifest.template ?? manifest.config.template ?? 'academic';
+  const { SectionIndex, StandalonePage } = getTemplate(resolveTemplateId(manifest));
 
   const standalonePage = manifest.standalonePages.find(
     (page) => page.segment === sectionName
   );
   if (standalonePage) {
-    if (templateId === 'portfolio') {
-      return (
-        <article className="portfolio-container portfolio-page">
-          <p className="portfolio-eyebrow">Page</p>
-          <h1>{standalonePage.title}</h1>
-          <MarkdownRenderer content={standalonePage.processedBody} />
-        </article>
-      );
-    }
-    return (
-      <article>
-        <h1 className="text-heading mb-6 text-3xl font-bold">{standalonePage.title}</h1>
-        <MarkdownRenderer content={standalonePage.processedBody} />
-      </article>
-    );
+    return <StandalonePage manifest={manifest} page={standalonePage} />;
   }
 
   const section = manifest.sections.find((s) => s.name === sectionName);
@@ -45,44 +27,5 @@ export default async function SectionIndexPage({
     return <p className="text-muted">Section not found.</p>;
   }
 
-  const title = section.index?.title || section.name;
-  const showDefaultIntro = !section.index?.processedBody;
-
-  const wide = templateId === 'showcase' && section.display === 'grid';
-  const portfolioWrap = templateId === 'portfolio';
-
-  return (
-    <article
-      className={
-        portfolioWrap ? 'portfolio-container portfolio-page' : wide ? 'showcase-wide' : undefined
-      }
-    >
-      {portfolioWrap ? <p className="portfolio-eyebrow">{section.name}</p> : null}
-      <h1 className="text-heading mb-2 text-3xl font-bold">{title}</h1>
-
-      {section.index?.processedBody ? (
-        <div className="mb-2">
-          <MarkdownRenderer content={section.index.processedBody} />
-        </div>
-      ) : null}
-
-      {showDefaultIntro ? (
-        <p className="text-muted mb-8">Pages in this section.</p>
-      ) : null}
-
-      {templateId === 'treasure' ? (
-        <TreasureSectionPageList display={section.display} pages={section.pages} />
-      ) : templateId === 'showcase' ? (
-        <ShowcaseSectionPageList display={section.display} pages={section.pages} />
-      ) : templateId === 'portfolio' ? (
-        <PortfolioSectionPageList display={section.display} pages={section.pages} />
-      ) : (
-        <AcademicSectionPageList
-          display={section.display}
-          pages={section.pages}
-          highlightAuthor={manifest.config.author?.name}
-        />
-      )}
-    </article>
-  );
+  return <SectionIndex manifest={manifest} section={section} />;
 }

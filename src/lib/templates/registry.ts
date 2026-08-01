@@ -1,4 +1,10 @@
-import type { TemplateModule } from './types';
+import type { ResolvedTemplateModule, TemplateModule } from './types';
+import {
+  DefaultContentPage,
+  DefaultHome,
+  DefaultSectionIndex,
+  DefaultStandalonePage,
+} from './defaults';
 import { academicTemplate } from '@/templates/academic';
 import { showcaseTemplate } from '@/templates/showcase';
 import { treasureTemplate } from '@/templates/treasure';
@@ -11,15 +17,32 @@ const templates: Record<string, TemplateModule> = {
   portfolio: portfolioTemplate,
 };
 
-export function getTemplate(id: string): TemplateModule {
+function withDefaults(template: TemplateModule): ResolvedTemplateModule {
+  return {
+    ...template,
+    Home: template.Home ?? DefaultHome,
+    SectionIndex: template.SectionIndex ?? DefaultSectionIndex,
+    StandalonePage: template.StandalonePage ?? DefaultStandalonePage,
+    ContentPage: template.ContentPage ?? DefaultContentPage,
+  };
+}
+
+export function getTemplate(id: string): ResolvedTemplateModule {
   const template = templates[id];
   if (template) {
-    return template;
+    return withDefaults(template);
   }
 
   if (typeof console !== 'undefined') {
     console.warn(`Unknown template "${id}", falling back to academic.`);
   }
 
-  return templates.academic;
+  return withDefaults(templates.academic);
+}
+
+export function resolveTemplateId(manifest: {
+  template?: string;
+  config?: { template?: string };
+}): string {
+  return manifest.template ?? manifest.config?.template ?? 'academic';
 }
