@@ -1,20 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap");
-@import "../templates/academic/themes/latex-fonts.css";
-@import "../templates/academic/themes/slate-light.css";
-@import "../templates/academic/themes/slate-dark.css";
-@import "../templates/academic/themes/latex-light.css";
-@import "../templates/academic/themes/latex-dark.css";
-@import "../templates/academic/theme.css";
-@import "../templates/showcase/themes/ink-light.css";
-@import "../templates/showcase/themes/ink-dark.css";
-@import "../templates/showcase/theme.css";
-@import "../templates/treasure/themes/pearl-light.css";
-@import "../templates/treasure/theme.css";
-@import "../templates/portfolio/themes/atelier-light.css";
-@import "../templates/portfolio/themes/atelier-dark.css";
-@import "../templates/portfolio/theme.css";
 
 html {
   font-size: calc(var(--text-base, 1rem) * var(--font-scale, 1));

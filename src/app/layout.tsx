@@ -17,12 +17,15 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const manifest = loadManifest();
   void CONTENT_VERSION;
 
   const templateId = resolveTemplateId(manifest);
-  const { Shell } = getTemplate(templateId);
+  const template = getTemplate(templateId);
+  const { Shell } = template;
+  await template.loadStyles();
+
   const themeId = manifest.theme;
   const themeStyle = themeOverrideStyle(manifest.config.theme);
   const googleAnalyticsId = normalizeGoogleAnalyticsId(manifest.config.analytics?.google);

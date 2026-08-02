@@ -7,7 +7,9 @@
     "dev": "node scripts/lefolio.mjs dev --turbopack",
     "build": "node scripts/lefolio.mjs build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.17.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
@@ -38,6 +41,7 @@
     "eslint": "^9.33.0",
     "eslint-config-next": "^15.5.0",
     "fast-glob": "^3.3.3",
+    "jest": "^30.4.2",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   }

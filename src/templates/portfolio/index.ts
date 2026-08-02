@@ -9,6 +9,7 @@ export const portfolioTemplate: TemplateModule = {
   id: 'portfolio',
   routing: 'multipage',
   Shell: SiteShell,
+  loadStyles: () => import('./styles.css'),
   Home: PortfolioHome,
   SectionIndex,
   StandalonePage,

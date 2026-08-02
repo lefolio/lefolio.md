@@ -1,0 +1,5 @@
+@reference "../../app/globals.css";
+
+@import "./themes/atelier-light.css";
+@import "./themes/atelier-dark.css";
+@import "./theme.css";

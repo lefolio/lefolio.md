@@ -1,0 +1,9 @@
+/* Tailwind v4: separate CSS entries need theme/utilities for @apply (no CSS emit). */
+@reference "../../app/globals.css";
+
+@import "./themes/latex-fonts.css";
+@import "./themes/slate-light.css";
+@import "./themes/slate-dark.css";
+@import "./themes/latex-light.css";
+@import "./themes/latex-dark.css";
+@import "./theme.css";

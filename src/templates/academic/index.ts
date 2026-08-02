@@ -6,6 +6,7 @@ export const academicTemplate: TemplateModule = {
   id: 'academic',
   routing: 'multipage',
   Shell: SiteShell,
+  loadStyles: () => import('./styles.css'),
   SectionIndex,
 };
 

@@ -29,15 +29,26 @@ interface TemplateModule {
   id: string;
   routing: 'multipage' | 'singlepage';
   Shell: React.FC<{ manifest: ContentManifest; children: React.ReactNode }>;
+  loadStyles: () => Promise<unknown>; // () => import('./styles.css')
+  Home?: React.FC<{ manifest: ContentManifest }>;
+  SectionIndex?: React.FC<{ manifest: ContentManifest; section: NavSection }>;
+  StandalonePage?: React.FC<{ manifest: ContentManifest; page: StandalonePage }>;
+  ContentPage?: React.FC<{ page: ManifestPage }>;
 }
 ```
+
+`getTemplate(id)` fills missing view slots with engine defaults (`src/lib/templates/defaults.tsx`).
+App Router routes (`page.tsx`, `[section]/page.tsx`, `[slug]/page.tsx`) only call `getTemplate` — they must not import `@/templates/*` views.
+Root layout calls `await template.loadStyles()` so only the active template’s CSS is loaded (do **not** `@import` template CSS from `globals.css`).
 
 ## File layout (academic reference)
 
 ```text
 src/templates/academic/
-├── index.ts              # exports academicTemplate
+├── index.ts              # exports academicTemplate (incl. loadStyles)
+├── styles.css            # entry: presets + theme.css (loaded via loadStyles)
 ├── theme.css             # layout tokens + prose scoped to [data-template="academic"]
+├── themes/               # slate-*, latex-*, …
 ├── shell/
 │   ├── SiteShell.tsx
 │   ├── Navbar.tsx
@@ -70,8 +81,10 @@ Sync writes `template` to the manifest (`scripts/sync-content.mjs` via `resolveT
 
 ## App wiring
 
-- **`src/app/layout.tsx`** — `getTemplate(manifest.template).Shell` wraps all pages; sets `data-template` on `<body>`
-- **Section routes** — import views from the template package, e.g. `@/templates/academic/views/SectionPageList`
+- **`src/app/layout.tsx`** — `getTemplate(…).Shell` wraps all pages; `await loadStyles()`; sets `data-template` on `<html>`
+- **Home / section / content routes** — `getTemplate(…).Home | SectionIndex | StandalonePage | ContentPage`
+- **Do not** import `@/templates/<id>/views/*` from `src/app/` — register views on the template module
+- **Do not** `@import` template CSS from `globals.css` — use each template’s `styles.css` + `loadStyles`
 - **Do not** keep shell components in `src/components/` — they belong under `src/templates/<id>/`
 
 ## CSS boundary
@@ -79,11 +92,11 @@ Sync writes `template` to the manifest (`scripts/sync-content.mjs` via `resolveT
 | Layer | Location | Scope |
 |-------|----------|-------|
 | Engine shared | `src/app/globals.css` | Figures, link utilities, Tailwind imports |
+| Template CSS entry | `src/templates/<id>/styles.css` | Starts with `@reference "../../app/globals.css"`; aggregates presets + `theme.css`; loaded via `loadStyles` |
 | Template structure | `src/templates/<id>/theme.css` | `[data-template="<id>"]` layout + `.prose-content` |
 | Theme presets | `src/templates/<id>/themes/*.css` | `[data-theme="preset-mode"]` colors |
 
-Import preset CSS from `globals.css` (after `@import "tailwindcss"`), not from template `index.ts`.
-
+Do **not** `@import` template CSS from `globals.css` or from template `index.ts` (sync import would pull every registered template). Use `loadStyles: () => import('./styles.css')` only. Each `styles.css` must start with `@reference "../../app/globals.css"` so Tailwind v4 `@apply` (incl. typography utilities) resolves without duplicating Tailwind CSS.
 ## Workflow: add a new template
 
 1. Create `src/templates/<id>/` with `index.ts`, `shell/`, `views/`, `theme.css`

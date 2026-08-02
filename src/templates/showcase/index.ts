@@ -8,6 +8,7 @@ export const showcaseTemplate: TemplateModule = {
   id: 'showcase',
   routing: 'multipage',
   Shell: SiteShell,
+  loadStyles: () => import('./styles.css'),
   Home: HomeHero,
   SectionIndex,
   ContentPage: ShowcaseContentPage,

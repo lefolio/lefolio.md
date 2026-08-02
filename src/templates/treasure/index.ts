@@ -7,6 +7,7 @@ export const treasureTemplate: TemplateModule = {
   id: 'treasure',
   routing: 'multipage',
   Shell: SiteShell,
+  loadStyles: () => import('./styles.css'),
   Home: HomeView,
   SectionIndex,
 };
