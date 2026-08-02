@@ -47,7 +47,6 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
   const { home, authorAvatar, config } = manifest;
   const github =
     config.author?.links?.github || 'https://github.com/lefolio/lefolio.md';
-  const playgroundHref = 'https://oilandrust.github.io/lefolio-app/';
   const heroMedia = home?.heroImage || authorAvatar;
   const heroIsDemo = Boolean(home?.heroImage);
   const brand = heroBrandName(home?.title, config.site.title);
@@ -99,14 +98,6 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
                 rel="noreferrer"
               >
                 Fork it on GitHub
-              </a>
-              <a
-                href={playgroundHref}
-                className="showcase-cta-secondary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Try it in our Playground
               </a>
             </div>
           </div>

@@ -51,3 +51,23 @@ npm run dev
 
 See [[Getting-started]] and [[Docs|the documentation]] for more details about choosing a template, configuring your site, and editing your content.
 
+## Connect, I'll keep you posted
+**LeFolio** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
+
+<form
+  action="https://buttondown.com/api/emails/embed-subscribe/lefolio.md"
+  method="post"
+  class="embeddable-buttondown-form"
+>
+  <label for="bd-email">Keep me posted!</label>
+  <input type="email" name="email" id="bd-email" placeholder="you@example.com" required />
+  <input type="submit" value="Subscribe" />
+  <p class="embeddable-buttondown-powered">
+    <a href="https://buttondown.com/refer/lefolio.md" target="_blank" rel="noreferrer">
+      Powered by Buttondown.
+    </a>
+  </p>
+</form>
+
+You can also connect on [GitHub](https://github.com/lefolio) and chat on [Reddit](https://www.reddit.com/user/oliver_rust/)!
+
