@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-04T13:28:50Z",
+  "title": "Design System: LeFolio.md",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Obsidian Link Blue",
+        "canonical": "#2890f8",
+        "tonalRamp": ["#0a1a30", "#0f2748", "#153868", "#1b4d8a", "#2890f8", "#4aa0ff", "#8fc4ff", "#d6eaff"]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Signal Hover",
+        "canonical": "#4aa0ff",
+        "tonalRamp": ["#0a1a30", "#0f2748", "#153868", "#1b4d8a", "#2890f8", "#4aa0ff", "#8fc4ff", "#d6eaff"]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#0a1220",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "bg-alt": {
+        "role": "neutral",
+        "displayName": "Ink Shelf",
+        "canonical": "#121c2e",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "bg-elevated": {
+        "role": "neutral",
+        "displayName": "Raised Ink",
+        "canonical": "#1a2740",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Paper Signal",
+        "canonical": "#e8eef8",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Mist Caption",
+        "canonical": "#9aacc4",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Harbor Line",
+        "canonical": "#2a3a55",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "brand-navy": {
+        "role": "neutral",
+        "displayName": "Brand Core (dark)",
+        "canonical": "#e8eef8",
+        "tonalRamp": ["#050810", "#0a1220", "#121c2e", "#1a2740", "#2a3a55", "#4a5d7a", "#9aacc4", "#e8eef8"]
+      },
+      "brand-blue": {
+        "role": "primary",
+        "displayName": "Brand Extension Blue",
+        "canonical": "#2890f8",
+        "tonalRamp": ["#0a1a30", "#0f2748", "#153868", "#1b4d8a", "#2890f8", "#4aa0ff", "#8fc4ff", "#d6eaff"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero brand title and nav wordmark (Outfit)." },
+      "headline": { "displayName": "Headline", "purpose": "Hero supporting line and emphatic home headings." },
+      "title": { "displayName": "Title", "purpose": "Prose h2/h3 section titles." },
+      "body": { "displayName": "Body", "purpose": "Long-form marketing and docs prose." },
+      "label": { "displayName": "Label", "purpose": "Nav, CTAs, form chrome." }
+    },
+    "shadows": [
+      {
+        "name": "media-rest",
+        "value": "0 18px 40px color-mix(in srgb, var(--color-text) 8%, transparent)",
+        "purpose": "Hero demo frame and template preview tiles."
+      },
+      {
+        "name": "lightbox-focus",
+        "value": "0 24px 64px color-mix(in srgb, var(--color-text) 18%, transparent)",
+        "purpose": "Enlarged demo in lightbox."
+      }
+    ],
+    "motion": [
+      {
+        "name": "demo-hover",
+        "value": "transform 0.25s ease",
+        "purpose": "Slight scale on hero demo hover/focus."
+      }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "home-columns", "value": "900px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Single confident CTA — Fork on GitHub.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Fork it on GitHub</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; padding: 0.625rem 1.25rem; border: 0; border-radius: 0.5rem; background: var(--color-primary, #2890f8); color: var(--color-on-primary, #0a1220); font-size: 0.875rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.15s ease; } .ds-btn-primary:hover { background: var(--color-primary-hover, #4aa0ff); } .ds-btn-primary:focus-visible { outline: 2px solid color-mix(in srgb, var(--color-primary, #2890f8) 55%, transparent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet alternate action with border.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">Secondary</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; padding: 0.625rem 1.25rem; border: 1px solid var(--color-border, #2a3a55); border-radius: 0.5rem; background: var(--color-bg-elevated, #1a2740); color: var(--color-text, #e8eef8); font-size: 0.875rem; font-weight: 500; cursor: pointer; } .ds-btn-secondary:hover { border-color: var(--color-primary, #2890f8); color: var(--color-primary, #2890f8); } .ds-btn-secondary:focus-visible { outline: 2px solid color-mix(in srgb, var(--color-primary, #2890f8) 55%, transparent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Email Input",
+      "kind": "input",
+      "refersTo": "input-email",
+      "description": "Buttondown subscribe field on the home page.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Keep me posted!</span><input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.5rem; } .ds-field-label { font-size: 0.95rem; font-weight: 600; color: var(--color-text, #e8eef8); } .ds-input { padding: 0.65rem 0.85rem; border: 1px solid var(--color-border, #2a3a55); border-radius: 0.5rem; background: var(--color-bg, #0a1220); color: var(--color-text, #e8eef8); font-size: 0.95rem; } .ds-input:focus { outline: 2px solid color-mix(in srgb, var(--color-primary, #2890f8) 55%, transparent); outline-offset: 1px; border-color: var(--color-primary, #2890f8); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header text navigation.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Docs</a><a class=\"ds-nav-link ds-nav-link-active\" href=\"#\">About</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 1.25rem; } .ds-nav-link { font-size: 0.875rem; color: var(--color-text-muted, #9aacc4); text-decoration: none; } .ds-nav-link:hover { color: var(--color-text, #e8eef8); } .ds-nav-link-active { color: var(--color-text, #e8eef8); font-weight: 500; } .ds-nav-link:focus-visible { outline: 2px solid color-mix(in srgb, var(--color-primary, #2890f8) 55%, transparent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Brand Wordmark",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Outfit wordmark: paper core + blue .md.",
+      "html": "<a class=\"ds-brand\" href=\"/\"><span class=\"ds-brand-core\">LeFolio</span><span class=\"ds-brand-ext\">.md</span></a>",
+      "css": ".ds-brand { font-family: Outfit, \"Avenir Next\", \"Segoe UI\", ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.03em; line-height: 1.1; text-decoration: none; } .ds-brand-core { color: var(--brand-navy, #e8eef8); } .ds-brand-ext { color: var(--brand-blue, #2890f8); } .ds-brand:hover .ds-brand-core { color: var(--brand-navy, #e8eef8); } .ds-brand:hover .ds-brand-ext { color: var(--color-primary-hover, #4aa0ff); }"
+    },
+    {
+      "name": "Template Shot Tile",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Template preview tile with soft media shadow.",
+      "html": "<div class=\"ds-shot\"><div class=\"ds-shot-empty\">Template preview</div></div>",
+      "css": ".ds-shot { border-radius: 0.75rem; border: 1px solid var(--color-border, #2a3a55); background: linear-gradient(160deg, color-mix(in srgb, var(--color-primary, #2890f8) 8%, var(--color-bg-elevated, #1a2740)), var(--color-bg-alt, #121c2e)); box-shadow: 0 18px 40px color-mix(in srgb, var(--color-text, #e8eef8) 8%, transparent); overflow: hidden; aspect-ratio: 16 / 10; } .ds-shot-empty { display: flex; height: 100%; align-items: center; justify-content: center; padding: 1.5rem; color: var(--color-text-muted, #9aacc4); font-size: 0.95rem; text-align: center; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ink on Deep Water",
+    "overview": "The marketing site sits in a deep navy-ink field. Surfaces step quietly lighter as they rise; a single electric blue — sampled from the LeFolio logo — is the signal for links, brand extension (.md), and the primary CTA. Typography is practical system UI for reading, with Outfit reserved for the brand wordmark and hero title so the product name feels intentional without turning the page into a display-font showcase.\n\nDensity is spacious: wide home measure, generous section gaps, hero as one composition (demo + brand + one CTA). Product truth leads — demo GIF, vault workflow, honest copy — not decorative chrome.\n\nConfirmed rejections: purple-on-white / indigo SaaS gradients; warm cream + terracotta editorial cliché; broadsheet hairline / dense newspaper layouts.",
+    "keyCharacteristics": [
+      "Dark ink canvas with tonal surface steps (not heavy card grids)",
+      "One accent blue used sparingly as signal",
+      "Outfit for brand; Segoe UI / system for prose and chrome",
+      "Soft elevation only on media and overlays",
+      "Quiet nav; one confident primary button"
+    ],
+    "rules": [
+      { "name": "The One Beacon Rule", "body": "Obsidian Link Blue is for signal (link, CTA, brand .md, accented words) — not large fills or decorative gradients beyond the soft hero glow.", "section": "colors" },
+      { "name": "The Ink Field Rule", "body": "Prefer stepping --color-bg → --color-bg-alt → --color-bg-elevated over introducing new neutrals.", "section": "colors" },
+      { "name": "The Brand Type Rule", "body": "Outfit is for LeFolio naming and hero title only — not for long paragraphs.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Chrome and prose sit flat. Lift only when something is media or temporarily focused (lightbox).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the first viewport to brand, one headline idea, short support, one CTA, and the demo.",
+      "Do use Obsidian Link Blue for links, .md, and the primary action only.",
+      "Do step surfaces with the ink token ladder before inventing new grays.",
+      "Do put product imagery (GIF, template shots) at full compositional weight."
+    ],
+    "donts": [
+      "Don't introduce purple/indigo gradient AI product skins or cream+serif terracotta tropes.",
+      "Don't wrap the hero demo in cards, stickers, or floating meta chips.",
+      "Don't set long-form copy in Outfit.",
+      "Don't treat ink-light tokens as the marketing default while config is ink-dark."
+    ]
+  }
+}

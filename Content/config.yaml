@@ -1,5 +1,5 @@
 site:
-  title: "LeFolio.md"
+  title: "lefolio.md"
   description: "Publish a beautiful website in a breeze from the comfort of **Obsidian** without monthly hosting bills."
   url: "https://lefolio.md"
   basePath: ""
@@ -16,7 +16,7 @@ analytics:
   google: G-SNRDM00LCC
 
 author:
-  name: "LeFolio.md"
+  name: "lefolio.md"
   bio: "Obsidian-friendly site publishing for academics and makers."
   avatar: "Assets/lefolio_logo_min.png"
   links:

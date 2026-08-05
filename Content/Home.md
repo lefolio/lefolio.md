@@ -8,15 +8,14 @@ hero_image: Assets/live_update_showcase.gif
 - Rely on beautiful built-in templates.
 - Let your coding agent extend the code and customize the style.
 :::
-##
 ![[lefolio.md/Content/Assets/lefolio_logo_min.png|250|center]]
 :::
-<br>
+
 ## **Usability** of Premium Software with the **Cost of Open Source**
-<br>
+
 ::: columns
 ### Easy editing with Markdown
-LeFolio helps you build static websites using templates and editing [Markdown](https://www.markdownguide.org/basic-syntax/). Each `.md` file turns into a web page using simple syntax for images, links, etc. The engine applies the styling defined by the template.
+lefolio.md helps you build static websites using templates and editing [Markdown](https://www.markdownguide.org/basic-syntax/). Each `.md` file turns into a web page using simple syntax for images, links, etc. The engine applies the styling defined by the template.
 :::
 ### No Hosting Costs
 The site is static, so you can host it for free on [GitHub Pages](https://docs.github.com/en/pages), Netlify, or similar services. Or you can upload it on your own server if you have one. No hosting cost; you own the content, and the code is Open Source.
@@ -24,9 +23,9 @@ The site is static, so you can host it for free on [GitHub Pages](https://docs.g
 ### Publish with a few clicks
 Choose your template, edit a short configuration, push the content to GitHub, and the site is live. This can be done with a few terminal commands or, with a button click using the Obsidian Plugin.
 :::
-<br>
+
 ## We think about workflows to **make your life easier**.
-<br>
+
 ::: columns
 ### Why Markdown
 Nobody likes editing web content in HTML, and live editors such as WordPress, Squarespace, etc. come with a monthly subscription.
@@ -52,7 +51,7 @@ npm run dev
 See [[Getting-started]] and [[Docs|the documentation]] for more details about choosing a template, configuring your site, and editing your content.
 
 ## Connect, I'll keep you posted
-**LeFolio** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
+**lefolio.md** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
 
 <form
   action="https://buttondown.com/api/emails/embed-subscribe/lefolio.md"
@@ -62,11 +61,6 @@ See [[Getting-started]] and [[Docs|the documentation]] for more details about ch
   <label for="bd-email">Keep me posted!</label>
   <input type="email" name="email" id="bd-email" placeholder="you@example.com" required />
   <input type="submit" value="Subscribe" />
-  <p class="embeddable-buttondown-powered">
-    <a href="https://buttondown.com/refer/lefolio.md" target="_blank" rel="noreferrer">
-      Powered by Buttondown.
-    </a>
-  </p>
 </form>
 
 You can also connect on [GitHub](https://github.com/lefolio) and chat on [Reddit](https://www.reddit.com/user/oliver_rust/)!

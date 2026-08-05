@@ -21,7 +21,7 @@ export default function Navbar({ manifest }: NavbarProps) {
   const { config, navigation } = manifest;
   const siteTitle = config.site.title;
   const github =
-    config.author?.links?.github || 'https://github.com/oilandrust/lefolio-academic';
+    config.author?.links?.github || 'https://github.com/lefolio/lefolio.md';
 
   return (
     <header className="showcase-header sticky top-0 z-50 border-b backdrop-blur">
@@ -47,7 +47,7 @@ export default function Navbar({ manifest }: NavbarProps) {
             href={github}
             className="showcase-cta-secondary hidden sm:inline-flex"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             GitHub
           </a>

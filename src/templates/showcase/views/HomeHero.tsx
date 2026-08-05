@@ -68,25 +68,10 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
     <>
       <section className="showcase-hero">
         <div className="showcase-container showcase-hero-row py-12 sm:py-16 lg:py-20">
-          {heroMedia ? (
-            heroIsDemo ? (
-              <HeroDemoLightbox
-                src={heroMedia}
-                alt={`${config.site.title} live update demo`}
-              />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={heroMedia}
-                alt={config.site.title}
-                className="showcase-hero-logo"
-              />
-            )
-          ) : null}
           <div className="showcase-hero-copy">
             <BrandName name={brand} as="h1" className="showcase-hero-title" />
             {config.site.description ? (
-              <p className="showcase-hero-description text-muted mt-5 max-w-2xl leading-relaxed">
+              <p className="showcase-hero-description mt-5 max-w-2xl">
                 <AccentedDescription text={config.site.description} />
               </p>
             ) : null}
@@ -95,12 +80,29 @@ export default function HomeHero({ manifest }: HomeHeroProps) {
                 href={github}
                 className="showcase-cta-primary"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 Fork it on GitHub
               </a>
             </div>
           </div>
+          {heroMedia ? (
+            <div className="showcase-hero-media">
+              {heroIsDemo ? (
+                <HeroDemoLightbox
+                  src={heroMedia}
+                  alt={`${config.site.title} live update demo`}
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={heroMedia}
+                  alt={config.site.title}
+                  className="showcase-hero-logo"
+                />
+              )}
+            </div>
+          ) : null}
         </div>
       </section>
       {home.processedBody ? (

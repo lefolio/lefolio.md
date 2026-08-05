@@ -23,7 +23,7 @@ export default function SiteShell({ manifest, children }: SiteShellProps) {
               className="link-primary"
               href="https://github.com/lefolio/lefolio.md"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               lefolio.md
             </a>
