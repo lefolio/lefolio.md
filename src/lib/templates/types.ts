@@ -1,4 +1,5 @@
 import type { ContentManifest, ManifestPage, NavSection, StandalonePage } from '@/lib/content/types';
+import type { MarkdownBlockComponent } from '@/lib/markdown/components/types';
 
 export interface TemplateShellProps {
   manifest: ContentManifest;
@@ -40,6 +41,8 @@ export interface TemplateModule {
   SectionIndex?: React.FC<TemplateSectionIndexProps>;
   StandalonePage?: React.FC<TemplateStandalonePageProps>;
   ContentPage?: React.FC<TemplateContentPageProps>;
+  /** Optional `::: id` markdown block components for this template. */
+  markdownComponents?: Record<string, MarkdownBlockComponent>;
 }
 
 /** Template with view slots filled (defaults applied). */

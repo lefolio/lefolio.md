@@ -8,6 +8,7 @@ import { CONTENT_VERSION } from '@/lib/content/content-version';
 import { getTemplate, resolveTemplateId } from '@/lib/templates/registry';
 import { themeOverrideStyle } from '@/lib/theme/resolve-theme';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { MarkdownComponentsProvider } from '@/components/markdown/MarkdownComponentsProvider';
 
 export function generateMetadata(): Metadata {
   const manifest = loadManifest();
@@ -40,7 +41,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body suppressHydrationWarning>
         {googleAnalyticsId ? <GoogleAnalytics measurementId={googleAnalyticsId} /> : null}
         <ThemeProvider themeId={themeId}>
-          <Shell manifest={manifest}>{children}</Shell>
+          <MarkdownComponentsProvider components={template.markdownComponents}>
+            <Shell manifest={manifest}>{children}</Shell>
+          </MarkdownComponentsProvider>
         </ThemeProvider>
       </body>
     </html>

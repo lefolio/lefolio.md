@@ -38,15 +38,7 @@ Our Obsidian plugin lets you publish changes in a single click.
 :::
 
 ## Get your site up in Minutes for Free
-Ready to publish your site and start writing content? Open your terminal and your site will be up in a few minutes:
-
-```bash
-npm install lefolio
-npm create lefolio-site MySite
-cd MySite
-npm run dev
-# => Now browse to http://localhost:3000
-```
+Ready to publish your site and start writing content? Fork any existing template, edit the content and ask your coding agent to edit the template.
 
 See [[Getting-started]] and [[Docs|the documentation]] for more details about choosing a template, configuring your site, and editing your content.
 

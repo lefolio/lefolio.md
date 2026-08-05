@@ -3,6 +3,7 @@ import PortfolioHome from './views/PortfolioHome';
 import SectionIndex from './views/SectionIndex';
 import StandalonePage from './views/StandalonePage';
 import PortfolioContentPage from './views/PortfolioContentPage';
+import Testimonials from './components/Testimonials';
 import type { TemplateModule } from '@/lib/templates/types';
 
 export const portfolioTemplate: TemplateModule = {
@@ -14,6 +15,9 @@ export const portfolioTemplate: TemplateModule = {
   SectionIndex,
   StandalonePage,
   ContentPage: PortfolioContentPage,
+  markdownComponents: {
+    testimonials: Testimonials,
+  },
 };
 
 export { default as PortfolioHome } from './views/PortfolioHome';

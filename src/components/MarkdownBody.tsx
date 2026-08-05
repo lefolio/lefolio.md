@@ -10,12 +10,17 @@ import { remarkPlugins, rehypePlugins } from '@/lib/markdown/processor';
 import { preprocessColumns } from '@/lib/markdown/preprocess-columns';
 import { splitColumnFence } from '@/lib/markdown/preprocess-columns';
 import {
+  preprocessComponentBlocks,
+  splitBlockFence,
+} from '@/lib/markdown/preprocess-blocks';
+import {
   parseYouTubeShortId,
   preprocessYouTubeShorts,
 } from '@/lib/markdown/youtube-shorts';
 import { parseSoundCloudUrl, preprocessSoundCloud } from '@/lib/markdown/soundcloud';
 import { useDarkTheme } from '@/hooks/use-dark-theme';
 import ColumnsLayout from './ColumnsLayout';
+import ComponentHost from './markdown/ComponentHost';
 import { AudioPlaybackProvider } from './audio/AudioPlaybackContext';
 import AudioPlayer, { isAudioHref, titleFromAudioHref } from './audio/AudioPlayer';
 import SoundCloudEmbed from './SoundCloudEmbed';
@@ -29,6 +34,8 @@ interface MarkdownBodyProps {
   content: string;
   /** When false, nested column blocks are left untouched (used inside ColumnsLayout). */
   preprocessColumnBlocks?: boolean;
+  /** When false, `::: component` fences are left untouched (used inside block components). */
+  preprocessComponentBlocks?: boolean;
 }
 
 function textFromChildren(children: ReactNode): string {
@@ -98,6 +105,12 @@ function CodeBlock({ className, children, ...props }: React.ComponentPropsWithou
     return <ColumnsLayout columns={splitColumnFence(code)} />;
   }
 
+  if (lang === 'lefolio-block') {
+    const block = splitBlockFence(code);
+    if (!block) return null;
+    return <ComponentHost id={block.id} content={block.body} />;
+  }
+
   if (lang === 'mermaid') {
     return <MermaidBlock chart={code} />;
   }
@@ -157,8 +170,15 @@ function isExternalHref(href: string | undefined): boolean {
   return /^(https?:|mailto:|tel:)/i.test(href);
 }
 
-export function MarkdownBody({ content, preprocessColumnBlocks = true }: MarkdownBodyProps) {
+export function MarkdownBody({
+  content,
+  preprocessColumnBlocks = true,
+  preprocessComponentBlocks: runComponentBlocks = true,
+}: MarkdownBodyProps) {
   let prepared = preprocessSoundCloud(preprocessYouTubeShorts(content));
+  if (runComponentBlocks) {
+    prepared = preprocessComponentBlocks(prepared);
+  }
   if (preprocessColumnBlocks) {
     prepared = preprocessColumns(prepared);
   }

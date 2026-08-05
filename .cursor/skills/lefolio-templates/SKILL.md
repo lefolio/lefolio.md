@@ -34,8 +34,12 @@ interface TemplateModule {
   SectionIndex?: React.FC<{ manifest: ContentManifest; section: NavSection }>;
   StandalonePage?: React.FC<{ manifest: ContentManifest; page: StandalonePage }>;
   ContentPage?: React.FC<{ page: ManifestPage }>;
+  /** Optional `::: id` blocks — e.g. portfolio `testimonials` */
+  markdownComponents?: Record<string, React.ComponentType<{ content: string }>>;
 }
 ```
+
+Root layout wraps the shell in `MarkdownComponentsProvider` with `template.markdownComponents`. Engine preprocess turns `::: id … :::` into a `lefolio-block` fence; unknown ids fall back to plain inner markdown.
 
 `getTemplate(id)` fills missing view slots with engine defaults (`src/lib/templates/defaults.tsx`).
 App Router routes (`page.tsx`, `[section]/page.tsx`, `[slug]/page.tsx`) only call `getTemplate` — they must not import `@/templates/*` views.
