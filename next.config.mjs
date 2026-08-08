@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { resolveContentDir, readEngineMeta } from './scripts/resolve-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const srcDir = path.join(__dirname, 'src');
 
 function normalizeBasePath(value) {
   if (!value || value === '/') return '';
@@ -37,14 +38,17 @@ const nextConfig = {
   images: { unoptimized: true },
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
-  // Consumer sites may not install eslint; skip lint during `lefolio build`.
-  eslint: { ignoreDuringBuilds: true },
-  // Explicit alias so packaged/runtime copies resolve `@/` even when Next
-  // does not pick up tsconfig paths (e.g. symlinked node_modules).
+  // Next 16 defaults to Turbopack; keep `@/` working for packaged runtimes.
+  turbopack: {
+    resolveAlias: {
+      '@': srcDir,
+    },
+  },
+  // Fallback when building with `--webpack` (e.g. static-export edge cases).
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.join(__dirname, 'src'),
+      '@': srcDir,
     };
     return config;
   },

@@ -1,6 +1,6 @@
 {
   "name": "@lefolio/engine",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "LeFolio engine — publish a static site from an Obsidian vault (CLI + Next.js runtime)",
   "license": "MIT",
   "repository": {
@@ -63,7 +63,7 @@
     "js-yaml": "^4.1.0",
     "katex": "^0.16.22",
     "mermaid": "^11.9.0",
-    "next": "^15.5.0",
+    "next": "^16.3.0",
     "plotly.js-dist-min": "^3.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -80,7 +80,7 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "eslint": "^9.33.0",
-    "eslint-config-next": "^15.5.0",
+    "eslint-config-next": "^16.3.0",
     "jest": "^30.4.2"
   }
 }

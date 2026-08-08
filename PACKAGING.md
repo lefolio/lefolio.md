@@ -42,15 +42,10 @@ npm run dev
 Swap to a released version before publishing the site:
 
 ```json
-"@lefolio/engine": "0.1.0"
+"@lefolio/engine": "0.1.4"
 ```
 
-or until npm publish:
-
-```json
-"@lefolio/engine": "github:lefolio/lefolio.md#v0.1.0"
-```
-
+Requires Next.js 16 (bundled). Production builds default to `--webpack` for static-export reliability; pass `--turbopack` to opt in.
 ## Dry-run the tarball
 
 ```bash

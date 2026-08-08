@@ -165,6 +165,13 @@ function copyOutToCwd(runRoot) {
   console.log(`Copied static export to ${dest}`);
 }
 
+function withBundlerFlag(args, fallback = '--webpack') {
+  const hasWebpack = args.includes('--webpack');
+  const hasTurbopack = args.includes('--turbopack');
+  if (hasWebpack || hasTurbopack) return args;
+  return [...args, fallback];
+}
+
 async function main() {
   const rawArgs = process.argv.slice(2);
   const command = rawArgs[0];
@@ -189,10 +196,13 @@ Vault root defaults to the nearest ancestor of the content folder that contains
 .obsidian/, otherwise the content folder itself. Override with --vault or
 config.yaml \`vault:\` when needed.
 
+Bundler (Next 16): defaults to --webpack for reliability with static export.
+Pass --turbopack to opt in.
+
 Examples:
   lefolio dev
   lefolio dev --content ~/Documents/MySite
-  lefolio dev --content ./Content --vault ~/Projects/Academic
+  lefolio build --turbopack
   LEFOLIO_CONTENT=~/Documents/MySite lefolio build
 `);
     process.exit(command ? 0 : 1);
@@ -205,7 +215,7 @@ Examples:
 
     case 'build':
       await run('node', ['scripts/sync-content.mjs', ...contentFlag], { cwd: runRoot, env });
-      await runNext(runRoot, ['build', ...passthrough], env);
+      await runNext(runRoot, ['build', ...withBundlerFlag(passthrough)], env);
       copyOutToCwd(runRoot);
       break;
 
@@ -218,12 +228,16 @@ Examples:
         shell: process.platform === 'win32',
       });
       const nextBin = resolveNextBin(runRoot);
-      const next = spawn(process.execPath, [nextBin, 'dev', ...passthrough], {
-        cwd: runRoot,
-        stdio: 'inherit',
-        env,
-        shell: process.platform === 'win32',
-      });
+      const next = spawn(
+        process.execPath,
+        [nextBin, 'dev', ...withBundlerFlag(passthrough)],
+        {
+          cwd: runRoot,
+          stdio: 'inherit',
+          env,
+          shell: process.platform === 'win32',
+        }
+      );
 
       const shutdown = () => {
         watch.kill();
