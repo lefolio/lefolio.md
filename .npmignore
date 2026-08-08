@@ -1,0 +1,29 @@
+# Generated / local
+.content/
+.next/
+out/
+node_modules/
+public/content-assets/
+public/CNAME
+tsconfig.tsbuildinfo
+*.local
+.DS_Store
+
+# Site vault (hosted from git; consumers bring their own Content/)
+Content/
+
+# Maintainer / IDE
+.cursor/
+.github/
+.impeccable/
+.swc/
+
+# Docs not needed at runtime (README kept via package.json files)
+DESIGN.md
+PRODUCT.md
+PACKAGING.md
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/__tests__/

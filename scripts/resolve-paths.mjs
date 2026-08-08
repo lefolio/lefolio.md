@@ -9,12 +9,12 @@ export const MANIFEST_PATH = path.join(ENGINE_ROOT, '.content', 'manifest.json')
 export const ENGINE_META_PATH = path.join(ENGINE_ROOT, '.content', 'engine.json');
 export const SENTINEL_PATH = path.join(ENGINE_ROOT, 'src', 'lib', 'content', 'content-version.ts');
 export const ASSETS_OUT = path.join(ENGINE_ROOT, 'public', 'content-assets');
-
-const DEFAULT_CONTENT_DIR = path.join(ENGINE_ROOT, 'Content');
+export const ENGINE_OUT = path.join(ENGINE_ROOT, 'out');
 
 /**
  * Resolve content root from --content flag or LEFOLIO_CONTENT env.
- * Defaults to ENGINE_ROOT/Content for backward compatibility.
+ * Defaults to `<cwd>/Content` so thin site starters and the engine repo
+ * (when run from its own root) both work without flags.
  */
 export function resolveContentDir(argv = process.argv) {
   const flagIndex = argv.indexOf('--content');
@@ -24,7 +24,7 @@ export function resolveContentDir(argv = process.argv) {
   if (process.env.LEFOLIO_CONTENT) {
     return path.resolve(process.env.LEFOLIO_CONTENT);
   }
-  return DEFAULT_CONTENT_DIR;
+  return path.join(process.cwd(), 'Content');
 }
 
 export const CONTENT_DIR = resolveContentDir();

@@ -1,42 +1,46 @@
-# lefolio.md
+# lefolio.md / `@lefolio/engine`
 
-Marketing and documentation site for **[LeFolio](https://lefolio.md)** — publish sites from an Obsidian vault.
+Marketing site for **[LeFolio](https://lefolio.md)** and the publishable **engine** package — static sites from an Obsidian vault.
 
-This repository is a **deployable copy of the engine** ([lefolio-academic](https://github.com/oilandrust/lefolio-academic)) with **showcase** content for the product site. Prefer updating the engine upstream and merging (or rebasing) when packages land; until then this fork ships engine + content together for GitHub Pages.
+## Dual role
+
+| Role | What |
+|------|------|
+| **Website** | This repo’s `Content/` + GitHub Pages deploy → https://lefolio.md |
+| **npm package** | `@lefolio/engine` — CLI `lefolio` + Next runtime + built-in templates |
+
+Consumers keep their own `Content/`; they do not fork this repo to publish a site. See [PACKAGING.md](./PACKAGING.md).
 
 ## Structure
 
 ```text
 lefolio.md/
-├── README.md
-├── src/                 # engine + showcase / academic templates
-├── scripts/
-├── Content/             # this site’s vault
-│   ├── config.yaml      # template: showcase, basePath: ""
-│   ├── Home.md
-│   ├── About.md
-│   ├── Assets/
-│   └── Docs/
+├── Content/             # this site’s vault (not published to npm)
+├── scripts/             # lefolio CLI, sync, watch
+├── src/                 # Next app + templates (academic, showcase, …)
+├── package.json         # name: @lefolio/engine
 └── .github/workflows/   # GitHub Pages deploy
 ```
 
-## Preview locally
+## Preview this site locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/](http://localhost:3000/) (`basePath` is empty for the apex domain).
+Open [http://localhost:3000/](http://localhost:3000/).
 
-Upstream engine with external content (optional):
+## Use the engine with other content
 
 ```bash
-# from a lefolio-academic checkout
-node scripts/lefolio.mjs dev --content ../lefolio.md/Content
+npx lefolio dev --content /path/to/YourContent
+# or from a thin site with Content/ in cwd:
+npm install @lefolio/engine   # or file:../lefolio.md while developing
+npx lefolio dev
 ```
 
-## Template
+## Template (this site)
 
 ```yaml
 template: showcase
@@ -45,23 +49,15 @@ theme:
   mode: light
 ```
 
-## Analytics
+## Deploy (website)
 
-```yaml
-analytics:
-  google: "G-XXXXXXXXXX"   # GA4 measurement ID
-```
-
-Injected by the core layout (all templates). Omit the key to disable tracking.
-
-## Deploy
-
-Push to `main` — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and deploys `out/` to GitHub Pages. In repo **Settings → Pages**, set source to **GitHub Actions**, then point the `lefolio.md` domain at Pages.
+Push to `main` — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and deploys `out/` to GitHub Pages.
 
 ## Links
 
 - Site: https://lefolio.md
-- Upstream engine: https://github.com/oilandrust/lefolio-academic
+- Package: `@lefolio/engine` (see PACKAGING.md)
+- Org: https://github.com/lefolio
 
 ## License
 

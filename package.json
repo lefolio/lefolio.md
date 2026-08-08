@@ -1,15 +1,53 @@
 {
-  "name": "lefolio-academic",
+  "name": "@lefolio/engine",
   "version": "0.1.0",
-  "private": true,
+  "description": "LeFolio engine — publish a static site from an Obsidian vault (CLI + Next.js runtime)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lefolio/lefolio.md.git"
+  },
+  "homepage": "https://lefolio.md",
+  "bugs": {
+    "url": "https://github.com/lefolio/lefolio.md/issues"
+  },
+  "keywords": [
+    "lefolio",
+    "obsidian",
+    "static-site",
+    "nextjs",
+    "markdown"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "lefolio": "./scripts/lefolio.mjs"
+  },
+  "files": [
+    "scripts",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "next.config.mjs",
+    "postcss.config.mjs",
+    "tsconfig.json",
+    "next-env.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "sync-content": "node scripts/lefolio.mjs sync",
-    "dev": "node scripts/lefolio.mjs dev --turbopack",
+    "dev": "node scripts/lefolio.mjs dev",
     "build": "node scripts/lefolio.mjs build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "pack:dry": "npm pack --dry-run"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -26,23 +64,23 @@
     "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
-    "remark-math": "^6.0.0"
-  },
-  "devDependencies": {
+    "remark-math": "^6.0.0",
+    "chokidar": "^4.0.3",
+    "concurrently": "^9.2.0",
+    "fast-glob": "^3.3.3",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^22.17.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "chokidar": "^4.0.3",
-    "concurrently": "^9.2.0",
     "eslint": "^9.33.0",
     "eslint-config-next": "^15.5.0",
-    "fast-glob": "^3.3.3",
     "jest": "^30.4.2",
-    "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   }
 }
