@@ -36,7 +36,8 @@ npm run dev
 ```
 
 - Content defaults to `<cwd>/Content` (override with `--content` / `LEFOLIO_CONTENT`).
-- Next runs inside the engine package root; `lefolio build` copies `out/` back to the site cwd when cwd ≠ engine root.
+- Next runs from `~/.cache/lefolio/runtime/<version>-<site>` when the engine is installed under `node_modules` (Next cannot transpile app source inside `node_modules`, and parent lockfiles confuse the app root). Developing inside the `lefolio.md` repo uses the repo root directly.
+- `lefolio build` copies `out/` back to the site cwd when cwd ≠ the runtime root.
 
 Swap to a released version before publishing the site:
 

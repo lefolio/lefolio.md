@@ -37,6 +37,17 @@ const nextConfig = {
   images: { unoptimized: true },
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
+  // Consumer sites may not install eslint; skip lint during `lefolio build`.
+  eslint: { ignoreDuringBuilds: true },
+  // Explicit alias so packaged/runtime copies resolve `@/` even when Next
+  // does not pick up tsconfig paths (e.g. symlinked node_modules).
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.join(__dirname, 'src'),
+    };
+    return config;
+  },
 };
 
 export default nextConfig;
