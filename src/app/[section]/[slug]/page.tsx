@@ -2,7 +2,9 @@ import { getAllPageParams, getPage, loadManifest } from '@/lib/content/load-mani
 import { getTemplate, resolveTemplateId } from '@/lib/templates/registry';
 
 export function generateStaticParams() {
-  return getAllPageParams();
+  const params = getAllPageParams();
+  // `output: 'export'` requires at least one path for dynamic segments.
+  return params.length > 0 ? params : [{ section: '_', slug: '_' }];
 }
 
 export default async function ContentPage({

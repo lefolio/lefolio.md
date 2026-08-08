@@ -9,12 +9,14 @@ import { academicTemplate } from '@/templates/academic';
 import { showcaseTemplate } from '@/templates/showcase';
 import { treasureTemplate } from '@/templates/treasure';
 import { portfolioTemplate } from '@/templates/portfolio';
+import { saloTemplate } from '@/templates/salo';
 
 const templates: Record<string, TemplateModule> = {
   academic: academicTemplate,
   showcase: showcaseTemplate,
   treasure: treasureTemplate,
   portfolio: portfolioTemplate,
+  salo: saloTemplate,
 };
 
 function withDefaults(template: TemplateModule): ResolvedTemplateModule {

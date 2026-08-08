@@ -28,12 +28,22 @@ export default function Navbar({ manifest }: NavbarProps) {
         <nav className="portfolio-nav" aria-label="Main">
           {manifest.navigation.map((item) => {
             const active = isActive(pathname, item.href);
+            const className = active ? 'portfolio-nav-link is-active' : 'portfolio-nav-link';
+            if (item.type === 'external' || /^(https?:|mailto:|tel:)/i.test(item.href)) {
+              return (
+                <a
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  className={className}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
+              );
+            }
             return (
-              <Link
-                key={`${item.label}-${item.href}`}
-                href={item.href}
-                className={active ? 'portfolio-nav-link is-active' : 'portfolio-nav-link'}
-              >
+              <Link key={`${item.label}-${item.href}`} href={item.href} className={className}>
                 {item.label}
               </Link>
             );

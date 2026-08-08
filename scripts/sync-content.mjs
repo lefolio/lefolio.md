@@ -59,7 +59,9 @@ function isSectionIndexFile(section, relativePath) {
   return path.basename(relativePath, '.md') === section;
 }
 
-/** Pages default to published; `published: false` (or "false") excludes them. */
+/** Pages default to published; `published: false` (or "false") excludes them.
+ * Date strings / Date objects (e.g. `2026-07-26`) count as published.
+ */
 function isPublished(frontmatter) {
   if (!frontmatter || frontmatter.published === undefined || frontmatter.published === null) {
     return true;
@@ -67,8 +69,31 @@ function isPublished(frontmatter) {
   const value = frontmatter.published;
   if (typeof value === 'boolean') return value;
   if (typeof value === 'number') return value !== 0;
+  if (value instanceof Date) return !Number.isNaN(value.getTime());
   const normalized = String(value).trim().toLowerCase();
-  return !['false', '0', 'no', 'off'].includes(normalized);
+  if (['false', '0', 'no', 'off'].includes(normalized)) return false;
+  return true;
+}
+
+function asDateString(value) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    const lower = trimmed.toLowerCase();
+    if (['true', 'false', 'yes', 'no', 'on', 'off', '0', '1'].includes(lower)) {
+      return null;
+    }
+    return trimmed || null;
+  }
+  return null;
+}
+
+/** Prefer explicit publish date, then `date`. */
+function publishDate(frontmatter) {
+  if (!frontmatter) return null;
+  return asDateString(frontmatter.published) || asDateString(frontmatter.date) || asDateString(frontmatter.start_date);
 }
 
 function normalizeAuthors(authors) {
@@ -174,6 +199,8 @@ function firstSiblingImage(sourceFile, vaultRoot, assetMap, basePath) {
 function resolvePageThumbnail(page, vaultRoot, vaultIndex, assetMap, basePath) {
   const ctx = makeResolveCtx(vaultRoot, vaultIndex, page.relativePath);
   return (
+    resolveThumbnail(page.frontmatter.feature_image, ctx, assetMap, basePath) ||
+    resolveThumbnail(page.frontmatter.hero_image, ctx, assetMap, basePath) ||
     resolveThumbnail(page.frontmatter.thumbnail, ctx, assetMap, basePath) ||
     firstEmbedImage(page.body, ctx, assetMap, basePath) ||
     firstSiblingImage(page.relativePath, vaultRoot, assetMap, basePath)
@@ -182,8 +209,7 @@ function resolvePageThumbnail(page, vaultRoot, vaultIndex, assetMap, basePath) {
 
 function pageSortDate(page) {
   const raw =
-    page.frontmatter.date ||
-    page.frontmatter.start_date ||
+    publishDate(page.frontmatter) ||
     page.frontmatter.end_date ||
     null;
   return raw ? new Date(raw).getTime() : 0;
@@ -311,7 +337,19 @@ function findPageByRelativePath(pagesByPath, targetPath) {
   return null;
 }
 
+function isExternalHref(value) {
+  return /^(https?:|mailto:|tel:)/i.test(String(value || '').trim());
+}
+
 function resolveNavigationItem({ label, path: explicitPath }, pagesByPath, homePath) {
+  if (explicitPath && isExternalHref(explicitPath)) {
+    return {
+      label,
+      href: String(explicitPath).trim(),
+      type: 'external',
+    };
+  }
+
   if (explicitPath) {
     const page = findPageByRelativePath(pagesByPath, explicitPath);
     if (page) {
@@ -590,6 +628,9 @@ function scanPages(config, vaultRoot) {
   if (config.author?.avatar) {
     resolveAndCopyAsset(config.author.avatar.replace(/\\/g, '/'), avatarCtx, assetMap);
   }
+  if (config.logo) {
+    resolveAndCopyAsset(String(config.logo).replace(/\\/g, '/'), avatarCtx, assetMap);
+  }
 
   const homeHeroRaw =
     (standaloneHomePage?.frontmatter?.hero_image ||
@@ -702,7 +743,7 @@ function scanPages(config, vaultRoot) {
         title: p.title,
         subtitle: p.frontmatter.subtitle ? String(p.frontmatter.subtitle) : null,
         href: pageRoute(p, homePath),
-        date: p.frontmatter.date || p.frontmatter.start_date || null,
+        date: publishDate(p.frontmatter),
         authors: normalizeAuthors(p.frontmatter.authors),
         venue:
           p.frontmatter.venue ||
@@ -755,14 +796,15 @@ function scanPages(config, vaultRoot) {
       ...sections.map((name) => ({ section: name })),
       ...standaloneRoutes.map((page) => ({ section: page.segment })),
     ],
-    pages: pages.map(({ relativePath, section, slug, title, frontmatter, processedBody }) => ({
-      relativePath,
-      section,
-      slug,
-      title,
-      frontmatter,
-      processedBody,
-      href: pageRoute({ relativePath, section, slug }, homePath),
+    pages: pages.map((page) => ({
+      relativePath: page.relativePath,
+      section: page.section,
+      slug: page.slug,
+      title: page.title,
+      frontmatter: page.frontmatter,
+      processedBody: page.processedBody,
+      href: pageRoute(page, homePath),
+      thumbnail: resolvePageThumbnail(page, vaultRoot, vaultIndex, assetMap, basePath),
     })),
     assets: assetMap,
     authorAvatar: (() => {
@@ -770,6 +812,16 @@ function scanPages(config, vaultRoot) {
       const resolved = resolveAsset(config.author.avatar.replace(/\\/g, '/'), avatarCtx);
       if (!resolved) return null;
       const publicPath = assetMap[resolved.vaultPath];
+      return publicPath ? `${basePath}${publicPath}` : null;
+    })(),
+    logo: (() => {
+      if (!config.logo || typeof config.logo !== 'string') return null;
+      const resolved = resolveAsset(config.logo.replace(/\\/g, '/'), avatarCtx);
+      if (!resolved) return null;
+      // Ensure logo is copied even if unused in markdown
+      const publicPath =
+        assetMap[resolved.vaultPath] ||
+        copyAssetFromVault(resolved.vaultPath, avatarCtx.vaultRoot, ASSETS_OUT, assetMap);
       return publicPath ? `${basePath}${publicPath}` : null;
     })(),
   };

@@ -24,6 +24,26 @@ describe('preprocessComponentBlocks', () => {
   it('leaves plain prose alone', () => {
     expect(preprocessComponentBlocks('hello')).toBe('hello');
   });
+
+  it('keeps nested ::: blocks inside the parent body', () => {
+    const input = [
+      '::: about',
+      '## Story',
+      '::: rating',
+      '4.3 · 34 reviews',
+      ':::',
+      '[More](https://example.com)',
+      ':::',
+    ].join('\n');
+    const out = preprocessComponentBlocks(input);
+    expect(out).toContain('```lefolio-block');
+    expect(out).toContain('about');
+    expect(out).toContain('::: rating');
+    expect(out).toContain('4.3 · 34 reviews');
+    expect(out).toContain('[More](https://example.com)');
+    // Outer closed — no leftover top-level :::
+    expect(out.trim().endsWith('```')).toBe(true);
+  });
 });
 
 describe('splitBlockFence', () => {

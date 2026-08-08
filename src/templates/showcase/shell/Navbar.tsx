@@ -33,12 +33,22 @@ export default function Navbar({ manifest }: NavbarProps) {
         <nav className="flex items-center gap-6" aria-label="Main">
           {navigation.map((item) => {
             const active = isActive(pathname, item.href);
+            const className = active ? 'showcase-nav showcase-nav-active' : 'showcase-nav';
+            if (item.type === 'external' || /^(https?:|mailto:|tel:)/i.test(item.href)) {
+              return (
+                <a
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  className={className}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
+              );
+            }
             return (
-              <Link
-                key={`${item.label}-${item.href}`}
-                href={item.href}
-                className={active ? 'showcase-nav showcase-nav-active' : 'showcase-nav'}
-              >
+              <Link key={`${item.label}-${item.href}`} href={item.href} className={className}>
                 {item.label}
               </Link>
             );

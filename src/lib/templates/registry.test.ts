@@ -40,6 +40,14 @@ jest.mock('@/templates/portfolio', () => ({
     loadStyles: async () => undefined,
   },
 }));
+jest.mock('@/templates/salo', () => ({
+  saloTemplate: {
+    id: 'salo',
+    routing: 'multipage',
+    Shell: () => null,
+    loadStyles: async () => undefined,
+  },
+}));
 
 describe('templates/registry', () => {
   beforeEach(() => {

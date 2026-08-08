@@ -31,6 +31,11 @@ export interface AnalyticsConfig {
   google?: string;
 }
 
+export interface HeaderCtaConfig {
+  label: string;
+  href: string;
+}
+
 export interface ContentConfig {
   site: SiteConfig;
   home: string;
@@ -41,6 +46,10 @@ export interface ContentConfig {
   analytics?: AnalyticsConfig;
   /** Obsidian vault root for wikilink/embed resolution (relative to content dir, or absolute). */
   vault?: string;
+  /** Optional site logo path (vault-relative), used by landing-style shells. */
+  logo?: string;
+  /** Optional header CTA (label + href; href may be external). */
+  cta?: HeaderCtaConfig;
 }
 
 export interface PageFrontmatter {
@@ -56,10 +65,18 @@ export interface PageFrontmatter {
   live_url?: string;
   github_url?: string;
   hero_image?: string;
+  /** Full-bleed image above a blog/article body (preferred over thumbnail for posts). */
+  feature_image?: string;
   display?: string;
   sort?: string;
   preview?: string;
+  /**
+   * Draft flag (`false`) or publish date (`2026-07-26`).
+   * Omit / `true` = published; date strings are treated as published with that date.
+   */
   published?: boolean | string;
+  /** Last-updated date (ISO or display string). */
+  updated?: string;
   [key: string]: unknown;
 }
 
@@ -71,12 +88,14 @@ export interface ManifestPage {
   frontmatter: PageFrontmatter;
   processedBody: string;
   href: string;
+  /** Resolved public URL for feature/hero/thumbnail image. */
+  thumbnail?: string | null;
 }
 
 export interface NavItem {
   label: string;
   href: string;
-  type: 'section' | 'page';
+  type: 'section' | 'page' | 'external';
 }
 
 export interface SectionListItem {
@@ -134,4 +153,5 @@ export interface ContentManifest {
   pages: ManifestPage[];
   assets: Record<string, string>;
   authorAvatar: string | null;
+  logo: string | null;
 }

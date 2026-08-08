@@ -2,7 +2,9 @@ import { loadManifest, getSectionRoutes } from '@/lib/content/load-manifest';
 import { getTemplate, resolveTemplateId } from '@/lib/templates/registry';
 
 export function generateStaticParams() {
-  return getSectionRoutes();
+  const params = getSectionRoutes();
+  // `output: 'export'` requires at least one path for dynamic segments.
+  return params.length > 0 ? params : [{ section: '_' }];
 }
 
 export default async function SectionIndexPage({

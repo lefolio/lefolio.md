@@ -22,15 +22,28 @@ export function preprocessComponentBlocks(markdown: string): string {
     const id = open[1].toLowerCase();
     i += 1;
     const body: string[] = [];
+    let depth = 1;
 
+    // Nested `::: child` … `:::` stays inside the parent body so the child
+    // component can preprocess again (code fences cannot nest).
     while (i < lines.length) {
-      if (lines[i].trim() === ':::') {
+      const trimmed = lines[i].trim();
+      const nested = OPEN_RE.exec(trimmed);
+      if (nested && nested[1].toLowerCase() !== 'columns') {
+        depth += 1;
+        body.push(lines[i]);
         i += 1;
-        break;
+        continue;
       }
-      // Nested open of another block — stop without consuming (unclosed)
-      if (OPEN_RE.test(lines[i].trim())) {
-        break;
+      if (trimmed === ':::') {
+        depth -= 1;
+        if (depth === 0) {
+          i += 1;
+          break;
+        }
+        body.push(lines[i]);
+        i += 1;
+        continue;
       }
       body.push(lines[i]);
       i += 1;
