@@ -9,15 +9,21 @@ import { academicTemplate } from '@/templates/academic';
 import { showcaseTemplate } from '@/templates/showcase';
 import { treasureTemplate } from '@/templates/treasure';
 import { portfolioTemplate } from '@/templates/portfolio';
-import { saloTemplate } from '@/templates/salo';
+import { collectLocalTemplates } from './collect-local';
+import * as localTemplateEntry from 'lefolio-active-template';
 
-const templates: Record<string, TemplateModule> = {
+const builtins: Record<string, TemplateModule> = {
   academic: academicTemplate,
   showcase: showcaseTemplate,
   treasure: treasureTemplate,
   portfolio: portfolioTemplate,
-  salo: saloTemplate,
 };
+
+const templates: Record<string, TemplateModule> = { ...builtins };
+
+for (const local of collectLocalTemplates(localTemplateEntry as Record<string, unknown>)) {
+  templates[local.id] = local;
+}
 
 function withDefaults(template: TemplateModule): ResolvedTemplateModule {
   return {

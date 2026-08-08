@@ -40,13 +40,12 @@ jest.mock('@/templates/portfolio', () => ({
     loadStyles: async () => undefined,
   },
 }));
-jest.mock('@/templates/salo', () => ({
-  saloTemplate: {
-    id: 'salo',
-    routing: 'multipage',
-    Shell: () => null,
-    loadStyles: async () => undefined,
-  },
+
+const localShell = () => null;
+jest.mock('lefolio-active-template', () => ({
+  templates: [],
+  template: undefined,
+  default: null,
 }));
 
 describe('templates/registry', () => {
@@ -76,5 +75,30 @@ describe('templates/registry', () => {
     const fallback = getTemplate('nope');
     expect(fallback.id).toBe('academic');
     expect(console.warn).toHaveBeenCalled();
+  });
+
+  it('merges local templates and lets local id override builtins', async () => {
+    jest.doMock('lefolio-active-template', () => ({
+      template: {
+        id: 'academic',
+        routing: 'multipage',
+        Shell: localShell,
+        loadStyles: async () => undefined,
+        Home: () => null,
+      },
+      templates: [
+        {
+          id: 'salo',
+          routing: 'multipage',
+          Shell: localShell,
+          loadStyles: async () => undefined,
+        },
+      ],
+      default: null,
+    }));
+
+    const { getTemplate } = await import('./registry');
+    expect(getTemplate('salo').id).toBe('salo');
+    expect(getTemplate('academic').Shell).toBe(localShell);
   });
 });

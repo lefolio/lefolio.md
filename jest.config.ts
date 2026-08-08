@@ -9,6 +9,7 @@ const config: Config = {
   clearMocks: true,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^lefolio-active-template$': '<rootDir>/src/lib/templates/no-external.ts',
   },
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@lefolio/engine",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "LeFolio engine — publish a static site from an Obsidian vault (CLI + Next.js runtime)",
   "license": "MIT",
   "repository": {
@@ -23,6 +23,11 @@
   },
   "bin": {
     "lefolio": "./scripts/lefolio.mjs"
+  },
+  "exports": {
+    "./template": "./src/lib/templates/public.ts",
+    "./markdown": "./src/components/markdown-public.ts",
+    "./globals.css": "./src/app/globals.css"
   },
   "files": [
     "scripts",

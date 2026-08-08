@@ -88,7 +88,61 @@ export function contentEnv(argv = process.argv) {
   if (vaultFlag !== -1 && argv[vaultFlag + 1]) {
     env.LEFOLIO_VAULT = path.resolve(argv[vaultFlag + 1]);
   }
+  const templateRoot = resolveTemplateRoot(argv);
+  if (templateRoot) {
+    env.LEFOLIO_TEMPLATE_ROOT = templateRoot;
+  } else {
+    delete env.LEFOLIO_TEMPLATE_ROOT;
+  }
   return env;
+}
+
+/**
+ * Find site-local template entry: `<dir>/src/index.ts` or `index.tsx`.
+ */
+export function findTemplateEntry(dir) {
+  for (const name of ['index.ts', 'index.tsx']) {
+    const candidate = path.join(dir, 'src', name);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return null;
+}
+
+/**
+ * Resolve site template root for local `./src` TemplateModule discovery.
+ * Precedence: --template > LEFOLIO_TEMPLATE_ROOT > cwd when ./src/index.ts(x) exists.
+ * Skips when cwd is the engine package itself (engine `src/` is the Next app).
+ */
+export function resolveTemplateRoot(argv = process.argv) {
+  const flagIndex = argv.indexOf('--template');
+  if (flagIndex !== -1 && argv[flagIndex + 1]) {
+    return path.resolve(argv[flagIndex + 1]);
+  }
+  if (process.env.LEFOLIO_TEMPLATE_ROOT) {
+    return path.resolve(process.env.LEFOLIO_TEMPLATE_ROOT);
+  }
+
+  const cwd = path.resolve(process.cwd());
+  let engineReal;
+  try {
+    engineReal = fs.realpathSync(ENGINE_ROOT);
+  } catch {
+    engineReal = path.resolve(ENGINE_ROOT);
+  }
+  let cwdReal = cwd;
+  try {
+    cwdReal = fs.realpathSync(cwd);
+  } catch {
+    // keep cwd
+  }
+  if (cwdReal === engineReal) {
+    return null;
+  }
+
+  if (findTemplateEntry(cwd)) {
+    return cwd;
+  }
+  return null;
 }
 
 export function readEngineMeta() {

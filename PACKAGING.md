@@ -36,6 +36,7 @@ npm run dev
 ```
 
 - Content defaults to `<cwd>/Content` (override with `--content` / `LEFOLIO_CONTENT`).
+- If `<cwd>/src/index.ts` (or `.tsx`) exports `TemplateModule`(s), they are registered; select with `Content/config.yaml` `template: <id>`. Override with `--template` / `LEFOLIO_TEMPLATE_ROOT`.
 - Next runs from `~/.cache/lefolio/runtime/<version>-<site>` when the engine is installed under `node_modules` (Next cannot transpile app source inside `node_modules`, and parent lockfiles confuse the app root). Developing inside the `lefolio.md` repo uses the repo root directly.
 - `lefolio build` copies `out/` back to the site cwd when cwd ≠ the runtime root.
 

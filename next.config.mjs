@@ -6,6 +6,7 @@ import { resolveContentDir, readEngineMeta } from './scripts/resolve-paths.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const srcDir = path.join(__dirname, 'src');
+const stubTemplate = path.join(srcDir, 'lib/templates/no-external.ts');
 
 function normalizeBasePath(value) {
   if (!value || value === '/') return '';
@@ -29,7 +30,27 @@ function readBasePath() {
   }
 }
 
+function resolveExternalTemplateEntry() {
+  const root = process.env.LEFOLIO_TEMPLATE_ROOT;
+  if (!root) return null;
+  for (const name of ['index.ts', 'index.tsx']) {
+    const candidate = path.join(root, 'src', name);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return null;
+}
+
 const basePath = readBasePath();
+const externalTemplateEntry = resolveExternalTemplateEntry();
+const activeTemplate = externalTemplateEntry || stubTemplate;
+
+const packageAliases = {
+  '@': srcDir,
+  'lefolio-active-template': activeTemplate,
+  '@lefolio/engine/template': path.join(srcDir, 'lib/templates/public.ts'),
+  '@lefolio/engine/markdown': path.join(srcDir, 'components/markdown-public.ts'),
+  '@lefolio/engine/globals.css': path.join(srcDir, 'app/globals.css'),
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -38,17 +59,19 @@ const nextConfig = {
   images: { unoptimized: true },
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
+  // Allow compiling site-local `./src` templates outside the engine / cache root.
+  ...(externalTemplateEntry ? { experimental: { externalDir: true } } : {}),
   // Next 16 defaults to Turbopack; keep `@/` working for packaged runtimes.
   turbopack: {
     resolveAlias: {
-      '@': srcDir,
+      ...packageAliases,
     },
   },
   // Fallback when building with `--webpack` (e.g. static-export edge cases).
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': srcDir,
+      ...packageAliases,
     };
     return config;
   },

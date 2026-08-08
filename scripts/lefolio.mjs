@@ -120,9 +120,9 @@ function contentArgs(args) {
   return out;
 }
 
-function stripContentFlag(args) {
+function stripCliFlags(args) {
   const out = [...args];
-  for (const flag of ['--content', '--vault']) {
+  for (const flag of ['--content', '--vault', '--template']) {
     const idx = out.indexOf(flag);
     if (idx !== -1) {
       out.splice(idx, 2);
@@ -177,11 +177,11 @@ async function main() {
   const command = rawArgs[0];
   const env = contentEnv(rawArgs);
   const contentFlag = contentArgs(rawArgs);
-  const passthrough = stripContentFlag(rawArgs.slice(1));
+  const passthrough = stripCliFlags(rawArgs.slice(1));
   const runRoot = resolveRunRoot();
 
   if (!command || command === '--help' || command === '-h') {
-    console.log(`Usage: lefolio <command> [--content <path>] [--vault <path>]
+    console.log(`Usage: lefolio <command> [--content <path>] [--vault <path>] [--template <path>]
 
 Commands:
   sync    Scan content vault and write manifest
@@ -189,8 +189,14 @@ Commands:
   build   Sync and run static export
 
 Environment:
-  LEFOLIO_CONTENT   Path to site content folder (default: ./Content from cwd)
-  LEFOLIO_VAULT     Obsidian vault root for embed/link resolution
+  LEFOLIO_CONTENT         Path to site content folder (default: ./Content from cwd)
+  LEFOLIO_VAULT           Obsidian vault root for embed/link resolution
+  LEFOLIO_TEMPLATE_ROOT   Site root that has ./src exporting TemplateModule(s)
+
+Local templates:
+  If the site cwd has ./src/index.ts (or .tsx) exporting TemplateModule(s), they
+  are registered automatically. Select with Content/config.yaml \`template: <id>\`.
+  Override discovery with --template <path> (path to that site root).
 
 Vault root defaults to the nearest ancestor of the content folder that contains
 .obsidian/, otherwise the content folder itself. Override with --vault or
