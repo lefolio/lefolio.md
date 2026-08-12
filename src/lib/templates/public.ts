@@ -26,3 +26,5 @@ export type {
   MarkdownBlockComponent,
   MarkdownBlockProps,
 } from '@/lib/markdown/components/types';
+
+export { slugify } from '@/lib/utils/slugify';
