@@ -1,6 +1,6 @@
 {
   "name": "@lefolio/engine",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "LeFolio engine — publish a static site from an Obsidian vault (CLI + Next.js runtime)",
   "license": "MIT",
   "repository": {
