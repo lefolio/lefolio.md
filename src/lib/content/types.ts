@@ -48,6 +48,8 @@ export interface ContentConfig {
   vault?: string;
   /** Optional site logo path (vault-relative), used by landing-style shells. */
   logo?: string;
+  /** Optional favicon path (vault-relative), copied to content-assets at sync. */
+  favicon?: string;
   /** Optional header CTA (label + href; href may be external). */
   cta?: HeaderCtaConfig;
 }
@@ -82,7 +84,10 @@ export interface PageFrontmatter {
 
 export interface ManifestPage {
   relativePath: string;
+  /** Original folder name (e.g. "Blog"). */
   section: string;
+  /** Slugified section URL segment (e.g. "blog"). */
+  sectionSlug: string;
   slug: string;
   title: string;
   frontmatter: PageFrontmatter;
@@ -120,6 +125,8 @@ export interface SectionIndexNote {
 
 export interface NavSection {
   name: string;
+  /** Slugified URL segment for the section (e.g. "blog" for folder "Blog"). */
+  sectionSlug: string;
   display: string;
   preview?: string | null;
   index: SectionIndexNote | null;
@@ -128,7 +135,10 @@ export interface NavSection {
 
 export interface StandalonePage {
   relativePath: string;
+  /** Raw basename without extension. */
   segment: string;
+  /** Slugified URL segment (e.g. "tutorial" for "Tutorial.md"). */
+  sectionSlug: string;
   title: string;
   processedBody: string;
   href: string;
@@ -154,4 +164,5 @@ export interface ContentManifest {
   assets: Record<string, string>;
   authorAvatar: string | null;
   logo: string | null;
+  favicon: string | null;
 }

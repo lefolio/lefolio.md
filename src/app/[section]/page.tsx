@@ -17,13 +17,13 @@ export default async function SectionIndexPage({
   const { SectionIndex, StandalonePage } = getTemplate(resolveTemplateId(manifest));
 
   const standalonePage = manifest.standalonePages.find(
-    (page) => page.segment === sectionName
+    (page) => page.sectionSlug === sectionName
   );
   if (standalonePage) {
     return <StandalonePage manifest={manifest} page={standalonePage} />;
   }
 
-  const section = manifest.sections.find((s) => s.name === sectionName);
+  const section = manifest.sections.find((s) => s.sectionSlug === sectionName);
 
   if (!section) {
     return <p className="text-muted">Section not found.</p>;

@@ -19,41 +19,19 @@ import {
   vaultPathToContentPath,
   copyAssetFromVault,
 } from './resolve-asset.mjs';
+import {
+  normalizeNavigationEntries,
+  pageRoute,
+  resolveNavigationItem,
+  sectionSlug as toSectionSlug,
+  slugify,
+} from './routing.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SKIP_DIRS = new Set(['Assets', '.obsidian']);
 const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg']);
 const AUDIO_EXT = new Set(['.mp3', '.wav', '.ogg', '.m4a', '.aac', '.flac', '.opus']);
-
-function slugify(name) {
-  return name
-    .replace(/\.md$/i, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
-
-function encodeSlug(slug) {
-  return slug.split('/').map(encodeURIComponent).join('/');
-}
-
-function pageHref(section, slug) {
-  return `/${encodeURIComponent(section)}/${encodeSlug(slug)}/`;
-}
-
-function pageRoute(page, homePath) {
-  if (page.relativePath === homePath) {
-    return '/';
-  }
-
-  if (!page.section) {
-    const segment = path.basename(page.relativePath, '.md');
-    return `/${encodeURIComponent(segment)}/`;
-  }
-
-  return pageHref(page.section, page.slug);
-}
 
 function isSectionIndexFile(section, relativePath) {
   return path.basename(relativePath, '.md') === section;
@@ -285,116 +263,6 @@ function normalizeMarkdownLinkHref(href, ctx, vaultRoot, pagesByPath, basePath, 
   }
 
   return dest;
-}
-
-function normalizeNavigationEntries(navigation) {
-  if (!navigation) return [];
-
-  if (Array.isArray(navigation)) {
-    return navigation
-      .map((entry) => {
-        if (typeof entry === 'string') {
-          return { label: entry };
-        }
-        if (entry && typeof entry === 'object') {
-          const [label, path] = Object.entries(entry)[0];
-          return { label, path: path ? String(path) : undefined };
-        }
-        return null;
-      })
-      .filter(Boolean);
-  }
-
-  if (typeof navigation === 'object') {
-    return Object.entries(navigation).map(([label, path]) => ({
-      label,
-      path: path ? String(path) : undefined,
-    }));
-  }
-
-  return [];
-}
-
-function isSectionFolder(name) {
-  if (SKIP_DIRS.has(name) || name.startsWith('.')) return false;
-  const fullPath = path.join(CONTENT_DIR, name);
-  return fs.existsSync(fullPath) && fs.statSync(fullPath).isDirectory();
-}
-
-function findPageByRelativePath(pagesByPath, targetPath) {
-  const normalized = targetPath.replace(/\\/g, '/');
-  if (pagesByPath.has(normalized)) {
-    return pagesByPath.get(normalized);
-  }
-
-  const basename = path.basename(normalized);
-  for (const page of pagesByPath.values()) {
-    if (page.relativePath.endsWith(`/${basename}`) || page.relativePath === basename) {
-      return page;
-    }
-  }
-
-  return null;
-}
-
-function isExternalHref(value) {
-  return /^(https?:|mailto:|tel:)/i.test(String(value || '').trim());
-}
-
-function resolveNavigationItem({ label, path: explicitPath }, pagesByPath, homePath) {
-  if (explicitPath && isExternalHref(explicitPath)) {
-    return {
-      label,
-      href: String(explicitPath).trim(),
-      type: 'external',
-    };
-  }
-
-  if (explicitPath) {
-    const page = findPageByRelativePath(pagesByPath, explicitPath);
-    if (page) {
-      return {
-        label,
-        href: pageRoute(page, homePath),
-        type: 'page',
-      };
-    }
-  }
-
-  if (isSectionFolder(label)) {
-    return {
-      label,
-      href: `/${encodeURIComponent(label)}/`,
-      type: 'section',
-    };
-  }
-
-  for (const page of pagesByPath.values()) {
-    if (!page.section && path.basename(page.relativePath, '.md') === label) {
-      return {
-        label,
-        href: pageRoute(page, homePath),
-        type: 'page',
-      };
-    }
-  }
-
-  const sectionPage = [...pagesByPath.values()].find(
-    (page) => page.section && page.slug === slugify(label)
-  );
-  if (sectionPage) {
-    return {
-      label,
-      href: pageRoute(sectionPage, homePath),
-      type: 'page',
-    };
-  }
-
-  return {
-    label,
-    href: `/${encodeURIComponent(label)}/`,
-    type: 'section',
-  };
 }
 
 function parseLinkTarget(value) {
@@ -631,6 +499,9 @@ function scanPages(config, vaultRoot) {
   if (config.logo) {
     resolveAndCopyAsset(String(config.logo).replace(/\\/g, '/'), avatarCtx, assetMap);
   }
+  if (config.favicon) {
+    resolveAndCopyAsset(String(config.favicon).replace(/\\/g, '/'), avatarCtx, assetMap);
+  }
 
   const homeHeroRaw =
     (standaloneHomePage?.frontmatter?.hero_image ||
@@ -727,6 +598,7 @@ function scanPages(config, vaultRoot) {
 
     return {
       name,
+      sectionSlug: toSectionSlug(name),
       display: indexNote?.frontmatter?.display || 'list',
       preview: indexNote?.frontmatter?.preview || null,
       index: indexNote
@@ -757,16 +629,20 @@ function scanPages(config, vaultRoot) {
   });
 
   const navigation = normalizeNavigationEntries(config.navigation).map((entry) =>
-    resolveNavigationItem(entry, pagesByPath, homePath)
+    resolveNavigationItem(entry, pagesByPath, homePath, { contentDir: CONTENT_DIR })
   );
 
-  const standaloneRoutes = processedStandalonePages.map((page) => ({
-    relativePath: page.relativePath,
-    segment: path.basename(page.relativePath, '.md'),
-    title: page.title,
-    processedBody: page.processedBody,
-    href: pageRoute(page, homePath),
-  }));
+  const standaloneRoutes = processedStandalonePages.map((page) => {
+    const rawSegment = path.basename(page.relativePath, '.md');
+    return {
+      relativePath: page.relativePath,
+      segment: rawSegment,
+      sectionSlug: toSectionSlug(rawSegment),
+      title: page.title,
+      processedBody: page.processedBody,
+      href: pageRoute(page, homePath),
+    };
+  });
 
   return {
     generatedAt: new Date().toISOString(),
@@ -793,12 +669,13 @@ function scanPages(config, vaultRoot) {
     sections: navSections,
     standalonePages: standaloneRoutes,
     sectionRoutes: [
-      ...sections.map((name) => ({ section: name })),
-      ...standaloneRoutes.map((page) => ({ section: page.segment })),
+      ...sections.map((name) => ({ section: toSectionSlug(name) })),
+      ...standaloneRoutes.map((page) => ({ section: page.sectionSlug })),
     ],
     pages: pages.map((page) => ({
       relativePath: page.relativePath,
       section: page.section,
+      sectionSlug: toSectionSlug(page.section),
       slug: page.slug,
       title: page.title,
       frontmatter: page.frontmatter,
@@ -819,6 +696,15 @@ function scanPages(config, vaultRoot) {
       const resolved = resolveAsset(config.logo.replace(/\\/g, '/'), avatarCtx);
       if (!resolved) return null;
       // Ensure logo is copied even if unused in markdown
+      const publicPath =
+        assetMap[resolved.vaultPath] ||
+        copyAssetFromVault(resolved.vaultPath, avatarCtx.vaultRoot, ASSETS_OUT, assetMap);
+      return publicPath ? `${basePath}${publicPath}` : null;
+    })(),
+    favicon: (() => {
+      if (!config.favicon || typeof config.favicon !== 'string') return null;
+      const resolved = resolveAsset(config.favicon.replace(/\\/g, '/'), avatarCtx);
+      if (!resolved) return null;
       const publicPath =
         assetMap[resolved.vaultPath] ||
         copyAssetFromVault(resolved.vaultPath, avatarCtx.vaultRoot, ASSETS_OUT, assetMap);

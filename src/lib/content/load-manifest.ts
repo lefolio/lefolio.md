@@ -9,19 +9,19 @@ export function loadManifest(): ContentManifest {
   return JSON.parse(raw) as ContentManifest;
 }
 
-export function getPage(section: string, slug: string) {
+export function getPage(sectionSlug: string, slug: string) {
   const manifest = loadManifest();
-  return manifest.pages.find((p) => p.section === section && p.slug === slug) ?? null;
+  return manifest.pages.find((p) => p.sectionSlug === sectionSlug && p.slug === slug) ?? null;
 }
 
 export function getAllPageParams() {
   const manifest = loadManifest();
-  return manifest.pages.map((p) => ({ section: p.section, slug: p.slug }));
+  return manifest.pages.map((p) => ({ section: p.sectionSlug, slug: p.slug }));
 }
 
 export function getSections() {
   const manifest = loadManifest();
-  return manifest.sections.map((s) => s.name);
+  return manifest.sections.map((s) => s.sectionSlug);
 }
 
 export function getSectionRoutes() {

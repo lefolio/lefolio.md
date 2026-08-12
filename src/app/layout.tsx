@@ -12,10 +12,14 @@ import { MarkdownComponentsProvider } from '@/components/markdown/MarkdownCompon
 
 export function generateMetadata(): Metadata {
   const manifest = loadManifest();
-  return {
+  const metadata: Metadata = {
     title: manifest.config.site.title,
     description: manifest.config.site.description,
   };
+  if (manifest.favicon) {
+    metadata.icons = { icon: manifest.favicon };
+  }
+  return metadata;
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
