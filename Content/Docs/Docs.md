@@ -6,6 +6,7 @@ display: list
 
 Guides for configuring LeFolio, writing content, and deploying to GitHub Pages.
 
+- [[Tutorial|Eric Salo handoff tutorial]]: transfer ownership, Obsidian setup, publish cycle
 - Hello World: a tutorial to create and publish a minimal portfolio 
 - How to start a new site with an existing template
 - How to set up your project with Obsidian
