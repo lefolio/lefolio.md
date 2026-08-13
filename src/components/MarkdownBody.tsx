@@ -17,7 +17,9 @@ import {
   parseYouTubeShortId,
   preprocessYouTubeShorts,
 } from '@/lib/markdown/youtube-shorts';
+import { parseYouTubeVideoId, preprocessYouTubeVideos } from '@/lib/markdown/youtube';
 import { parseSoundCloudUrl, preprocessSoundCloud } from '@/lib/markdown/soundcloud';
+import { markdownUrlTransform } from '@/lib/markdown/url-transform';
 import { useDarkTheme } from '@/hooks/use-dark-theme';
 import ColumnsLayout from './ColumnsLayout';
 import ComponentHost from './markdown/ComponentHost';
@@ -25,6 +27,7 @@ import { AudioPlaybackProvider } from './audio/AudioPlaybackContext';
 import AudioPlayer, { isAudioHref, titleFromAudioHref } from './audio/AudioPlayer';
 import SoundCloudEmbed from './SoundCloudEmbed';
 import YouTubeShortsRow from './YouTubeShortsRow';
+import YouTubeEmbed from './YouTubeEmbed';
 import 'katex/dist/katex.min.css';
 
 const MermaidBlock = dynamic(() => import('./MermaidBlock'), { ssr: false });
@@ -175,7 +178,9 @@ export function MarkdownBody({
   preprocessColumnBlocks = true,
   preprocessComponentBlocks: runComponentBlocks = true,
 }: MarkdownBodyProps) {
-  let prepared = preprocessSoundCloud(preprocessYouTubeShorts(content));
+  let prepared = preprocessSoundCloud(
+    preprocessYouTubeShorts(preprocessYouTubeVideos(content))
+  );
   if (runComponentBlocks) {
     prepared = preprocessComponentBlocks(prepared);
   }
@@ -188,6 +193,7 @@ export function MarkdownBody({
       <ReactMarkdown
         remarkPlugins={remarkPlugins}
         rehypePlugins={rehypePlugins}
+        urlTransform={markdownUrlTransform}
         components={{
           pre({ children }) {
             return <>{children}</>;
@@ -236,6 +242,13 @@ export function MarkdownBody({
               return <SoundCloudEmbed url={soundcloudUrl} />;
             }
 
+            const youtubeId =
+              (props as { 'data-youtube-id'?: string })['data-youtube-id'] ||
+              (props as { dataYoutubeId?: string }).dataYoutubeId;
+            if (classList.includes('content-youtube') && youtubeId) {
+              return <YouTubeEmbed id={youtubeId} />;
+            }
+
             return (
               <div className={className} {...props}>
                 {children}
@@ -243,6 +256,14 @@ export function MarkdownBody({
             );
           },
           code: CodeBlock,
+          img({ src, alt, ...props }) {
+            const id = parseYouTubeVideoId(typeof src === 'string' ? src : undefined);
+            if (id) {
+              return <YouTubeEmbed id={id} title={typeof alt === 'string' ? alt : undefined} />;
+            }
+            // eslint-disable-next-line @next/next/no-img-element
+            return <img src={src} alt={alt} {...props} />;
+          },
           audio({ src, title }) {
             if (typeof src !== 'string' || !src) return null;
             return (
