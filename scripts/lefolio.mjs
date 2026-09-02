@@ -48,11 +48,13 @@ function ensureNodeModulesLink(runRoot) {
   fs.symlinkSync(target, linkPath, process.platform === 'win32' ? 'junction' : 'dir');
 }
 
-function syncRuntime(pkgRoot, runRoot) {
+function syncRuntime(pkgRoot, runRoot, { force = false } = {}) {
   const pkg = JSON.parse(fs.readFileSync(path.join(pkgRoot, 'package.json'), 'utf8'));
   const stampPath = path.join(runRoot, '.engine-version');
   const upToDate =
-    fs.existsSync(stampPath) && fs.readFileSync(stampPath, 'utf8').trim() === pkg.version;
+    !force &&
+    fs.existsSync(stampPath) &&
+    fs.readFileSync(stampPath, 'utf8').trim() === pkg.version;
 
   if (!upToDate) {
     fs.mkdirSync(runRoot, { recursive: true });
@@ -82,14 +84,32 @@ function syncRuntime(pkgRoot, runRoot) {
   ensureNodeModulesLink(runRoot);
 }
 
+function realpathOrResolve(dir) {
+  try {
+    return fs.realpathSync(dir);
+  } catch {
+    return path.resolve(dir);
+  }
+}
+
 function resolveRunRoot() {
-  if (!isPackagedInstall(ENGINE_ROOT)) {
+  const engineReal = realpathOrResolve(ENGINE_ROOT);
+  const cwdReal = realpathOrResolve(process.cwd());
+
+  // Developing inside the engine repo: run Next from the checkout itself.
+  if (cwdReal === engineReal) {
     return ENGINE_ROOT;
   }
+
+  // Consumer sites always get an isolated cache dir — including `file:../lefolio.md`
+  // links, which are NOT under node_modules but must not share the engine's `.next`
+  // (otherwise basePath from one site sticks on another).
   const pkg = JSON.parse(fs.readFileSync(path.join(ENGINE_ROOT, 'package.json'), 'utf8'));
-  const siteKey = crypto.createHash('sha1').update(process.cwd()).digest('hex').slice(0, 12);
-  const runRoot = path.join(os.homedir(), '.cache', 'lefolio', 'runtime', `${pkg.version}-${siteKey}`);
-  syncRuntime(ENGINE_ROOT, runRoot);
+  const packaged = isPackagedInstall(ENGINE_ROOT);
+  const siteKey = crypto.createHash('sha1').update(cwdReal).digest('hex').slice(0, 12);
+  const label = packaged ? pkg.version : `dev-${pkg.version}`;
+  const runRoot = path.join(os.homedir(), '.cache', 'lefolio', 'runtime', `${label}-${siteKey}`);
+  syncRuntime(ENGINE_ROOT, runRoot, { force: !packaged });
   return runRoot;
 }
 
@@ -227,12 +247,16 @@ Examples:
 
     case 'dev': {
       await run('node', ['scripts/sync-content.mjs', ...contentFlag], { cwd: runRoot, env });
-      const watch = spawn('node', ['scripts/watch-content.mjs', ...contentFlag], {
-        cwd: runRoot,
-        stdio: 'inherit',
-        env,
-        shell: process.platform === 'win32',
-      });
+      const smoke = env.LEFOLIO_SMOKE === '1' || env.LEFOLIO_SMOKE === 'true';
+      let watch = null;
+      if (!smoke) {
+        watch = spawn('node', ['scripts/watch-content.mjs', ...contentFlag], {
+          cwd: runRoot,
+          stdio: 'inherit',
+          env,
+          shell: process.platform === 'win32',
+        });
+      }
       const nextBin = resolveNextBin(runRoot);
       const next = spawn(
         process.execPath,
@@ -246,7 +270,7 @@ Examples:
       );
 
       const shutdown = () => {
-        watch.kill();
+        watch?.kill();
         next.kill();
       };
       process.on('SIGINT', shutdown);

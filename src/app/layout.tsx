@@ -41,6 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       data-template={templateId}
       data-theme={themeId}
       style={themeStyle}
+      suppressHydrationWarning
     >
       <body suppressHydrationWarning>
         {googleAnalyticsId ? <GoogleAnalytics measurementId={googleAnalyticsId} /> : null}
