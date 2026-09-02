@@ -7,6 +7,14 @@
 
 import { MD_IMAGE_PATTERN, MD_LINK_PATTERN, mdImageRegExp, mdLinkRegExp } from './patterns';
 
+export {
+  MD_IMAGE_PATTERN,
+  MD_LINK_PATTERN,
+  URL_IN_PARENS,
+  mdImageRegExp,
+  mdLinkRegExp,
+} from './patterns';
+
 export interface MdImage {
   src: string;
   alt: string;

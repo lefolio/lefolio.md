@@ -49,6 +49,7 @@ const packageAliases = {
   'lefolio-active-template': activeTemplate,
   '@lefolio/engine/template': path.join(srcDir, 'lib/templates/public.ts'),
   '@lefolio/engine/markdown': path.join(srcDir, 'components/markdown-public.ts'),
+  '@lefolio/engine/parse': path.join(srcDir, 'lib/markdown/parse/index.ts'),
   '@lefolio/engine/globals.css': path.join(srcDir, 'app/globals.css'),
 };
 
