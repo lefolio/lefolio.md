@@ -1,0 +1,164 @@
+/* YAML Editor — styles */
+
+/* ── Gutter ────────────────────────────────────────────────────────────── */
+
+.yaml-gutter-error {
+  color: var(--background-modifier-error, #e53e3e);
+  font-size: 0.8em;
+  cursor: default;
+  line-height: 1.4;
+}
+
+.yaml-gutter-fold {
+  color: var(--text-muted, #888);
+  font-size: 0.75em;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+/* ── Ghost text ────────────────────────────────────────────────────────── */
+
+.yaml-ghost-text {
+  color: var(--text-muted, #aaa);
+  opacity: 0.45;
+  font-style: italic;
+  pointer-events: none;
+  font-family: var(--font-monospace, monospace);
+  font-size: inherit;
+  white-space: pre;
+}
+
+/* ── Error underline ───────────────────────────────────────────────────── */
+
+.yaml-error-underline {
+  border-bottom: 2px wavy var(--background-modifier-error, #e53e3e);
+  padding-bottom: 1px;
+}
+
+/* ── Standalone .yaml / .yml file view ─────────────────────────────────── */
+
+.yaml-editor-view {
+  height: 100%;
+  overflow: hidden;
+}
+
+.yaml-editor-view .cm-editor {
+  height: 100%;
+}
+
+.yaml-editor-view .cm-scroller {
+  overflow: auto;
+  font-family: var(--font-monospace, monospace);
+}
+
+.yaml-editor-view .cm-editor.cm-focused {
+  outline: none;
+}
+
+/* ── Status bar breadcrumb ─────────────────────────────────────────────── */
+
+.yaml-breadcrumb {
+  color: var(--text-muted, #888);
+  font-family: var(--font-monospace, monospace);
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px;
+  line-height: 1.6;
+}
+
+/* ── Schema palette items ─────────────────────────────────────────────── */
+
+.yaml-palette-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0;
+}
+
+.yaml-palette-label {
+  font-weight: 500;
+  color: var(--text-normal, #333);
+}
+
+.yaml-palette-hint {
+  color: var(--text-muted, #888);
+  font-size: 0.85em;
+  font-family: var(--font-monospace, monospace);
+}
+
+.yaml-palette-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.yaml-tag-badge {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 0.7em;
+  background: var(--background-secondary, #f0f0f0);
+  color: var(--text-muted, #888);
+  border-radius: 3px;
+  font-family: var(--font-monospace, monospace);
+  line-height: 1.6;
+}
+
+/* ── Sequence item index badges ───────────────────────────────────────── */
+
+.yaml-sequence-badge {
+  color: var(--text-muted, #aaa);
+  font-size: 0.65em;
+  vertical-align: super;
+  font-family: var(--font-monospace, monospace);
+  cursor: default;
+  padding-left: 2px;
+}
+
+/* ── Settings tab ──────────────────────────────────────────────────────── */
+
+.yaml-snippet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.yaml-snippet-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border, #ddd);
+  border-radius: 4px;
+  background: var(--background-secondary, #fafafa);
+}
+
+.yaml-snippet-row input,
+.yaml-snippet-row textarea {
+  width: 100%;
+  padding: 4px 6px;
+  font-family: var(--font-monospace, monospace);
+  font-size: 0.9em;
+  border: 1px solid var(--background-modifier-border, #ccc);
+  border-radius: 3px;
+  resize: vertical;
+}
+
+.yaml-snippet-row textarea {
+  min-height: 3em;
+}
+
+/* ── Completion tooltip tweaks ─────────────────────────────────────────── */
+
+.cm-tooltip-autocomplete .yaml-completion-key {
+  font-family: var(--font-monospace, monospace);
+  color: var(--text-muted, #888);
+}
+
+.cm-tooltip-autocomplete .yaml-completion-snippet {
+  font-style: italic;
+  color: var(--text-accent, #5a8);
+}

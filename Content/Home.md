@@ -5,25 +5,25 @@ hero_image: Assets/live_update_showcase.gif
 ::: hero
 ## Turn your **AI-generated Draft** into a **Maintainable Website**.
 
-lefolio.md lets you iterate from draft to editable site with separation of code and content thanks to its ::: component syntax for Markdown.
+Iterate from draft to editable site with separation of code and content thanks to the ::: component syntax for Markdown.
 
-[[Build your lefolio first home page and website|Build your Site now]]
+[[Build your first lefolio home page and website|Build your Site now]]
 [Support lefolio.md](https://www.paypal.com/paypalme/olivelarouille)
 :::
 
 ::: workflow
 ## From **Draft** to Polished **Editable Site** in minutes
 Write a draft, choose the style, prompt your agent: you're set to focus on the message and the value.
-#### Draft your Hero, CTA, and Homepage sections to orient your visitors.
-Use the `::: component` syntax for Markdown to structure your content in message before building anything; free your mind to squeeze all the value out of your business or product.
-#### Build your site with your Coding agent using the Component structure as a guide.
-Prompt your coding agent to use lefolio.md structure, and let him build React Components that will render your draft in a beautiful and structured way.
-#### Choose your tools for editing or for shipping to your client.
-lefolio.md favors editing with Obsidian built-in asset path resolution. You can also choose to plug any headless CMS on top; we built an integration workflow for TinaCMS.
+#### Draft your Hero, CTA, and Sections.
+Use the `::: component` syntax for Markdown to structure your message before building anything; free your mind to squeeze all the value out of your business or product.
+#### Build your site with your Coding Agent.
+Prompt your coding agent to use lefolio.md, and let him build React Components that will render your draft in a beautiful and structured way.
+#### Your draft becomes editable content.
+Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS.
 :::
 
 ::: use-cases
-## lefolio is an opinionated **static site generator**; you can **build more** than your landing page
+## lefolio is a **static site generator**; you can **build more** than your landing page
 #### Built-in Blog Engine with rich Markdown
 #### Structured Categories such as Product Listing and Pages
 #### Free hosting via GitHub Pages, Vercel, etc.
@@ -45,7 +45,7 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: tools
-## lefolio.md comes **with** tools that make **your life** easier
+## lefolio comes with **tools** that make **your life** easier
 - SKILLS.md to teach your agent to work with lefolio.md
 - Obsidian Integration for seamless editing and publishing
 - Development server with hot-reload and live preview

@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "a09db76918155ce2",
+    "type": "split",
+    "children": [
+      {
+        "id": "e5c7fdac4e3e7e5c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5392a5a86fc0dbbc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Content/Home.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Home"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d78910eb25a0894f",
+    "type": "split",
+    "children": [
+      {
+        "id": "55f2725792fd594c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "de99a540b3c997d0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "3219b94ad102d9ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "49c543d88b8065f8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "af2a5d3cdbc251b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "cb3da80ad94cd104",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0adf883383635401",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Content/Home.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "4a948f94db371531",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Content/Home.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "aa08526226493baf",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "a094fc5f0b3f1506",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "889c322fb99165e8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Content/Home.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "5392a5a86fc0dbbc",
+  "lastOpenFiles": [
+    "public/content-assets/Content/Assets/Tutorial/7 - terminal.png",
+    "public/content-assets/Content/Assets/Tutorial/1 - enable pages.png",
+    "public/content-assets/Content/Assets/Tutorial/3 - Choose Path.png",
+    "public/content-assets/Content/Assets/Tutorial/2 - Open with GitHub Desktop.png",
+    "public/content-assets/Content/Assets/Tutorial/9 - push.png",
+    "public/content-assets/Content/Assets/Tutorial/4 - Check Location.png",
+    "public/content-assets/Content/Templates/Developer/screenshot.jpg",
+    "Content/Tutorials/Build your first lefolio home page and website.md",
+    "public/content-assets/Content/Assets/tina-relational-design.png",
+    "Content/Tutorials/Setup your tools for editing with Obsidian.md",
+    "Content/Home.md",
+    "public/content-assets/Content/Assets/obsidian-portfolio-dev.png",
+    "public/content-assets/Content/Assets/Tutorial/8 - commit.png",
+    "Content/Assets/tina-relational-design.png",
+    "src/templates/showcase/components/Showcase.tsx",
+    "src/templates/showcase/components/CompareSlider.tsx",
+    "src/templates/showcase/components/Connect.tsx",
+    "src/templates/showcase/components/Tools.tsx",
+    "src/templates/showcase/components/UseCases.tsx",
+    "src/templates/showcase/components/Workflow.tsx",
+    "src/templates/showcase/components/Hero.tsx",
+    "src/templates/showcase/components",
+    "src/templates/showcase/lib/accented.tsx",
+    "src/templates/showcase/lib",
+    "Content/Templates/Marketing/Marketing.md",
+    "Content/Templates/Templates.md",
+    "Content/Templates/Lab/Lab.md",
+    "Content/Tutorials/Tutorials.md",
+    "Content/Tutorials/Getting-started.md",
+    "Content/Docs/Deploy.md",
+    "Content/Docs/Content-and-config.md",
+    "Content/About.md",
+    "PACKAGING.md",
+    "PRODUCT.md",
+    "DESIGN.md",
+    "CLAUDE.md",
+    "AGENTS.md"
+  ]
+}
