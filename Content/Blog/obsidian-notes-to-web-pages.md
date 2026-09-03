@@ -1,12 +1,9 @@
 ---
 title: Converting Obsidian notes to web pages
-subtitle: What works today, what breaks, and why I built another path
+subtitle: How to publish sites from Obsidian - Current Patterns
 published: 2025-05-18
 order: 3
-source_url: https://www.reddit.com/r/ObsidianMD/comments/1uoy20i/discussion_converting_obsidian_notes_to_web_pages/
-source_label: r/ObsidianMD discussion
 ---
-
 *Originally posted as a [discussion on r/ObsidianMD](https://www.reddit.com/r/ObsidianMD/comments/1uoy20i/discussion_converting_obsidian_notes_to_web_pages/).*
 
 ---

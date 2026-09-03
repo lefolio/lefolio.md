@@ -52,7 +52,7 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: connect
-## Connect, I'll keep you posted
+## Connect; I'll keep you posted
 **lefolio.md** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
 
 <form

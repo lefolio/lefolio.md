@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Content/Home.md",
+                "file": "Content/Blog/obsidian-notes-to-web-pages.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "obsidian-notes-to-web-pages"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Content/Home.md",
+                "file": "Content/Blog/obsidian-notes-to-web-pages.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Content/Home.md",
+                "file": "Content/Blog/obsidian-notes-to-web-pages.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Content/Home.md",
+                "file": "Content/Blog/obsidian-notes-to-web-pages.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,6 +190,13 @@
   },
   "active": "5392a5a86fc0dbbc",
   "lastOpenFiles": [
+    "Content/Blog/making-static-site-generators-more-accessible.md",
+    "Content/Blog/editable-websites-workflow.md",
+    "Content/Blog/obsidian-notes-to-web-pages.md",
+    "Content/Tutorials/Setup your tools for editing with Obsidian.md",
+    "Content/Tutorials/Build your first lefolio home page and website.md",
+    "Content/Tutorials/Tutorials.md",
+    "Content/Home.md",
     "public/content-assets/Content/Assets/Tutorial/7 - terminal.png",
     "public/content-assets/Content/Assets/Tutorial/1 - enable pages.png",
     "public/content-assets/Content/Assets/Tutorial/3 - Choose Path.png",
@@ -197,13 +204,9 @@
     "public/content-assets/Content/Assets/Tutorial/9 - push.png",
     "public/content-assets/Content/Assets/Tutorial/4 - Check Location.png",
     "public/content-assets/Content/Templates/Developer/screenshot.jpg",
-    "Content/Tutorials/Build your first lefolio home page and website.md",
     "public/content-assets/Content/Assets/tina-relational-design.png",
-    "Content/Tutorials/Setup your tools for editing with Obsidian.md",
-    "Content/Home.md",
     "public/content-assets/Content/Assets/obsidian-portfolio-dev.png",
     "public/content-assets/Content/Assets/Tutorial/8 - commit.png",
-    "Content/Assets/tina-relational-design.png",
     "src/templates/showcase/components/Showcase.tsx",
     "src/templates/showcase/components/CompareSlider.tsx",
     "src/templates/showcase/components/Connect.tsx",
@@ -217,7 +220,6 @@
     "Content/Templates/Marketing/Marketing.md",
     "Content/Templates/Templates.md",
     "Content/Templates/Lab/Lab.md",
-    "Content/Tutorials/Tutorials.md",
     "Content/Tutorials/Getting-started.md",
     "Content/Docs/Deploy.md",
     "Content/Docs/Content-and-config.md",

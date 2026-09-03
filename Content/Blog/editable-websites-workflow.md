@@ -1,10 +1,8 @@
 ---
 title: A workflow I like for building editable websites
-subtitle: Obsidian for content, LeFolio for structure, coding agents for polish
+subtitle: Shipping V0 prototypes with a CMS
 published: 2026-02-24
 order: 1
-source_url: https://www.reddit.com/r/webdevelopment/comments/1w55p1m/i_found_a_workflow_that_i_like_to_build_editable/
-source_label: r/webdevelopment post
 ---
 
 *Originally posted on [r/webdevelopment](https://www.reddit.com/r/webdevelopment/comments/1w55p1m/i_found_a_workflow_that_i_like_to_build_editable/).*
@@ -23,6 +21,7 @@ So I came up with a high-level component structure on top of Markdown that allow
 
 I would write the draft content with `:::` to mark components, then ask Claude to build the landing page by building React components for each `::: component`, and use the Markdown to fill the page content.
 
+``` markdown
 ::: hero
 ## My Brand
 ### We build stuff that we care about
@@ -50,6 +49,7 @@ Working with X was a real pleasure
 ### Product manager
 Working with X was a real pleasure
 :::
+```
 The links turn into CTA buttons, and Claude can apply whatever layout I ask for, such as sections like about or testimonials.
 
 Then I have all of the landing page content in one Markdown file that I can tweak and expose with a headless CMS such as TinaCMS, and it's rendered nicely with the custom template built by Claude.

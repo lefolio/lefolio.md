@@ -1,12 +1,9 @@
 ---
-title: "Roast my idea: making static site generators more accessible"
-subtitle: Obsidian-first editing, templates, and free hosting — tell me what's wrong with it
+title: Making static site generators more accessible
+subtitle:
 published: 2025-07-14
 order: 2
-source_url: https://www.reddit.com/r/website/comments/1vb0ni7/roast_my_idea_making_static_sites_generators_more/
-source_label: r/website thread
 ---
-
 *Originally posted as [Roast my idea: making static site generators more accessible](https://www.reddit.com/r/website/comments/1vb0ni7/roast_my_idea_making_static_sites_generators_more/) on r/website.*
 
 ---
@@ -24,29 +21,21 @@ However, they often have a steeper learning curve; you need to at least get the 
 
 Personally, I build a few portfolios, and I like to be able to edit Markdown in Obsidian, drag and drop images, and not have to think about HTML or layout when I edit.
 
-I am thinking about building tools that allow me to edit a Markdown-based static site in the browser and publish easily by taking care of the configuration. Like authenticate with GitHub and let the app handle the fork, pushing content, configuration, etc.
+I am thinking about building tools that allow me to edit a Markdown-based static site in the browser and publish easily by taking care of the configuration. Like authenticating with GitHub and letting the app handle the fork, pushing content, configuration, etc.
 
 That, or build an Obsidian plugin, or even a new desktop app that will allow me to choose a template, write content, and publish in one click.
 
 What you would get:
 
-One-click setup: choose a template, start writing in Markdown
-
-Minimal configuration
-
-Pleasant UX to edit, add images, and create simple layouts
-
-Theme customisation
-
-Open source so you can add custom react components
-
-You can let your coding agent do some customisation
-
-Development server running automatically
-
-Hot reload and live preview
-
-Publish and update in one click
+- One-click setup: choose a template, start writing in Markdown
+- Minimal configuration
+- Pleasant UX to edit, add images, and create simple layouts
+- Theme customisation
+- Open source so you can add custom React components
+- You can let your coding agent do some customization
+- Development server running automatically
+- Hot reload and live preview
+- Publish and update in one click
 
 Would you like to see that? Do you think that could reach an audience that is not technical enough for learning git but could benefit from the free hosting and flexibility of static site generators?
 
