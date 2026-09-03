@@ -6,7 +6,7 @@ hero_image: Assets/live_update_showcase.gif
 ## Turn your **AI-generated Draft** into a **Maintainable Website**.
 
 lefolio.md lets you iterate from draft to editable site with separation of code and content thanks to its ::: component syntax for Markdown.
-### This site is built using lefolio; [see how it works](https://github.com/lefolio/lefolio.md/blob/main/Content/Home.md)
+
 [[Build your lefolio first home page and website|Build your Site now]]
 [Support lefolio.md](https://www.paypal.com/paypalme/olivelarouille)
 :::
