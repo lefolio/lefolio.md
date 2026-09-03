@@ -1,6 +1,6 @@
 site:
   title: "lefolio.md"
-  description: "Publish a beautiful website in a breeze from the comfort of **Obsidian** without monthly hosting bills."
+  description: "Build maintainable and easy-to-edit AI-generated Websites."
   url: "https://lefolio.md"
   basePath: ""
 
@@ -17,14 +17,13 @@ analytics:
 
 author:
   name: "lefolio.md"
-  bio: "Obsidian-friendly site publishing for academics and makers."
+  bio: "Opinionated static site generator to publish editable AI-generated sites."
   avatar: "Assets/lefolio_logo_min.png"
   links:
     github: "https://github.com/lefolio/lefolio.md"
 
 navigation:
   - Templates
-  - Getting Started
-  - Docs
-  - Tutorial
+  - Tutorials
+  - Blog
   - About

@@ -30,7 +30,7 @@ export default function Navbar({ manifest }: NavbarProps) {
           <BrandName name={siteTitle} className="showcase-brand-name--nav" />
         </Link>
 
-        <nav className="flex items-center gap-6" aria-label="Main">
+        <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2" aria-label="Main">
           {navigation.map((item) => {
             const active = isActive(pathname, item.href);
             const className = active ? 'showcase-nav showcase-nav-active' : 'showcase-nav';

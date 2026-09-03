@@ -2,46 +2,56 @@
 title: LeFolio
 hero_image: Assets/live_update_showcase.gif
 ---
-::: columns
-## Focus on **bringing what matters to the forefront**, not on the code.
-- Free your creativity and edit without distraction in Markdown.
-- Rely on beautiful built-in templates.
-- Let your coding agent extend the code and customize the style.
-:::
-![[lefolio.md/Content/Assets/lefolio_logo_min.png|250|center]]
-:::
+::: hero
+## Turn your **AI-generated Draft** into a **Maintainable Website**.
 
-## **Usability** of Premium Software with the **Cost of Open Source**
-
-::: columns
-### Easy editing with Markdown
-lefolio.md helps you build static websites using templates and editing [Markdown](https://www.markdownguide.org/basic-syntax/). Each `.md` file turns into a web page using simple syntax for images, links, etc. The engine applies the styling defined by the template.
-:::
-### No Hosting Costs
-The site is static, so you can host it for free on [GitHub Pages](https://docs.github.com/en/pages), Netlify, or similar services. Or you can upload it on your own server if you have one. No hosting cost; you own the content, and the code is Open Source.
-:::
-### Publish with a few clicks
-Choose your template, edit a short configuration, push the content to GitHub, and the site is live. This can be done with a few terminal commands or, with a button click using the Obsidian Plugin.
+lefolio.md lets you iterate from draft to editable site with separation of code and content thanks to its ::: component syntax for Markdown.
+### This site is built using lefolio; [see how it works](https://github.com/lefolio/lefolio.md/blob/main/Content/Home.md)
+[[Build your lefolio first home page and website|Build your Site now]]
+[Support lefolio.md](https://www.paypal.com/paypalme/olivelarouille)
 :::
 
-## We think about workflows to **make your life easier**.
-
-::: columns
-### Why Markdown
-Nobody likes editing web content in HTML, and live editors such as WordPress, Squarespace, etc. come with a monthly subscription.
-With LeFolio and Markdown, the content is on your computer, and you can edit it with a simple text editor (though we strongly recommend Obsidian).
-:::
-### Why Obsidian
-Obsidian is a note-taking app and much more; it is designed to edit Markdown with live preview. You can also create links between notes, embed content, and more.
-In Obsidian, you can drag and drop an image into your `.md`. All your content is easily available so you can focus on writing without distraction.
-Our Obsidian plugin lets you publish changes in a single click.
+::: workflow
+## From **Draft** to Polished **Editable Site** in minutes
+Write a draft, choose the style, prompt your agent: you're set to focus on the message and the value.
+#### Draft your Hero, CTA, and Homepage sections to orient your visitors.
+Use the `::: component` syntax for Markdown to structure your content in message before building anything; free your mind to squeeze all the value out of your business or product.
+#### Build your site with your Coding agent using the Component structure as a guide.
+Prompt your coding agent to use lefolio.md structure, and let him build React Components that will render your draft in a beautiful and structured way.
+#### Choose your tools for editing or for shipping to your client.
+lefolio.md favors editing with Obsidian built-in asset path resolution. You can also choose to plug any headless CMS on top; we built an integration workflow for TinaCMS.
 :::
 
-## Get your site up in Minutes for Free
-Ready to publish your site and start writing content? Fork any existing template, edit the content and ask your coding agent to edit the template.
+::: use-cases
+## lefolio is an opinionated **static site generator**; you can **build more** than your landing page
+#### Built-in Blog Engine with rich Markdown
+#### Structured Categories such as Product Listing and Pages
+#### Free hosting via GitHub Pages, Vercel, etc.
+#### Starter templates for blogs, portfolios, etc.
+:::
 
-See [[Getting-started]] and [[Docs|the documentation]] for more details about choosing a template, configuring your site, and editing your content.
+::: showcase
+## A few sites built with lefolio
+### A Software Engineer Portfolio - Edited in Obsidian
+https://oilandrust.github.io/portfolio/
+https://github.com/oilandrust/portfolio
+![[portfolio-dev.png]]
+![[obsidian-portfolio-dev.png]]
+### A Web-Design Business Front - Hooked with TinaCMS
+https://oilandrust.github.io/relational-design/
+https://github.com/oilandrust/relational-design
+![[relational-design.png]]
+![[tina-relational-design.png]]
+:::
 
+::: tools
+## lefolio.md comes **with** tools that make **your life** easier
+- SKILLS.md to teach your agent to work with lefolio.md
+- Obsidian Integration for seamless editing and publishing
+- Development server with hot-reload and live preview
+:::
+
+::: connect
 ## Connect, I'll keep you posted
 **lefolio.md** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
 
@@ -56,4 +66,5 @@ See [[Getting-started]] and [[Docs|the documentation]] for more details about ch
 </form>
 
 You can also connect on [GitHub](https://github.com/lefolio) and chat on [Reddit](https://www.reddit.com/user/oliver_rust/)!
+:::
 

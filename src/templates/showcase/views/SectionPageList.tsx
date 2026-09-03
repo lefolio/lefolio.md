@@ -75,19 +75,38 @@ function TemplateGrid({ pages }: { pages: SectionListItem[] }) {
   );
 }
 
+function formatDate(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
 function DocList({ pages }: { pages: SectionListItem[] }) {
   return (
     <ul className="showcase-doc-list divide-y">
-      {pages.map((page) => (
-        <li key={page.href} className="py-5">
-          <Link href={page.href} className="group block no-underline">
-            <h2 className="text-heading text-xl font-semibold group-hover:underline">
-              {page.title}
-            </h2>
-            {page.subtitle ? <p className="text-muted mt-1">{page.subtitle}</p> : null}
-          </Link>
-        </li>
-      ))}
+      {pages.map((page) => {
+        const dateLabel = formatDate(page.date);
+        return (
+          <li key={page.href} className="py-5">
+            <Link href={page.href} className="group block no-underline">
+              {dateLabel ? (
+                <time className="text-muted mb-1 block text-sm" dateTime={page.date ?? undefined}>
+                  {dateLabel}
+                </time>
+              ) : null}
+              <h2 className="text-heading text-xl font-semibold group-hover:underline">
+                {page.title}
+              </h2>
+              {page.subtitle ? <p className="text-muted mt-1">{page.subtitle}</p> : null}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }

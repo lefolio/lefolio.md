@@ -1,11 +1,8 @@
 ---
-title: Tutorial
+title: Seting up your environment with Obsidian to Take Ownership of a lefolio site
 ---
-
-Hi Eric, your site is ready for you to take ownership of and edit it as you wish.
-The site is now hosted on GitHub Pages of the lefolio.md account:
-
-https://github.com/lefolio/eric-salo-design
+Welcome! I'm glad you're taking some time to try lefolio.
+This tutorial is intended for someone who **already** has a lefolio site on GitHub and wants to set up their local environment to edit it.
 
 This tutorial will help you:
 - transfer the site to your account on GitHub

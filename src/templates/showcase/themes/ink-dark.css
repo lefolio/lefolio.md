@@ -1,16 +1,15 @@
 [data-template="showcase"][data-theme="ink-dark"] {
-  --color-bg: #0a1220;
-  --color-bg-alt: #121c2e;
-  --color-bg-elevated: #1a2740;
-  --color-text: #e8eef8;
-  --color-text-muted: #9aacc4;
-  --color-border: #2a3a55;
-  --color-primary: #2890f8;
-  --color-primary-hover: #4aa0ff;
-  --color-on-primary: #0a1220;
-  /* On dark surfaces, keep the navy readable as near-white with blue .md */
-  --brand-navy: #e8eef8;
-  --brand-blue: #2890f8;
+  --color-bg: #070b12;
+  --color-bg-alt: #0d1420;
+  --color-bg-elevated: #131b2b;
+  --color-text: #eef3fb;
+  --color-text-muted: #8ea0b8;
+  --color-border: #243044;
+  --color-primary: #4da3ff;
+  --color-primary-hover: #7cbcff;
+  --color-on-primary: #071018;
+  --brand-navy: #eef3fb;
+  --brand-blue: #4da3ff;
 }
 
 [data-template="showcase"][data-theme="ink-dark"] .prose-content {
