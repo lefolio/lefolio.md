@@ -7,7 +7,7 @@ hero_image: Assets/live_update_showcase.gif
 
 Iterate from draft to editable site with separation of code and content thanks to the ::: component syntax for Markdown.
 
-[[Build your first lefolio home page and website|Build your Site now]]
+[Build your Site now](https://lefolio.github.io/app/)
 [Support lefolio.md](https://www.paypal.com/paypalme/olivelarouille)
 :::
 
@@ -20,6 +20,11 @@ Use the `::: component` syntax for Markdown to structure your message before bui
 Prompt your coding agent to use lefolio.md, and let him build React Components that will render your draft in a beautiful and structured way.
 #### Your draft becomes editable content.
 Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS.
+:::
+
+::: how-it-works
+## How it works
+You define your sections with the ::: component syntax, your coding agent interprets the content and writes parsers that can be used by lefolio.md to extract the data and render the page with the 
 :::
 
 ::: use-cases
