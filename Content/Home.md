@@ -5,7 +5,7 @@ hero_image: Assets/live_update_showcase.gif
 ::: hero
 # Turn your **AI-generated Draft** into a **Maintainable Website**.
 
-Iterate from draft to editable site thanks to **lefolio**'s `::: component` syntax for Markdown.
+Iterate from draft to editable site thanks to the `::: component` syntax for Markdown.
 
 [Build your Site now](https://lefolio.github.io/app/)
 [Learn More](/#workflow)
@@ -61,12 +61,15 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 :::
 
 ::: use-cases
-## lefolio is a **static site generator**; you can **build more** than your landing page
+## lefolio is a **static site generator**; you can **build more** than just your landing page
 #### Built-in Blog Engine with rich Markdown
-![[markdown_sheet.svg|110]]![[markdown_sheet_with_image.svg|110]]
+![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
 #### Structured Categories such as Product Listing and Pages
+![[Untitled (1).svg|110]]
 #### Free hosting via GitHub Pages, Vercel, etc.
+![[markdown_sheet.svg|110]]
 #### Starter templates for blogs, portfolios, etc.
+![[markdown_sheet.svg|110]]
 :::
 
 ::: showcase

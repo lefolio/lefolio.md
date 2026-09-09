@@ -214,7 +214,9 @@ export default function Workflow({ content }: MarkdownBlockProps) {
     };
   }, [content, title]);
 
+  // Desktop: always one selected tab. Mobile: accordion, collapsed by default.
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState<number | null>(null);
   const current = steps[active] ?? steps[0];
 
   return (
@@ -225,7 +227,8 @@ export default function Workflow({ content }: MarkdownBlockProps) {
         </h2>
         {intro ? <p className="showcase-block-lead">{intro}</p> : null}
 
-        <div className="showcase-workflow">
+        {/* Desktop: left tabs + right demo */}
+        <div className="showcase-workflow showcase-workflow--desktop">
           <div className="showcase-workflow-tabs" role="tablist" aria-label="Workflow steps">
             {steps.map((step, index) => {
               const selected = index === active;
@@ -234,9 +237,9 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                   key={step.title}
                   type="button"
                   role="tab"
-                  id={`workflow-tab-${index}`}
+                  id={`workflow-tab-desktop-${index}`}
                   aria-selected={selected}
-                  aria-controls="workflow-demo"
+                  aria-controls="workflow-demo-desktop"
                   className={`showcase-workflow-tab${selected ? ' is-active' : ''}`}
                   onMouseEnter={() => setActive(index)}
                   onFocus={() => setActive(index)}
@@ -247,7 +250,9 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                   </span>
                   <span className="showcase-workflow-tab-copy">
                     <span className="showcase-workflow-title">{step.title}</span>
-                    {step.body ? <span className="showcase-workflow-body">{step.body}</span> : null}
+                    {step.body ? (
+                      <span className="showcase-workflow-body">{step.body}</span>
+                    ) : null}
                   </span>
                 </button>
               );
@@ -256,12 +261,52 @@ export default function Workflow({ content }: MarkdownBlockProps) {
 
           <div
             className="showcase-workflow-demo"
-            id="workflow-demo"
+            id="workflow-demo-desktop"
             role="tabpanel"
-            aria-labelledby={`workflow-tab-${active}`}
+            aria-labelledby={`workflow-tab-desktop-${active}`}
           >
             {current ? <WorkflowDemo index={active} code={current.code} /> : null}
           </div>
+        </div>
+
+        {/* Mobile: collapsible steps, title only */}
+        <div className="showcase-workflow showcase-workflow--mobile">
+          {steps.map((step, index) => {
+            const expanded = index === open;
+            return (
+              <div
+                key={step.title}
+                className={`showcase-workflow-step${expanded ? ' is-open' : ''}`}
+              >
+                <button
+                  type="button"
+                  id={`workflow-tab-mobile-${index}`}
+                  className={`showcase-workflow-tab${expanded ? ' is-open' : ''}`}
+                  aria-expanded={expanded}
+                  aria-controls={`workflow-demo-mobile-${index}`}
+                  onClick={() => setOpen((prev) => (prev === index ? null : index))}
+                >
+                  <span className="showcase-workflow-index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="showcase-workflow-tab-copy">
+                    <span className="showcase-workflow-title">{step.title}</span>
+                  </span>
+                  <span className="showcase-workflow-chevron" aria-hidden="true" />
+                </button>
+
+                {expanded ? (
+                  <div
+                    className="showcase-workflow-demo"
+                    id={`workflow-demo-mobile-${index}`}
+                    aria-labelledby={`workflow-tab-mobile-${index}`}
+                  >
+                    <WorkflowDemo index={index} code={step.code} />
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -165,7 +165,15 @@ export default function Hero({ content }: MarkdownBlockProps) {
                     <AccentedText text={title} />
                   </h1>
                 ) : null}
-                {lead ? <p className="showcase-hero-lead">{lead}</p> : null}
+                {lead ? (
+                  <div className="showcase-hero-lead">
+                    <MarkdownBody
+                      content={lead}
+                      preprocessColumnBlocks={false}
+                      preprocessComponentBlocks={false}
+                    />
+                  </div>
+                ) : null}
                 {kicker ? (
                   <div className="showcase-hero-kicker">
                     <MarkdownBody
