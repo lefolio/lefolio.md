@@ -214,9 +214,9 @@ export default function Workflow({ content }: MarkdownBlockProps) {
     };
   }, [content, title]);
 
-  // Desktop: always one selected tab. Mobile: accordion, collapsed by default.
+  // Desktop: always one selected tab. Mobile: accordion, collapsed by default (multi-open).
   const [active, setActive] = useState(0);
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<ReadonlySet<number>>(() => new Set());
   const current = steps[active] ?? steps[0];
 
   return (
@@ -272,7 +272,7 @@ export default function Workflow({ content }: MarkdownBlockProps) {
         {/* Mobile: collapsible steps, title only */}
         <div className="showcase-workflow showcase-workflow--mobile">
           {steps.map((step, index) => {
-            const expanded = index === open;
+            const expanded = open.has(index);
             return (
               <div
                 key={step.title}
@@ -284,7 +284,14 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                   className={`showcase-workflow-tab${expanded ? ' is-open' : ''}`}
                   aria-expanded={expanded}
                   aria-controls={`workflow-demo-mobile-${index}`}
-                  onClick={() => setOpen((prev) => (prev === index ? null : index))}
+                  onClick={() => {
+                    setOpen((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(index)) next.delete(index);
+                      else next.add(index);
+                      return next;
+                    });
+                  }}
                 >
                   <span className="showcase-workflow-index" aria-hidden="true">
                     {String(index + 1).padStart(2, '0')}
