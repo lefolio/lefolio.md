@@ -44,6 +44,34 @@ describe('preprocessComponentBlocks', () => {
     // Outer closed — no leftover top-level :::
     expect(out.trim().endsWith('```')).toBe(true);
   });
+
+  it('ignores ::: lines inside markdown code fences', () => {
+    const input = [
+      '::: workflow',
+      '#### Draft',
+      'Write structure first.',
+      '```',
+      '::: hero',
+      '## Brand',
+      ':::',
+      '```',
+      '#### Build',
+      'Prompt your agent.',
+      '```',
+      'Build a lefolio site',
+      '```',
+      ':::',
+    ].join('\n');
+    const out = preprocessComponentBlocks(input);
+    expect(out).toContain('workflow');
+    expect(out).toContain('#### Draft');
+    expect(out).toContain('#### Build');
+    expect(out).toContain('::: hero');
+    expect(out).toContain('Build a lefolio site');
+    // Still a single lefolio-block — outer closed after both steps.
+    expect(out.match(/lefolio-block/g)?.length).toBe(1);
+    expect(out).toMatch(/`{4,}lefolio-block/);
+  });
 });
 
 describe('splitBlockFence', () => {

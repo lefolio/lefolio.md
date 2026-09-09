@@ -5,7 +5,7 @@ hero_image: Assets/live_update_showcase.gif
 ::: hero
 # Turn your **AI-generated Draft** into a **Maintainable Website**.
 
-Iterate from draft to editable site thanks to the `::: component` syntax for Markdown.
+Iterate from draft to editable site thanks to **lefolio**'s `::: component` syntax for Markdown.
 
 [Build your Site now](https://lefolio.github.io/app/)
 [Learn More](/#workflow)
@@ -13,13 +13,51 @@ Iterate from draft to editable site thanks to the `::: component` syntax for Mar
 
 ::: workflow
 ## From **Draft** to Polished **Editable Site** in minutes
-Write a draft, choose the style, prompt your agent: you're set to focus on the message and the value.
+Write a draft, choose the style, prompt your agent: you're set to focus on your message.
 #### Draft your Hero, CTA, and Sections.
 Use the `::: component` syntax for Markdown to structure your message before building anything; free your mind to squeeze all the value out of your business or product.
+```
+::: hero
+# My Brand
+## We build stuff that we care about
+
+![Hero image](Assets/hero-image.png)
+
+[Buy our stuff](/our-stuff)
+[Learn more about us](/about-us)
+:::
+
+::: testimonials
+## Customer 1
+### Product manager
+Working with X was a real pleasure
+
+## Customer 2
+### Product manager
+Working with X was a real pleasure
+:::
+```
 #### Build your site with your Coding Agent.
-Prompt your coding agent to use lefolio.md, and let him build React Components that will render your draft in a beautiful and structured way.
+Prompt your coding agent to use lefolio.md, and let it build React Components that will render your content in a beautiful and structured way.
+```
+Build a `lefolio` site from this `Home.md` draft.
+
+Use the `::: component` blocks as structured content.
+Create React components to render the content.
+
+Use the `design.md` for style guidelines.
+```
 #### Your draft becomes editable content.
 Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS.
+```
+::: hero
+## My Brand
+### We build stuff that we care about
+
+[Buy our stuff](/our-stuff)
+[Learn more about us](/about-us)
+:::
+```
 :::
 
 ::: use-cases
