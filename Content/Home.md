@@ -15,7 +15,7 @@ Iterate from draft to editable site thanks to **lefolio**'s `::: component` synt
 ## From **Draft** to Polished **Editable Site** in minutes
 Write a draft, choose the style, prompt your agent: you're set to focus on your message.
 #### Draft your Hero, CTA, and Sections.
-Use the `::: component` syntax for Markdown to structure your message before building anything; free your mind to squeeze all the value out of your business or product.
+Use the `::: component` syntax for Markdown to structure your message; free your mind to squeeze all the value out of your business or product.
 ```
 ::: hero
 # My Brand
@@ -47,7 +47,7 @@ Create React components to render the content.
 
 Use the `design.md` for style guidelines.
 ```
-#### Your draft becomes editable content.
+#### Your Markdown draft becomes editable content.
 Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS.
 ```
 ::: hero
@@ -63,6 +63,7 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 ::: use-cases
 ## lefolio is a **static site generator**; you can **build more** than your landing page
 #### Built-in Blog Engine with rich Markdown
+![[markdown_sheet.svg|110]]![[markdown_sheet_with_image.svg|110]]
 #### Structured Categories such as Product Listing and Pages
 #### Free hosting via GitHub Pages, Vercel, etc.
 #### Starter templates for blogs, portfolios, etc.
