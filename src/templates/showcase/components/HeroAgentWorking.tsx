@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 const DEFAULT_MESSAGES = [
-  'Scaffolding lefolio.md site...',
+  'Scaffolding lefolio site...',
   'Crafting React components and content parsers...',
 ] as const;
 
@@ -17,7 +17,7 @@ interface HeroAgentWorkingProps {
 export default function HeroAgentWorking({
   onComplete,
   messages = DEFAULT_MESSAGES,
-  messageMs = 1450,
+  messageMs = 1650,
 }: HeroAgentWorkingProps) {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);

@@ -9,3 +9,5 @@ src/lib/content/content-version.ts
 tsconfig.tsbuildinfo
 .lefolio/
 *.tgz
+
+.obsidian/

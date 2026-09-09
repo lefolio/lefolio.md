@@ -175,7 +175,7 @@ function delayBeforeChar(source: string, index: number): number {
     const leadEnd = source.indexOf('\n', leadStart);
     const end = leadEnd === -1 ? source.length : leadEnd;
     if (index > leadStart && index <= end) {
-      return 11 + (index % 9 === 0 ? 6 : 0);
+      return 13 + (index % 9 === 0 ? 6 : 0);
     }
   }
 
@@ -193,7 +193,7 @@ function delayBeforeChar(source: string, index: number): number {
   if (prev === '*' && source[index - 2] === '*') return 55;
 
   // Regular text cadence
-  return 11 + (index % 7 === 0 ? 6 : 0);
+  return 12 + (index % 7 === 0 ? 6 : 0);
 }
 
 interface HeroMarkdownTypewriterProps {

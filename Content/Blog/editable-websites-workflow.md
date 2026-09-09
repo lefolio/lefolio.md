@@ -34,8 +34,7 @@ I would write the draft content with `:::` to mark components, then ask Claude t
 
 ::: about
 ## Our Story
-
-blablalbla
+We started as a small business before we became big.
 
 ![Side image](Assets/about-image.png)
 :::
