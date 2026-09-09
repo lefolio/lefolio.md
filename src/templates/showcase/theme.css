@@ -435,10 +435,10 @@
   position: relative;
   margin: 0;
   padding: 1.25rem 1.35rem;
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--color-bg-elevated, var(--color-bg-alt, var(--color-bg))) 92%, transparent);
-  box-shadow: 0 18px 50px color-mix(in srgb, #000 28%, transparent);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   overflow: hidden;
   white-space: pre-wrap;
   word-break: break-word;
