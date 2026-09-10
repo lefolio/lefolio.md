@@ -748,7 +748,7 @@
 
 [data-template="showcase"] .showcase-workflow-tab {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: start;
   gap: 0.85rem;
   width: 100%;
@@ -770,16 +770,6 @@
 [data-template="showcase"] .showcase-workflow-tab:hover,
 [data-template="showcase"] .showcase-workflow-tab:focus-visible {
   outline: none;
-}
-
-[data-template="showcase"] .showcase-workflow-index {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--color-primary);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
 }
 
 [data-template="showcase"] .showcase-workflow-tab-copy {
@@ -1386,10 +1376,11 @@
 }
 
 [data-template="showcase"] .showcase-tools-layout {
+  margin-top: 2.75rem;
   display: grid;
   gap: 1.75rem;
   align-items: center;
-  width: min(100%, 62rem);
+  width: min(100%, 56rem);
   margin-inline: auto;
 }
 

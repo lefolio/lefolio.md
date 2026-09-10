@@ -244,9 +244,6 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                   onFocus={() => setActive(index)}
                   onClick={() => setActive(index)}
                 >
-                  <span className="showcase-workflow-index" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   <span className="showcase-workflow-tab-copy">
                     <span className="showcase-workflow-title">{step.title}</span>
                     {step.body ? (
@@ -292,9 +289,6 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                     });
                   }}
                 >
-                  <span className="showcase-workflow-index" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   <span className="showcase-workflow-tab-copy">
                     <span className="showcase-workflow-title">{step.title}</span>
                   </span>
