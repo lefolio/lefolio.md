@@ -61,7 +61,8 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 :::
 
 ::: use-cases
-## lefolio is a **static site generator**; you can **build more** than just your landing page
+## Build more than just your landing page
+lefolio is a full-featured static site generator, you don't have to reinvent the wheel.
 #### Built-in Blog Engine with rich Markdown
 ![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
 #### Structured Categories such as Product Listing and Pages
@@ -74,7 +75,7 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 :::
 
 ::: showcase
-## A few sites built with lefolio
+## A few sites built with **lefolio**
 ### A Software Engineer Portfolio - Edited in Obsidian
 https://oilandrust.github.io/portfolio/
 https://github.com/oilandrust/portfolio
@@ -88,10 +89,10 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: tools
-## lefolio comes with **tools** that make **your life** easier
-- SKILLS.md to teach your agent to work with lefolio.md
-- Obsidian Integration for seamless editing and publishing
-- Development server with hot-reload and live preview
+## **Tools** that make **Your Life** easier
+- SKILLS.md for your coding agent
+- Obsidian Integration for seamless editing
+- Development server with live preview
 
 [Start Building](https://lefolio.github.io/app/)
 [GitHub](https://github.com/lefolio/lefolio.md)
