@@ -55,7 +55,6 @@ function DemoAgent({ code }: { code: string }) {
       <div className="showcase-workflow-agent-bar">
         <span className="showcase-workflow-agent-dot" aria-hidden />
         <span>Agent</span>
-        <span className="showcase-workflow-agent-model">Claude · Cursor</span>
       </div>
       <pre className="showcase-workflow-agent-prompt">
         <code>{code}</code>
