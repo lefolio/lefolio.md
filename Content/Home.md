@@ -61,7 +61,7 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 :::
 
 ::: use-cases
-## Build more than just your landing page
+## Build **more** than your landing page
 lefolio is a full-featured static site generator, you don't have to reinvent the wheel.
 #### Built-in Blog Engine with rich Markdown
 ![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
