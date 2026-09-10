@@ -159,30 +159,33 @@ export default function Hero({ content }: MarkdownBlockProps) {
                 }
               }}
             >
-              <div className="showcase-hero-copy">
-                {title ? (
-                  <h1 className="showcase-hero-title">
-                    <AccentedText text={title} />
-                  </h1>
-                ) : null}
-                {lead ? (
-                  <div className="showcase-hero-lead">
-                    <MarkdownBody
-                      content={lead}
-                      preprocessColumnBlocks={false}
-                      preprocessComponentBlocks={false}
-                    />
-                  </div>
-                ) : null}
-                {kicker ? (
-                  <div className="showcase-hero-kicker">
-                    <MarkdownBody
-                      content={kicker}
-                      preprocessColumnBlocks={false}
-                      preprocessComponentBlocks={false}
-                    />
-                  </div>
-                ) : null}
+              <div className="showcase-hero-top">
+                <div className="showcase-hero-copy">
+                  {title ? (
+                    <h1 className="showcase-hero-title">
+                      <AccentedText text={title} warm />
+                    </h1>
+                  ) : null}
+                  {lead ? (
+                    <div className="showcase-hero-lead">
+                      <MarkdownBody
+                        content={lead}
+                        preprocessColumnBlocks={false}
+                        preprocessComponentBlocks={false}
+                      />
+                    </div>
+                  ) : null}
+                  {kicker ? (
+                    <div className="showcase-hero-kicker">
+                      <MarkdownBody
+                        content={kicker}
+                        preprocessColumnBlocks={false}
+                        preprocessComponentBlocks={false}
+                      />
+                    </div>
+                  ) : null}
+                </div>
+
                 {actions.length > 0 ? (
                   <div className="showcase-hero-actions">
                     {actions.map((action, index) => (

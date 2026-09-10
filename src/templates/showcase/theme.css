@@ -220,10 +220,18 @@
 [data-template="showcase"] .showcase-hero-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 3rem;
   padding-block: clamp(3.5rem, 8vw, 6.5rem) 4rem;
-  text-align: center;
+  text-align: left;
+}
+
+[data-template="showcase"] .showcase-hero-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  width: min(100%, 46rem);
 }
 
 [data-template="showcase"] .showcase-hero-copy {
@@ -242,7 +250,7 @@
 }
 
 [data-template="showcase"] .showcase-hero-lead {
-  margin: 1.35rem auto 0;
+  margin: 1.35rem 0 0;
   max-width: 40rem;
   color: var(--color-text-muted);
   font-size: clamp(1.05rem, 1.7vw, 1.2rem);
@@ -254,7 +262,7 @@
 }
 
 [data-template="showcase"] .showcase-hero-lead strong {
-  color: var(--color-primary);
+  color: var(--showcase-warm-yellow, #ffd60a);
   font-weight: 700;
 }
 
@@ -262,13 +270,13 @@
   font-family: var(--font-mono);
   font-size: 0.92em;
   font-weight: 550;
-  color: var(--color-primary);
+  color: var(--showcase-warm-green, #22e58a);
   border-radius: 0.4em;
   padding: 0.12em 0.4em;
 }
 
 [data-template="showcase"] .showcase-hero-kicker {
-  margin: 1rem auto 0;
+  margin: 1rem 0 0;
   color: var(--color-text-muted);
   font-size: 0.95rem;
 }
@@ -284,13 +292,14 @@
 [data-template="showcase"] .showcase-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 [data-template="showcase"] .showcase-hero-media {
   width: min(100%, 58rem);
+  align-self: center;
 }
 
 [data-template="showcase"] .showcase-hero-media .showcase-hero-demo-trigger {
@@ -423,7 +432,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 3rem;
 }
 
@@ -690,6 +699,14 @@
 [data-template="showcase"] .showcase-accent {
   color: var(--color-primary);
   font-weight: 700;
+}
+
+[data-template="showcase"] .showcase-accent--yellow {
+  color: var(--showcase-warm-yellow, #ffd60a);
+}
+
+[data-template="showcase"] .showcase-accent--green {
+  color: var(--showcase-warm-green, #22e58a);
 }
 
 /* ---------------------------------------------------------------- blocks */
