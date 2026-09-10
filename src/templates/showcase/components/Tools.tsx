@@ -88,41 +88,43 @@ export default function Tools({ content }: MarkdownBlockProps) {
 
   return (
     <section className="showcase-block showcase-block--alt" id="tools">
-      <div className="showcase-container showcase-tools-layout">
-        <div className="showcase-tools-copy">
-          <h2 className="showcase-block-title">
-            <AccentedText text={title} />
-          </h2>
-          {intro ? <p className="showcase-block-lead">{intro}</p> : null}
+      <div className="showcase-container">
+        <h2 className="showcase-block-title">
+          <AccentedText text={title} />
+        </h2>
+        {intro ? <p className="showcase-block-lead">{intro}</p> : null}
 
-          <ul className="showcase-tools">
-            {items.map((item, index) => (
-              <li key={item} className="showcase-tool">
-                <span className="showcase-tool-icon" aria-hidden="true" title={TOOL_LABELS[index]}>
-                  {iconFor(index)}
-                </span>
-                <p className="showcase-tool-body">{item}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {actions.length > 0 ? (
-          <div className="showcase-tools-actions">
-            {actions.map((action, index) => (
-              <a
-                key={action.href + action.text}
-                href={action.href}
-                className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
-                {...(/^https?:/i.test(action.href)
-                  ? { target: '_blank', rel: 'noopener noreferrer' }
-                  : {})}
-              >
-                {action.text}
-              </a>
-            ))}
+        <div className="showcase-tools-layout">
+          <div className="showcase-tools-copy">
+            <ul className="showcase-tools">
+              {items.map((item, index) => (
+                <li key={item} className="showcase-tool">
+                  <span className="showcase-tool-icon" aria-hidden="true" title={TOOL_LABELS[index]}>
+                    {iconFor(index)}
+                  </span>
+                  <p className="showcase-tool-body">{item}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        ) : null}
+
+          {actions.length > 0 ? (
+            <div className="showcase-tools-actions">
+              {actions.map((action, index) => (
+                <a
+                  key={action.href + action.text}
+                  href={action.href}
+                  className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
+                  {...(/^https?:/i.test(action.href)
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                >
+                  {action.text}
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </section>
   );

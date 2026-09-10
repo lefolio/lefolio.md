@@ -1362,22 +1362,26 @@
 
 /* ----------------------------------------------------------------- tools */
 
+[data-template="showcase"] #tools .showcase-block-title {
+  margin-inline: auto;
+  max-width: 28ch;
+  text-align: center;
+}
+
 [data-template="showcase"] .showcase-tools-layout {
   display: grid;
   gap: 1.75rem;
   align-items: center;
+  width: min(100%, 62rem);
+  margin-inline: auto;
 }
 
 @media (min-width: 860px) {
   [data-template="showcase"] .showcase-tools-layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
+    gap: 1.25rem;
     align-items: stretch;
   }
-}
-
-[data-template="showcase"] .showcase-tools-copy .showcase-block-lead {
-  margin-bottom: 1.5rem;
 }
 
 [data-template="showcase"] .showcase-tools {
