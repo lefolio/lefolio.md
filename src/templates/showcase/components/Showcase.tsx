@@ -115,7 +115,7 @@ export default function Showcase({ content }: MarkdownBlockProps) {
                 {item.liveUrl ? (
                   <a
                     href={item.liveUrl}
-                    className="showcase-cta-primary"
+                    className="showcase-site-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -125,7 +125,7 @@ export default function Showcase({ content }: MarkdownBlockProps) {
                 {item.githubUrl ? (
                   <a
                     href={item.githubUrl}
-                    className="showcase-cta-secondary"
+                    className="showcase-site-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

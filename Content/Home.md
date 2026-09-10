@@ -65,10 +65,11 @@ Edit locally with Obsidian and live preview, or plug a headless CMS to ship to y
 #### Built-in Blog Engine with rich Markdown
 ![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
 #### Structured Categories such as Product Listing and Pages
-![[Untitled (1).svg|110]]
+![[page_list.svg|110]]
+![[page_grid.svg|110]]
 #### Free hosting via GitHub Pages, Vercel, etc.
 ![[markdown_sheet.svg|110]]
-#### Starter templates for blogs, portfolios, etc.
+#### Fully static pages thanks to Next.js SSR
 ![[markdown_sheet.svg|110]]
 :::
 
@@ -91,6 +92,9 @@ https://github.com/oilandrust/relational-design
 - SKILLS.md to teach your agent to work with lefolio.md
 - Obsidian Integration for seamless editing and publishing
 - Development server with hot-reload and live preview
+
+[Start Building](https://lefolio.github.io/app/)
+[GitHub](https://github.com/lefolio/lefolio.md)
 :::
 
 ::: connect

@@ -1170,11 +1170,11 @@
 
 [data-template="showcase"] .showcase-usecase-sheet {
   position: absolute;
-  top: 0.55rem;
+  top: 50%;
   left: 0.45rem;
   width: 4.35rem;
   height: auto;
-  transform: none;
+  transform: translateY(-50%);
   transform-origin: center center;
   filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.14));
   transition: transform 0.22s ease, filter 0.22s ease, z-index 0s;
@@ -1182,16 +1182,16 @@
 }
 
 [data-template="showcase"] .showcase-usecase-sheet:nth-child(2) {
-  top: 0.2rem;
+  top: 50%;
   left: 2.45rem;
   width: 5rem;
-  transform: none;
+  transform: translateY(-50%);
 }
 
 [data-template="showcase"] .showcase-usecase-sheet:hover,
 [data-template="showcase"] .showcase-usecase-sheet:focus-visible {
   z-index: 8 !important;
-  transform: scale(1.18);
+  transform: translateY(-50%) scale(1.18);
   filter: drop-shadow(0 14px 18px rgba(15, 23, 42, 0.2));
   outline: none;
 }
@@ -1203,7 +1203,7 @@
 
   [data-template="showcase"] .showcase-usecase-sheet:hover,
   [data-template="showcase"] .showcase-usecase-sheet:focus-visible {
-    transform: scale(1.08);
+    transform: translateY(-50%) scale(1.08);
   }
 }
 
@@ -1236,7 +1236,22 @@
 [data-template="showcase"] .showcase-site-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.85rem 1.15rem;
+}
+
+[data-template="showcase"] .showcase-site-link {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+[data-template="showcase"] .showcase-site-link:hover,
+[data-template="showcase"] .showcase-site-link:focus-visible {
+  color: var(--color-text);
+  border-bottom-color: color-mix(in srgb, var(--color-text-muted) 55%, transparent);
+  outline: none;
 }
 
 [data-template="showcase"] .showcase-shot {
@@ -1247,7 +1262,7 @@
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: 0;
   background: var(--color-bg-elevated);
   cursor: zoom-in;
   box-shadow: 0 22px 50px color-mix(in srgb, #000 22%, transparent);
@@ -1297,7 +1312,7 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: 0;
   background: #000;
   user-select: none;
   cursor: default;
@@ -1347,6 +1362,24 @@
 
 /* ----------------------------------------------------------------- tools */
 
+[data-template="showcase"] .showcase-tools-layout {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  [data-template="showcase"] .showcase-tools-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: stretch;
+  }
+}
+
+[data-template="showcase"] .showcase-tools-copy .showcase-block-lead {
+  margin-bottom: 1.5rem;
+}
+
 [data-template="showcase"] .showcase-tools {
   display: grid;
   gap: 0.85rem;
@@ -1364,15 +1397,30 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-elevated);
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 0.2s ease;
 }
 
-[data-template="showcase"] .showcase-tool-index {
+[data-template="showcase"] .showcase-tool:hover {
+  transform: scale(1.04);
+  z-index: 1;
+}
+
+[data-template="showcase"] .showcase-tool-icon {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: 0.08rem;
   color: var(--color-primary);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.7;
+  overflow: visible;
+}
+
+[data-template="showcase"] .showcase-tool-icon svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 [data-template="showcase"] .showcase-tool-body {
@@ -1380,6 +1428,37 @@
   color: var(--color-text);
   font-size: 1.02rem;
   line-height: 1.55;
+}
+
+[data-template="showcase"] .showcase-tools-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 860px) {
+  [data-template="showcase"] .showcase-tools-actions {
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+  }
+
+  [data-template="showcase"] .showcase-tools-actions a {
+    min-width: 12.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-template="showcase"] .showcase-tool {
+    transition: none;
+  }
+
+  [data-template="showcase"] .showcase-tool:hover {
+    transform: none;
+  }
 }
 
 /* --------------------------------------------------------------- connect */
