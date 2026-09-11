@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 const DEFAULT_MESSAGES = [
-  'Scaffolding lefolio site...',
-  'Crafting React components and content parsers...',
+  'Scaffolding lefolio site',
+  'Crafting React components and content parsers',
 ] as const;
 
 interface HeroAgentWorkingProps {

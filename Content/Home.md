@@ -1,6 +1,5 @@
 ---
 title: LeFolio
-hero_image: Assets/live_update_showcase.gif
 ---
 ::: hero
 # Turn your **AI-generated Draft** into a **Maintainable Website**.
@@ -12,7 +11,7 @@ Iterate from draft to editable site thanks to the `::: component` syntax for Mar
 :::
 
 ::: workflow
-## From **Draft** to Polished **Editable Site** in minutes
+## From **Draft** to **Editable Site** in minutes
 Write a draft, choose the style, prompt your agent: you're set to focus on your message.
 #### Draft your Hero, CTA, and Sections.
 Use the `::: component` syntax for Markdown to structure your message; free your mind to squeeze all the value out of your business or product.
@@ -37,18 +36,18 @@ Working with X was a real pleasure
 Working with X was a real pleasure
 :::
 ```
-#### Build your site with your Coding Agent.
-Prompt your coding agent to use lefolio.md, and let it build React Components that will render your content in a beautiful and structured way.
+#### Build the Components and Parsers Coding Agent.
+Prompt your coding agent to use lefolio.md, and let it build React Components that will render your content in a beautiful and structured way. Parsers help feed the Markdown content.
 ```
 Build a `lefolio` site from this `Home.md` draft.
 
 Use the `::: component` blocks as structured content.
-Create React components to render the content.
+Create React components and parsers to render the content.
 
 Use the `design.md` for style guidelines.
 ```
 #### Your Markdown draft becomes editable content.
-Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS.
+Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS. See how [this page](https://github.com/lefolio/lefolio.md/blob/main/Content/Home.md) looks.
 ```
 ::: hero
 ## My Brand
