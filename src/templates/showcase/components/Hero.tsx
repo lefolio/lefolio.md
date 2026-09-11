@@ -18,11 +18,12 @@ import HeroMarkdownTypewriter from './HeroMarkdownTypewriter';
 
 type HeroPhase = 'typing' | 'working' | 'fading' | 'ready';
 
+/** Persist across visits in the same browser (not only the tab session). */
 const INTRO_PLAYED_KEY = 'lefolio.heroIntro.played';
 
 function hasPlayedIntro() {
   try {
-    return sessionStorage.getItem(INTRO_PLAYED_KEY) === '1';
+    return localStorage.getItem(INTRO_PLAYED_KEY) === '1';
   } catch {
     return false;
   }
@@ -30,7 +31,7 @@ function hasPlayedIntro() {
 
 function markIntroPlayed() {
   try {
-    sessionStorage.setItem(INTRO_PLAYED_KEY, '1');
+    localStorage.setItem(INTRO_PLAYED_KEY, '1');
   } catch {
     // ignore
   }
@@ -39,12 +40,6 @@ function markIntroPlayed() {
 function prefersReducedMotion() {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-function getInitialPhase(): HeroPhase {
-  if (typeof window === 'undefined') return 'ready';
-  if (hasPlayedIntro() || prefersReducedMotion()) return 'ready';
-  return 'typing';
 }
 
 export default function Hero({ content }: MarkdownBlockProps) {
@@ -61,15 +56,28 @@ export default function Hero({ content }: MarkdownBlockProps) {
     [content],
   );
 
-  const [phase, setPhase] = useState<HeroPhase>(getInitialPhase);
+  // SSR + first paint show the final hero (never an empty shell). Before paint,
+  // switch to typing only when this browser has not seen the intro yet.
+  const [phase, setPhase] = useState<HeroPhase>('ready');
   const [playId, setPlayId] = useState(0);
 
   useLayoutEffect(() => {
-    // Align with session / motion preference after mount (avoids replaying on return).
     if (hasPlayedIntro() || prefersReducedMotion()) {
       setPhase('ready');
+      return;
     }
+    setPhase('typing');
   }, []);
+
+  // If fade animationend never fires (reduced-motion CSS, browser quirks), still settle.
+  useLayoutEffect(() => {
+    if (phase !== 'fading') return;
+    const timer = window.setTimeout(() => {
+      markIntroPlayed();
+      setPhase('ready');
+    }, 1200);
+    return () => window.clearTimeout(timer);
+  }, [phase]);
 
   const finishIntro = useCallback(() => {
     markIntroPlayed();
@@ -79,12 +87,21 @@ export default function Hero({ content }: MarkdownBlockProps) {
   const onTypingComplete = useCallback(() => {
     setPhase((current) => {
       if (current !== 'typing') return current;
-      return prefersReducedMotion() ? 'ready' : 'working';
+      if (prefersReducedMotion()) {
+        markIntroPlayed();
+        return 'ready';
+      }
+      return 'working';
     });
   }, []);
 
   const onAgentComplete = useCallback(() => {
-    setPhase((current) => (current === 'working' ? 'fading' : current));
+    setPhase((current) => {
+      if (current !== 'working') return current;
+      // Persist as soon as the intro content is done — don't wait for fade end.
+      markIntroPlayed();
+      return 'fading';
+    });
   }, []);
 
   const skipIntro = useCallback(() => {
@@ -153,7 +170,7 @@ export default function Hero({ content }: MarkdownBlockProps) {
                 if (
                   phase === 'fading' &&
                   event.target === event.currentTarget &&
-                  event.animationName === 'showcase-hero-fade-in'
+                  String(event.animationName).includes('showcase-hero-fade-in')
                 ) {
                   finishIntro();
                 }
