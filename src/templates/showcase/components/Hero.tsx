@@ -180,7 +180,7 @@ export default function Hero({ content }: MarkdownBlockProps) {
                 <div className="showcase-hero-copy">
                   {title ? (
                     <h1 className="showcase-hero-title">
-                      <AccentedText text={title} warm />
+                      <AccentedText text={title} />
                     </h1>
                   ) : null}
                   {lead ? (

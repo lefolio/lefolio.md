@@ -37,7 +37,7 @@ Working with X was a real pleasure
 :::
 ```
 #### Build the Components and Parsers Coding Agent.
-Prompt your coding agent to use lefolio.md, and let it build React Components that will render your content in a beautiful and structured way. Parsers help feed the Markdown content.
+Prompt your coding agent to use **lefolio**, and let it build *React Components* that will render your content in a beautiful and structured way. Parsers help feed the Markdown content.
 ```
 Build a `lefolio` site from this `Home.md` draft.
 
@@ -47,7 +47,7 @@ Create React components and parsers to render the content.
 Use the `design.md` for style guidelines.
 ```
 #### Your Markdown draft becomes editable content.
-Edit locally with Obsidian and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for TinaCMS. See how [this page](https://github.com/lefolio/lefolio.md/blob/main/Content/Home.md) looks.
+Edit locally with **Obsidian** and live preview, or plug a headless CMS to ship to your client; we built an integration workflow for **TinaCMS**. See how [this page](https://github.com/lefolio/lefolio.md/blob/main/Content/Home.md) looks.
 ```
 ::: hero
 ## My Brand
@@ -98,7 +98,7 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: connect
-## Connect; I'll keep you posted
+## **Connect**; I'll keep you posted
 **lefolio.md** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
 
 <form

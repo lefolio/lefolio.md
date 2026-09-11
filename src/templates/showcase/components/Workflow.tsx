@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { MarkdownBody } from '@/components/MarkdownBody';
 import type { MarkdownBlockProps } from '@/lib/markdown/components/types';
 import {
   extractLinks,
@@ -12,6 +14,19 @@ import {
 } from '@/lib/markdown/parse';
 import { AccentedText } from '../lib/accented';
 import { MarkdownHighlight } from '../lib/markdownHighlight';
+
+/** Inline markdown for tab labels (no block elements inside <button>). */
+function WorkflowInlineMarkdown({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      components={{
+        p: ({ children }: { children?: ReactNode }) => <>{children}</>,
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
+}
 
 interface WorkflowStep {
   title: string;
@@ -224,7 +239,15 @@ export default function Workflow({ content }: MarkdownBlockProps) {
         <h2 className="showcase-block-title">
           <AccentedText text={title} />
         </h2>
-        {intro ? <p className="showcase-block-lead">{intro}</p> : null}
+        {intro ? (
+          <div className="showcase-block-lead showcase-workflow-lead">
+            <MarkdownBody
+              content={intro}
+              preprocessColumnBlocks={false}
+              preprocessComponentBlocks={false}
+            />
+          </div>
+        ) : null}
 
         {/* Desktop: left tabs + right demo */}
         <div className="showcase-workflow showcase-workflow--desktop">
@@ -247,7 +270,9 @@ export default function Workflow({ content }: MarkdownBlockProps) {
                   <span className="showcase-workflow-tab-copy">
                     <span className="showcase-workflow-title">{step.title}</span>
                     {step.body ? (
-                      <span className="showcase-workflow-body">{step.body}</span>
+                      <span className="showcase-workflow-body">
+                        <WorkflowInlineMarkdown content={step.body} />
+                      </span>
                     ) : null}
                   </span>
                 </button>
