@@ -46,7 +46,9 @@ export default function UseCases({ content }: MarkdownBlockProps) {
                   </div>
                 ) : null}
 
-                <h3 className="showcase-usecase-title">{item.title}</h3>
+                <h3 className="showcase-usecase-title">
+                  <AccentedText text={item.title} />
+                </h3>
                 {body ? <p className="showcase-usecase-body">{body}</p> : null}
               </li>
             );

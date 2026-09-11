@@ -1157,6 +1157,8 @@
   padding: 0;
   list-style: none;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 @media (min-width: 720px) {
@@ -1174,6 +1176,11 @@
   border-radius: 0;
   background: var(--color-bg);
   text-align: center;
+  transition: background 0.18s ease;
+}
+
+[data-template="showcase"] .showcase-usecase:hover {
+  background: var(--color-bg-elevated);
 }
 
 @media (min-width: 720px) {

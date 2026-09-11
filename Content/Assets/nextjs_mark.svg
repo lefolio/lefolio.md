@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="-1.2 -1.2 26.4 26.4"
+   width="600"
+   height="600"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="nextjs_mark.svg"
+   inkscape:version="1.4.4 (dcaf3e7d, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.81493451"
+     inkscape:cx="363.83292"
+     inkscape:cy="428.25527"
+     inkscape:window-width="1440"
+     inkscape:window-height="847"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!-- Circular dark fill (no outline) -->
+  <circle
+     cx="12"
+     cy="12"
+     r="12"
+     fill="#070B12"
+     stroke="none"
+     id="circle1" />
+  <!-- Next.js mark: dark fill + green outline -->
+  <path
+     fill="#070b12"
+     stroke="#22e58a"
+     stroke-width="0.9"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     d="M 18.665,21.978 C 16.758,23.255 14.465,24 12,24 5.377,24 0,18.623 0,12 0,5.377 5.377,0 12,0 c 6.623,0 12,5.377 12,12 0,3.583 -1.84396,6.962976 -4.33696,9.134976 L 9.4889603,8.2 H 8.0580238 v 7.783 H 9.216 V 9.718 l 9.45,12.26 z M 15.333,13.445 16.595016,14.974484 16.703,8.2 h -1.37 z"
+     id="path1"
+     sodipodi:nodetypes="cssssccccccccccccc" />
+</svg>
