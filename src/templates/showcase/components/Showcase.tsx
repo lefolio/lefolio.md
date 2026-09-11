@@ -110,7 +110,9 @@ export default function Showcase({ content }: MarkdownBlockProps) {
                   onOpen={() => setOpenIndex(index)}
                 />
               ) : null}
-              <h3 className="showcase-site-title">{item.title}</h3>
+              <h3 className="showcase-site-title">
+                <AccentedText text={item.title} palette="yellow-green" start={(index + 1) % 2} />
+              </h3>
               <div className="showcase-site-actions">
                 {item.liveUrl ? (
                   <a
@@ -155,7 +157,13 @@ export default function Showcase({ content }: MarkdownBlockProps) {
             ×
           </button>
           <div className="showcase-compare-lightbox-stage" onClick={(event) => event.stopPropagation()}>
-            <p className="showcase-compare-lightbox-title">{openItem.title}</p>
+            <p className="showcase-compare-lightbox-title">
+              <AccentedText
+                text={openItem.title}
+                palette="yellow-green"
+                start={((openIndex ?? 0) + 1) % 2}
+              />
+            </p>
             <CompareSwitch
               original={openItem.original}
               edited={openItem.edited}

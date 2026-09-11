@@ -61,7 +61,7 @@ Edit locally with **Obsidian** and live preview, or plug a headless CMS to ship 
 
 ::: use-cases
 ## Build **more** than your landing page
-lefolio is a full-featured static site generator, you don't have to reinvent the wheel.
+lefolio is a full-featured static site generator; you don't have to reinvent everything.
 #### Built-in **Blog Engine** with rich Markdown
 ![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
 #### Structured **Categories** such as Product Listing and Pages
@@ -70,17 +70,18 @@ lefolio is a full-featured static site generator, you don't have to reinvent the
 #### **Free hosting** via GitHub Pages, Vercel, etc.
 ![[markdown_sheets.svg|110]]![[github_mark.svg|110]]
 #### Fully **static** pages thanks to Next.js SSR
+![[markdown_sheet.svg|110]]
 ![[nextjs_mark.svg|110]]
 :::
 
 ::: showcase
 ## A few sites built with **lefolio**
-### A Software Engineer Portfolio - Edited in Obsidian
+### A Software Engineer Portfolio - Edited in **Obsidian**
 https://oilandrust.github.io/portfolio/
 https://github.com/oilandrust/portfolio
 ![[portfolio-dev.png]]
 ![[obsidian-portfolio-dev.png]]
-### A Web-Design Business Front - Hooked with TinaCMS
+### A Web-Design Business Front - Hooked with **TinaCMS**
 https://oilandrust.github.io/relational-design/
 https://github.com/oilandrust/relational-design
 ![[relational-design.png]]

@@ -929,13 +929,19 @@
 }
 
 [data-template="showcase"] .showcase-workflow-demo-panel,
-[data-template="showcase"] .showcase-workflow-agent,
 [data-template="showcase"] .showcase-workflow-transform-source,
 [data-template="showcase"] .showcase-workflow-preview {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-elevated);
   overflow: hidden;
+}
+
+[data-template="showcase"] .showcase-workflow-agent {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-elevated);
+  overflow: visible;
 }
 
 [data-template="showcase"] .showcase-workflow-demo-chrome {
@@ -1044,9 +1050,11 @@
   padding: 0.85rem 1rem 1rem;
   border-top: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-bg) 55%, var(--color-bg-elevated));
+  overflow: visible;
 }
 
 [data-template="showcase"] .showcase-workflow-build {
+  position: relative;
   appearance: none;
   border: 0;
   border-radius: 999px;
@@ -1056,9 +1064,57 @@
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  cursor: default;
-  pointer-events: none;
+  cursor: pointer;
+  overflow: visible;
   box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--color-primary) 80%, transparent);
+}
+
+[data-template="showcase"] .showcase-workflow-build:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 70%, transparent);
+  outline-offset: 2px;
+}
+
+[data-template="showcase"] .showcase-workflow-build-burst {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+[data-template="showcase"] .showcase-workflow-build-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation-name: showcase-workflow-build-particle;
+  animation-timing-function: cubic-bezier(0.16, 0.84, 0.33, 1);
+  animation-fill-mode: forwards;
+  box-shadow: 0 0 10px color-mix(in srgb, #fff 25%, transparent);
+}
+
+@keyframes showcase-workflow-build-particle {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-template="showcase"] .showcase-workflow-build-particle {
+    animation: none;
+    display: none;
+  }
 }
 
 [data-template="showcase"] .showcase-workflow-transform {
@@ -1369,7 +1425,8 @@
   border-radius: 0;
   background: #000;
   user-select: none;
-  cursor: default;
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 [data-template="showcase"] .showcase-compare-image {

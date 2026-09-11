@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { MarkdownBody } from '@/components/MarkdownBody';
 import type { MarkdownBlockProps } from '@/lib/markdown/components/types';
@@ -65,18 +65,94 @@ function DemoMarkdown({ code }: { code: string }) {
 }
 
 function DemoAgent({ code }: { code: string }) {
+  const colors = useMemo(
+    () => [
+      // blue
+      ['#4f8cff', '#3b82f6', '#60a5fa', '#2563eb', '#93c5fd'],
+      // green
+      ['#22e58a', '#34d399', '#10b981', '#6ee7b7', '#059669'],
+      // yellow
+      ['#ffd60a', '#fbbf24', '#f59e0b', '#fde047', '#eab308'],
+    ],
+    [],
+  );
+
+  type Particle = {
+    id: number;
+    color: string;
+    dx: number;
+    dy: number;
+    size: number;
+    duration: number;
+    delay: number;
+  };
+
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const burstId = useRef(0);
+
+  const spawnParticles = useCallback(() => {
+    const reduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
+    const palette = colors[Math.floor(Math.random() * colors.length)];
+    const count = 14 + Math.floor(Math.random() * 8);
+    const batchId = burstId.current;
+    burstId.current += 1;
+
+    const next: Particle[] = Array.from({ length: count }, (_, index) => {
+      const angle = (Math.PI * 2 * index) / count + (Math.random() - 0.5) * 0.55;
+      const distance = 36 + Math.random() * 54;
+      return {
+        id: batchId * 100 + index,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        dx: Math.cos(angle) * distance,
+        dy: Math.sin(angle) * distance - 8 - Math.random() * 18,
+        size: 5.5 + Math.random() * 6.5,
+        duration: 280 + Math.random() * 180,
+        delay: Math.random() * 20,
+      };
+    });
+
+    setParticles((prev) => [...prev, ...next]);
+    window.setTimeout(() => {
+      setParticles((prev) => prev.filter((particle) => particle.id < batchId * 100 || particle.id >= (batchId + 1) * 100));
+    }, 520);
+  }, [colors]);
+
   return (
     <div className="showcase-workflow-agent" role="group" aria-label="Coding agent prompt">
       <div className="showcase-workflow-agent-bar">
         <span className="showcase-workflow-agent-dot" aria-hidden />
         <span>Agent</span>
       </div>
-      <pre className="showcase-workflow-agent-prompt">
-        <code>{code}</code>
-      </pre>
+      <MarkdownHighlight source={code} className="showcase-workflow-agent-prompt" />
       <div className="showcase-workflow-agent-actions">
-        <button type="button" className="showcase-workflow-build" tabIndex={-1}>
+        <button
+          type="button"
+          className="showcase-workflow-build"
+          onClick={spawnParticles}
+          aria-label="Build"
+        >
           Build
+          <span className="showcase-workflow-build-burst" aria-hidden>
+            {particles.map((particle) => (
+              <span
+                key={particle.id}
+                className="showcase-workflow-build-particle"
+                style={{
+                  background: particle.color,
+                  width: particle.size,
+                  height: particle.size,
+                  ['--dx' as string]: `${particle.dx}px`,
+                  ['--dy' as string]: `${particle.dy}px`,
+                  animationDuration: `${particle.duration}ms`,
+                  animationDelay: `${particle.delay}ms`,
+                }}
+              />
+            ))}
+          </span>
         </button>
       </div>
     </div>
