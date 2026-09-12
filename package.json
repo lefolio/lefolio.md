@@ -2,7 +2,7 @@
   "name": "lefolio.md",
   "private": true,
   "version": "0.1.0",
-  "description": "LeFolio marketing site — showcase template + Content vault",
+  "description": "lefolio marketing site — showcase template + Content vault",
   "scripts": {
     "sync": "lefolio sync",
     "dev": "lefolio dev",
@@ -12,7 +12,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@lefolio/engine": "file:../lefolio",
+    "@lefolio/engine": "^0.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0"

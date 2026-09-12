@@ -17,12 +17,17 @@ lefolio.md/
 ## Preview locally
 
 ```bash
-# expects sibling checkout: ../lefolio (the engine)
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000/](http://localhost:3000/).
+
+For local engine development, point at a sibling checkout:
+
+```bash
+../set_lefolio_engine dev lefolio.md
+```
 
 ## Template
 
