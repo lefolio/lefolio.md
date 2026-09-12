@@ -1,92 +1,26 @@
 {
-  "name": "@lefolio/engine",
-  "version": "0.1.9",
-  "description": "LeFolio engine — publish a static site from an Obsidian vault (CLI + Next.js runtime)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lefolio/lefolio.md.git"
+  "name": "lefolio.md",
+  "private": true,
+  "version": "0.1.0",
+  "description": "LeFolio marketing site — showcase template + Content vault",
+  "scripts": {
+    "sync": "lefolio sync",
+    "dev": "lefolio dev",
+    "build": "lefolio build"
   },
-  "homepage": "https://lefolio.md",
-  "bugs": {
-    "url": "https://github.com/lefolio/lefolio.md/issues"
-  },
-  "keywords": [
-    "lefolio",
-    "obsidian",
-    "static-site",
-    "nextjs",
-    "markdown"
-  ],
   "engines": {
     "node": ">=20"
   },
-  "bin": {
-    "lefolio": "./scripts/lefolio.mjs"
-  },
-  "exports": {
-    "./template": "./src/lib/templates/public.ts",
-    "./markdown": "./src/components/markdown-public.ts",
-    "./parse": "./src/lib/markdown/parse/index.ts",
-    "./globals.css": "./src/app/globals.css"
-  },
-  "files": [
-    "scripts",
-    "src",
-    "!src/**/*.test.ts",
-    "!src/**/*.test.tsx",
-    "next.config.mjs",
-    "postcss.config.mjs",
-    "tsconfig.json",
-    "next-env.d.ts",
-    "LICENSE",
-    "README.md"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "sync-content": "node scripts/lefolio.mjs sync",
-    "dev": "node scripts/lefolio.mjs dev",
-    "build": "node scripts/lefolio.mjs build",
-    "start": "next start",
-    "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "pack:dry": "npm pack --dry-run"
-  },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.12",
-    "@tailwindcss/typography": "^0.5.16",
+    "@lefolio/engine": "file:../lefolio",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
     "@types/node": "^22.17.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "chokidar": "^4.0.3",
-    "concurrently": "^9.2.0",
-    "fast-glob": "^3.3.3",
-    "gray-matter": "^4.0.3",
-    "js-yaml": "^4.1.0",
-    "katex": "^0.16.22",
-    "mermaid": "^11.9.0",
-    "next": "^16.3.0",
-    "plotly.js-dist-min": "^3.1.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-markdown": "^10.1.0",
-    "react-plotly.js": "^2.6.0",
-    "react-syntax-highlighter": "^16.1.1",
-    "rehype-katex": "^7.0.1",
-    "rehype-raw": "^7.0.0",
-    "remark-gfm": "^4.0.1",
-    "remark-math": "^6.0.0",
-    "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
-  },
-  "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "eslint": "^9.33.0",
-    "eslint-config-next": "^16.3.0",
-    "jest": "^30.4.2"
   }
 }

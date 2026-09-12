@@ -1,62 +1,47 @@
-# lefolio.md / `@lefolio/engine`
+# lefolio.md
 
-Marketing site for **[LeFolio](https://lefolio.md)** and the publishable **engine** package — static sites from an Obsidian vault.
-
-## Dual role
-
-| Role | What |
-|------|------|
-| **Website** | This repo’s `Content/` + GitHub Pages deploy → https://lefolio.md |
-| **npm package** | `@lefolio/engine` — CLI `lefolio` + Next runtime + built-in templates |
-
-Consumers keep their own `Content/`; they do not fork this repo to publish a site. See [PACKAGING.md](./PACKAGING.md).
+Marketing site for **[LeFolio](https://lefolio.md)** — Obsidian vault + site-local **showcase** template, powered by [`@lefolio/engine`](https://github.com/lefolio/engine).
 
 ## Structure
 
 ```text
 lefolio.md/
-├── Content/             # this site’s vault (not published to npm)
-├── scripts/             # lefolio CLI, sync, watch
-├── src/                 # Next app + templates (academic, showcase, …)
-├── package.json         # name: @lefolio/engine
+├── Content/             # this site’s vault
+├── src/
+│   ├── index.ts         # exports showcase TemplateModule
+│   └── showcase/        # site-local template
+├── package.json         # depends on @lefolio/engine
 └── .github/workflows/   # GitHub Pages deploy
 ```
 
-## Preview this site locally
+## Preview locally
 
 ```bash
+# expects sibling checkout: ../lefolio (the engine)
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000/](http://localhost:3000/).
 
-## Use the engine with other content
-
-```bash
-npx lefolio dev --content /path/to/YourContent
-# or from a thin site with Content/ in cwd:
-npm install @lefolio/engine   # or file:../lefolio.md while developing
-npx lefolio dev
-```
-
-## Template (this site)
+## Template
 
 ```yaml
+# Content/config.yaml
 template: showcase
 theme:
   preset: ink
   mode: light
 ```
 
-## Deploy (website)
+## Deploy
 
-Push to `main` — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and deploys `out/` to GitHub Pages.
+Push to `main` — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds with the engine and deploys `out/` to GitHub Pages.
 
 ## Links
 
 - Site: https://lefolio.md
-- Package: `@lefolio/engine` (see PACKAGING.md)
+- Engine: https://github.com/lefolio/engine
 - Org: https://github.com/lefolio
 
 ## License

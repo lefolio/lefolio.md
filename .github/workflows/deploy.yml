@@ -20,16 +20,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout LeFolio engine
+        uses: actions/checkout@v4
+        with:
+          repository: lefolio/engine
+          path: .engine
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
+      - name: Use checked-out engine
+        run: npm pkg set "dependencies.@lefolio/engine"="file:./.engine"
+
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build static site
         run: npm run build
+
+      - name: Ensure CNAME for custom domain
+        run: cp CNAME out/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
