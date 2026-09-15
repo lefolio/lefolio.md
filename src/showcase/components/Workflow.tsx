@@ -1,19 +1,17 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { MarkdownBody } from '@lefolio/engine/markdown';
 import type { MarkdownBlockProps } from '@lefolio/engine/template';
 import {
-  extractLinks,
   firstHeading,
   splitByHeading,
   stripHeading,
-  stripHeadings,
-  stripLinks,
 } from '@lefolio/engine/parse';
 import { AccentedText } from '../lib/accented';
 import { MarkdownHighlight } from '../lib/markdownHighlight';
+import LiveMarkdownTransform from './LiveMarkdownTransform';
 
 /** Inline markdown for tab labels (no block elements inside <button>). */
 function WorkflowInlineMarkdown({ content }: { content: string }) {
@@ -159,134 +157,13 @@ function DemoAgent({ code }: { code: string }) {
   );
 }
 
-function DemoTransform({ code }: { code: string }) {
-  const prefix = 'We build stuff that ';
-  const fromTail = 'we care about';
-  const toTail = 'you care about';
-
-  const [tail, setTail] = useState(fromTail);
-  const [editing, setEditing] = useState(false);
-  const [caretOn, setCaretOn] = useState(true);
-
-  useEffect(() => {
-    const reduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      setTail(toTail);
-      setEditing(false);
-      return;
-    }
-
-    let cancelled = false;
-    const timers: number[] = [];
-    const wait = (ms: number) =>
-      new Promise<void>((resolve) => {
-        timers.push(window.setTimeout(resolve, ms));
-      });
-
-    const run = async () => {
-      while (!cancelled) {
-        setTail(fromTail);
-        setEditing(false);
-        await wait(1400);
-        if (cancelled) return;
-
-        setEditing(true);
-        // Delete "we care about"
-        for (let i = fromTail.length - 1; i >= 0; i -= 1) {
-          setTail(fromTail.slice(0, i));
-          await wait(70);
-          if (cancelled) return;
-        }
-        await wait(220);
-        if (cancelled) return;
-
-        // Type "you care about"
-        for (let i = 1; i <= toTail.length; i += 1) {
-          setTail(toTail.slice(0, i));
-          await wait(85);
-          if (cancelled) return;
-        }
-
-        setEditing(false);
-        await wait(2600);
-      }
-    };
-
-    void run();
-
-    return () => {
-      cancelled = true;
-      timers.forEach((id) => window.clearTimeout(id));
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!editing) return;
-    const id = window.setInterval(() => setCaretOn((on) => !on), 450);
-    return () => window.clearInterval(id);
-  }, [editing]);
-
-  const livePhrase = `${prefix}${tail}`;
-  // Always rewrite from the original sample so mid-edit fragments still resolve.
-  const markdownPhrase = editing ? `${livePhrase}${caretOn ? '|' : ' '}` : livePhrase;
-  const liveCode = code.replace(
-    /We build stuff that (?:we|you) care about/,
-    markdownPhrase,
-  );
-
-  const cleaned = code
-    .replace(/We build stuff that (?:we|you) care about/, livePhrase)
-    .split('\n')
-    .filter((line) => !/^:::/.test(line.trim()))
-    .join('\n');
-  const brand = firstHeading(cleaned, 2) ?? 'My Brand';
-  const links = extractLinks(cleaned);
-  const rest = stripLinks(stripHeadings(cleaned)).trim();
-
-  return (
-    <div className="showcase-workflow-transform">
-      <div className="showcase-workflow-transform-source">
-        <MarkdownHighlight source={liveCode} className="showcase-workflow-code is-compact" />
-      </div>
-      <div className="showcase-workflow-transform-arrow" aria-hidden>
-        →
-      </div>
-      <div className="showcase-workflow-transform-result">
-        <div className="showcase-workflow-preview">
-          <p className="showcase-workflow-preview-brand">{brand}</p>
-          <h4 className="showcase-workflow-preview-title">{livePhrase}</h4>
-          {rest ? <p className="showcase-workflow-preview-body">{rest}</p> : null}
-          {links.length > 0 ? (
-            <div className="showcase-workflow-preview-actions">
-              {links.map((link, index) => (
-                <span
-                  key={`${link.href}-${link.text}`}
-                  className={
-                    index === 0
-                      ? 'showcase-workflow-preview-btn is-primary'
-                      : 'showcase-workflow-preview-btn'
-                  }
-                >
-                  {link.text}
-                </span>
-              ))}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function WorkflowDemo({ index, code }: { index: number; code: string }) {
   if (!code) {
     return <div className="showcase-workflow-demo-empty">Add a code sample for this step.</div>;
   }
 
   if (index === 1) return <DemoAgent code={code} />;
-  if (index === 2) return <DemoTransform key="transform-live" code={code} />;
+  if (index === 2) return <LiveMarkdownTransform key="transform-live" code={code} />;
   return <DemoMarkdown code={code} />;
 }
 
@@ -313,7 +190,7 @@ export default function Workflow({ content }: MarkdownBlockProps) {
     <section className="showcase-block" id="workflow">
       <div className="showcase-container">
         <h2 className="showcase-block-title">
-          <AccentedText text={title} />
+          <AccentedText text={title} palette="green" />
         </h2>
         {intro ? (
           <div className="showcase-block-lead showcase-workflow-lead">

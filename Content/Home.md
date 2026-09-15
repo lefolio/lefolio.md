@@ -2,16 +2,16 @@
 title: LeFolio
 ---
 ::: hero
-# Turn your **AI-generated Draft** into a **Maintainable Website**.
+# Draft and Edit your **AI-generated** Website in **Markdown**.
 
-Iterate from draft to editable site thanks to the `::: component` syntax for Markdown.
+Tired of editing copy in HTML or JavaScript files? Iterate from draft to editable site with a Markdown-based Static Site Generator.  The `::: component` syntax turns your Markdown sections into structured React Components.
 
 [Build your Site now](https://lefolio.github.io/app/)
 [Learn More](/#workflow)
 :::
 
 ::: workflow
-## From **Draft** to **Editable Site** in minutes
+## From Draft to Editable Site in minutes
 Write a draft, choose the style, prompt your agent: you're set to focus on your message.
 #### Draft your Hero, CTA, and Sections.
 Use the `::: component` syntax for Markdown to structure your message; free your mind to squeeze all the value out of your business or product.
@@ -36,7 +36,7 @@ Working with X was a real pleasure
 Working with X was a real pleasure
 :::
 ```
-#### Build the Components and Parsers Coding Agent.
+#### Your Coding Agent builds React Components and Parsers.
 Prompt your coding agent to use **lefolio**, and let it build *React Components* that will render your content in a beautiful and structured way. Parsers help feed the Markdown content.
 ```
 Build a `lefolio` site from this `Home.md` draft.
@@ -60,7 +60,7 @@ Edit locally with **Obsidian** and live preview, or plug a headless CMS to ship 
 :::
 
 ::: use-cases
-## Build **more** than your landing page
+## Build more than your landing page
 lefolio is a full-featured static site generator; you don't have to reinvent everything.
 #### Built-in **Blog Engine** with rich Markdown
 ![[markdown_sheet.svg|110]]![[Untitled (1).svg|110]]
@@ -89,7 +89,7 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: tools
-## **Tools** that make **Your Life** easier
+## Tools that make Your Life easier
 - SKILLS.md for your coding agent
 - Obsidian Integration for seamless editing
 - Development server with live preview
@@ -99,7 +99,7 @@ https://github.com/oilandrust/relational-design
 :::
 
 ::: connect
-## **Connect**; I'll keep you posted
+## Connect; I'll keep you posted
 **lefolio.md** is a work in progress and needs your feedback, so let's stay in touch. Feel free to subscribe to my mailing list to hear about the progress of the tools and the upcoming **Obsidian Plugin**.
 
 <form

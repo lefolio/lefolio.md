@@ -313,23 +313,42 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 3rem;
 }
 
-[data-template="showcase"] .showcase-hero-stage.is-crossfading {
+[data-template="showcase"] .showcase-hero-stage.is-intro-split {
   display: grid;
-  gap: 0;
+  gap: 2rem 2.5rem;
+  align-items: center;
 }
 
-[data-template="showcase"] .showcase-hero-stage.is-crossfading > * {
-  grid-area: 1 / 1;
-  width: 100%;
+@media (min-width: 900px) {
+  [data-template="showcase"] .showcase-hero-stage.is-intro-split {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  /* Animation sits to the right of the final hero copy */
+  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-intro {
+    order: 2;
+  }
+
+  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-rendered {
+    order: 1;
+  }
+}
+
+@media (max-width: 899px) {
+  /* Animation above the final hero on mobile */
+  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-intro {
+    order: -1;
+  }
 }
 
 [data-template="showcase"] .showcase-hero-intro {
-  width: min(100%, 46rem);
+  width: 100%;
   text-align: left;
+  min-width: 0;
 }
 
 [data-template="showcase"] .showcase-hero-intro.is-agent {
@@ -338,7 +357,28 @@
   justify-content: center;
   text-align: center;
   width: 100%;
-  min-height: clamp(20rem, 52vw, 28rem);
+  min-height: clamp(12rem, 32vw, 18rem);
+}
+
+[data-template="showcase"] .showcase-hero-intro.is-live {
+  display: block;
+  text-align: left;
+  min-height: 0;
+}
+
+[data-template="showcase"] .showcase-workflow-transform.is-hero-intro {
+  gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  [data-template="showcase"] .showcase-workflow-transform.is-hero-intro {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  [data-template="showcase"] .showcase-workflow-transform.is-hero-intro .showcase-workflow-transform-arrow {
+    display: none;
+  }
 }
 
 [data-template="showcase"] .showcase-hero-intro.is-fading-out {
@@ -444,19 +484,18 @@
   position: relative;
   margin: 0;
   padding: 1.25rem 1.35rem;
-  border: none;
-  border-radius: 0;
-  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-bg-elevated, var(--color-bg)) 88%, transparent);
   box-shadow: none;
   overflow: hidden;
   white-space: pre-wrap;
   word-break: break-word;
   font-family: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.82rem;
+  line-height: 1.6;
   color: var(--color-text-muted);
-  /* Approximate rendered hero copy block so the stage does not jump while typing */
-  min-height: clamp(16rem, 42vw, 22rem);
+  min-height: clamp(14rem, 36vw, 20rem);
 }
 
 [data-template="showcase"] .showcase-hero-md .hero-md-sizer {
@@ -751,6 +790,17 @@
   color: var(--color-text-muted);
   font-size: 1.0625rem;
   line-height: 1.7;
+}
+
+[data-template="showcase"] #use-cases .showcase-block-title {
+  margin-inline: auto;
+  max-width: 28ch;
+  text-align: center;
+}
+
+[data-template="showcase"] #use-cases .showcase-block-lead {
+  margin-inline: auto;
+  text-align: center;
 }
 
 /* -------------------------------------------------------------- workflow */
@@ -1479,21 +1529,23 @@
   text-align: center;
 }
 
+[data-template="showcase"] #tools .showcase-block-lead {
+  margin-inline: auto;
+  text-align: center;
+}
+
 [data-template="showcase"] .showcase-tools-layout {
   margin-top: 2.75rem;
-  display: grid;
-  gap: 1.75rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: min(100%, 56rem);
+  gap: 1.75rem;
+  width: min(100%, 36rem);
   margin-inline: auto;
 }
 
-@media (min-width: 860px) {
-  [data-template="showcase"] .showcase-tools-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 1.25rem;
-    align-items: stretch;
-  }
+[data-template="showcase"] .showcase-tools-copy {
+  width: 100%;
 }
 
 [data-template="showcase"] .showcase-tools {
@@ -1502,6 +1554,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
 }
 
 [data-template="showcase"] .showcase-tool {
@@ -1552,19 +1605,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-}
-
-@media (min-width: 860px) {
-  [data-template="showcase"] .showcase-tools-actions {
-    flex-direction: column;
-    align-self: stretch;
-    justify-content: center;
-    align-items: center;
-  }
-
-  [data-template="showcase"] .showcase-tools-actions a {
-    min-width: 12.5rem;
-  }
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
