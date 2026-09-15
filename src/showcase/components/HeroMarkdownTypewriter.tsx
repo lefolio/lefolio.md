@@ -196,6 +196,8 @@ function delayBeforeChar(source: string, index: number): number {
   return 12 + (index % 7 === 0 ? 6 : 0);
 }
 
+const MOBILE_MQ = '(max-width: 899px)';
+
 interface HeroMarkdownTypewriterProps {
   source: string;
   onComplete: () => void;
@@ -212,7 +214,9 @@ export default function HeroMarkdownTypewriter({
     () => splitFenceSource(source),
     [source],
   );
+  const rootRef = useRef<HTMLDivElement>(null);
   const [typed, setTyped] = useState(0);
+  const [armed, setArmed] = useState(false);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
@@ -221,7 +225,43 @@ export default function HeroMarkdownTypewriter({
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
 
+  // On mobile the real hero stacks above this block — wait until it scrolls
+  // into view before typing. Desktop starts immediately (already on-screen).
   useEffect(() => {
+    if (reducedMotion) {
+      setArmed(true);
+      return;
+    }
+
+    const isMobile =
+      typeof window !== 'undefined' && window.matchMedia(MOBILE_MQ).matches;
+    if (!isMobile) {
+      setArmed(true);
+      return;
+    }
+
+    const node = rootRef.current;
+    if (!node) {
+      setArmed(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setArmed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35, rootMargin: '0px 0px -8% 0px' },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [reducedMotion]);
+
+  useEffect(() => {
+    if (!armed) return;
+
     if (reducedMotion) {
       setTyped(progressTarget.length);
       onCompleteRef.current();
@@ -256,20 +296,22 @@ export default function HeroMarkdownTypewriter({
       cancelled = true;
       window.clearTimeout(timer);
     };
-  }, [progressTarget, holdMs, reducedMotion]);
+  }, [armed, progressTarget, holdMs, reducedMotion]);
 
   const progress = progressTarget.slice(0, typed);
   const showClosing = progress.startsWith(':::') && progress.length >= 3;
   const done = typed >= progressTarget.length;
+  // Idle caret while waiting for scroll-into-view on mobile
+  const showCaret = !done;
 
   return (
-    <div className="showcase-hero-typewriter" aria-hidden={!done}>
+    <div ref={rootRef} className="showcase-hero-typewriter" aria-hidden={!done}>
       <pre className="showcase-hero-md">
         <code className="hero-md-sizer" aria-hidden>
           {highlightMarkdownSlice(source)}
         </code>
         <code className="hero-md-live">
-          {highlightMarkdownSlice(progress, { showCaret: !done })}
+          {highlightMarkdownSlice(progress, { showCaret })}
           {showClosing ? (
             <>
               {progress.includes('\n') ? (progress.endsWith('\n') ? null : '\n') : '\n\n'}

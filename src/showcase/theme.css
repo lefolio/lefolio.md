@@ -323,25 +323,18 @@
   align-items: center;
 }
 
+/* Real hero first; animation below on mobile / to the right on desktop */
+[data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-intro {
+  order: 2;
+}
+
+[data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-rendered {
+  order: 1;
+}
+
 @media (min-width: 900px) {
   [data-template="showcase"] .showcase-hero-stage.is-intro-split {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  }
-
-  /* Animation sits to the right of the final hero copy */
-  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-intro {
-    order: 2;
-  }
-
-  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-rendered {
-    order: 1;
-  }
-}
-
-@media (max-width: 899px) {
-  /* Animation above the final hero on mobile */
-  [data-template="showcase"] .showcase-hero-stage.is-intro-split .showcase-hero-intro {
-    order: -1;
   }
 }
 
