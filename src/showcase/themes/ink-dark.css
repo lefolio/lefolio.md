@@ -1,4 +1,5 @@
-[data-template="showcase"][data-theme="ink-dark"] {
+/* Showcase look: dark ink (was data-theme="ink-dark" under engine ≤0.2). */
+[data-template="showcase"] {
   --color-bg: #070b12;
   --color-bg-alt: #0d1420;
   --color-bg-elevated: #131b2b;
@@ -12,7 +13,7 @@
   --brand-blue: #4da3ff;
 }
 
-[data-template="showcase"][data-theme="ink-dark"] .prose-content {
+[data-template="showcase"] .prose-content {
   @apply prose-invert;
   --tw-prose-body: var(--color-text);
   --tw-prose-headings: var(--color-text);

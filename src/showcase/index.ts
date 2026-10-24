@@ -13,6 +13,7 @@ import type { TemplateModule } from '@lefolio/engine/template';
 export const showcaseTemplate: TemplateModule = {
   id: 'showcase',
   routing: 'multipage',
+  colorScheme: 'dark',
   Shell: SiteShell,
   loadStyles: () => import('./styles.css'),
   Home: HomeHero,

@@ -1,5 +1,4 @@
 @reference "@lefolio/engine/globals.css";
 
-@import "./themes/ink-light.css";
-@import "./themes/ink-dark.css";
 @import "./theme.css";
+@import "./themes/ink-dark.css";

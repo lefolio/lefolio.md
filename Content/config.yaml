@@ -6,10 +6,6 @@ site:
 
 template: showcase
 
-theme:
-  preset: ink
-  mode: dark
-
 home: "Home.md"
 
 analytics:
