@@ -14,7 +14,7 @@ The Obsidian Plugin allows you to publish your vault in minutes. The plugin uses
 
 251 sites published
 860 site updates
-3 stars on Github
+7 stars on [GitHub](https://github.com/oilandrust/obsidian-github-publish)
 :::
 
 ::: steps

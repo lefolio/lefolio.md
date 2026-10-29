@@ -1996,6 +1996,16 @@
   font-size: 0.9rem;
 }
 
+[data-template="showcase"] .page-hero-stat-label a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+[data-template="showcase"] .page-hero-stat-label a:hover {
+  color: var(--color-primary);
+}
+
 [data-template="showcase"] .page-hero-media,
 [data-template="showcase"] .page-split-media {
   margin: 0.75rem 0 0;

@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { MarkdownBody } from '@lefolio/engine/markdown';
 import type { MarkdownBlockProps } from '@lefolio/engine/template';
 import {
@@ -13,6 +14,31 @@ import { AccentedText } from '../lib/accented';
 interface Stat {
   value: string;
   label: string;
+}
+
+/** Render inline `[text](url)` links inside otherwise plain stat labels. */
+function renderInlineLinks(text: string): ReactNode {
+  const nodes: ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) nodes.push(text.slice(last, match.index));
+    const href = match[2];
+    nodes.push(
+      <a
+        key={`link-${key++}`}
+        href={href}
+        {...(isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {match[1]}
+      </a>,
+    );
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes.length === 1 ? nodes[0] : nodes;
 }
 
 function splitProseAndStats(markdown: string): { prose: string; stats: Stat[] } {
@@ -95,7 +121,7 @@ export default function PageHero({ content }: MarkdownBlockProps) {
           {stats.map((stat) => (
             <li key={stat.value + stat.label}>
               <span className="page-hero-stat-value">{stat.value}</span>
-              <span className="page-hero-stat-label">{stat.label}</span>
+              <span className="page-hero-stat-label">{renderInlineLinks(stat.label)}</span>
             </li>
           ))}
         </ul>
