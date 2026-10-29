@@ -22,9 +22,14 @@ function formatDate(value: string | null | undefined): string | null {
   });
 }
 
+/** True when the page body itself starts with a hero block (not a `::: hero` sample in a code fence). */
+function opensWithHeroBlock(body: string | null | undefined): boolean {
+  const first = body?.split('\n').find((line) => line.trim().length > 0)?.trim() ?? '';
+  return /^:::\s*(?:hero|lefolio-hero)\b/.test(first);
+}
+
 export default function ShowcaseContentPage({ page }: ShowcaseContentPageProps) {
-  const opensWithHero = /:::\s*(?:hero|lefolio-hero)\b/.test(page.processedBody ?? '');
-  if (opensWithHero) {
+  if (opensWithHeroBlock(page.processedBody)) {
     return (
       <article className="showcase-landing">
         <MarkdownRenderer content={page.processedBody} />
