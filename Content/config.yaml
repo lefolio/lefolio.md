@@ -9,7 +9,6 @@ template: showcase
 home: "Home.md"
 
 analytics:
-  google: G-SNRDM00LCC
   goatcounter: https://lefolio.goatcounter.com/count
 
 author:
