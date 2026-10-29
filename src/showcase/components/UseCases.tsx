@@ -22,7 +22,7 @@ export default function UseCases({ content }: MarkdownBlockProps) {
         </h2>
         {intro ? <p className="showcase-block-lead">{intro}</p> : null}
 
-        <ul className="showcase-usecases">
+        <ul className="showcase-usecases not-prose">
           {sections.map((item) => {
             const images = extractAllImages(item.body);
             const body = stripImages(item.body).trim();

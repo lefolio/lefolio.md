@@ -43,8 +43,8 @@
        width="560"
        height="400"
        rx="20"
-       fill="#070B12"
-       stroke="#FFD60A"
+       fill="#FFFFFF"
+       stroke="#7C3AED"
        stroke-width="8"
        id="rect1" />
     <!-- Window chrome -->
@@ -54,7 +54,7 @@
        y1="76"
        x2="250"
        y2="76"
-       stroke="#ffd60a"
+       stroke="#7C3AED"
        stroke-width="14"
        id="line4" />
     <!-- Product card 1 -->
@@ -64,7 +64,7 @@
        width="220"
        height="94"
        rx="12"
-       stroke="#ffd60a"
+       stroke="#7C3AED"
        stroke-width="6"
        id="rect4" />
     <!-- Product card 2 -->
@@ -74,7 +74,7 @@
        width="220"
        height="94"
        rx="12"
-       stroke="#ffd60a"
+       stroke="#7C3AED"
        stroke-width="6"
        id="rect5" />
     <rect
@@ -83,7 +83,7 @@
        width="220"
        height="94"
        rx="12"
-       stroke="#ffd60a"
+       stroke="#7C3AED"
        stroke-width="6"
        id="rect4-6" />
     <rect
@@ -92,7 +92,7 @@
        width="220"
        height="94"
        rx="12"
-       stroke="#ffd60a"
+       stroke="#7C3AED"
        stroke-width="6"
        id="rect5-6" />
     <!-- Product card 3 -->

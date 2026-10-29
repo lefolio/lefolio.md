@@ -1268,14 +1268,11 @@
 
 [data-template="showcase"] .showcase-usecases {
   display: grid;
-  gap: 0;
+  gap: 1.75rem;
   width: min(100%, 46rem);
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  overflow: hidden;
 }
 
 @media (min-width: 720px) {
@@ -1288,32 +1285,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.35rem 1.2rem 1.45rem;
-  border: none;
-  border-radius: 0;
-  background: var(--color-bg);
-  text-align: center;
-  transition: background 0.18s ease;
-}
-
-[data-template="showcase"] .showcase-usecase:hover {
+  padding: 1.25rem 1rem 1.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   background: var(--color-bg-elevated);
-}
-
-@media (min-width: 720px) {
-  [data-template="showcase"] .showcase-usecase:nth-child(odd) {
-    border-right: 1px solid var(--color-border);
-  }
-
-  [data-template="showcase"] .showcase-usecase:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--color-border);
-  }
-}
-
-@media (max-width: 719px) {
-  [data-template="showcase"] .showcase-usecase:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
-  }
+  text-align: center;
 }
 
 [data-template="showcase"] .showcase-usecase-title {
@@ -1568,12 +1544,16 @@
   width: 100%;
 }
 
-[data-template="showcase"] .showcase-tool {
+[data-template="showcase"] .showcase-tools > .showcase-tool {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 1rem;
-  align-items: start;
+  /* Match left padding to column gap so space left of icon equals space right of icon. */
+  gap: 1.25rem;
+  align-items: center;
   padding: 1.15rem 1.25rem;
+  /* Beat prose `.prose-content :where(ul > li)` (same (0,2,0) specificity, later in CSS). */
+  padding-inline-start: 1.25rem;
+  margin: 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-elevated);
@@ -1582,7 +1562,7 @@
   transition: transform 0.2s ease;
 }
 
-[data-template="showcase"] .showcase-tool:hover {
+[data-template="showcase"] .showcase-tools > .showcase-tool:hover {
   transform: scale(1.04);
   z-index: 1;
 }
@@ -1592,7 +1572,6 @@
   place-items: center;
   width: 1.55rem;
   height: 1.55rem;
-  margin-top: 0.08rem;
   color: var(--color-primary);
   overflow: visible;
 }
@@ -1620,11 +1599,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-template="showcase"] .showcase-tool {
+  [data-template="showcase"] .showcase-tools > .showcase-tool {
     transition: none;
   }
 
-  [data-template="showcase"] .showcase-tool:hover {
+  [data-template="showcase"] .showcase-tools > .showcase-tool:hover {
     transform: none;
   }
 }

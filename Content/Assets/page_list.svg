@@ -43,8 +43,8 @@
        width="560"
        height="400"
        rx="20"
-       fill="#070B12"
-       stroke="#22E58A"
+       fill="#FFFFFF"
+       stroke="#0C7A45"
        stroke-width="8"
        id="rect1" />
     <!-- Window chrome -->
@@ -54,7 +54,7 @@
        y1="78"
        x2="293.75113"
        y2="78"
-       stroke="#22e58a"
+       stroke="#0C7A45"
        stroke-width="12.1231"
        id="line4" />
     <!-- List row 1 -->
@@ -64,7 +64,7 @@
        width="72"
        height="72"
        rx="12"
-       stroke="#14f195"
+       stroke="#059669"
        stroke-width="6"
        id="rect4" />
     <line
@@ -72,7 +72,7 @@
        y1="146.56915"
        x2="414.28656"
        y2="146.56915"
-       stroke="#1bcf7a"
+       stroke="#16A34A"
        stroke-width="6.66664"
        id="line5" />
     <!-- List row 2 -->
@@ -82,7 +82,7 @@
        width="72"
        height="72"
        rx="12"
-       stroke="#14f195"
+       stroke="#059669"
        stroke-width="6"
        id="rect5" />
     <line
@@ -90,7 +90,7 @@
        y1="239.99762"
        x2="414.96558"
        y2="239.99762"
-       stroke="#1bcf7a"
+       stroke="#16A34A"
        stroke-width="7.10075"
        id="line6" />
     <rect
@@ -99,7 +99,7 @@
        width="72"
        height="72"
        rx="12"
-       stroke="#14f195"
+       stroke="#059669"
        stroke-width="6"
        id="rect5-6" />
     <line
@@ -107,7 +107,7 @@
        y1="333.42612"
        x2="414.46909"
        y2="333.42612"
-       stroke="#1bcf7a"
+       stroke="#16A34A"
        stroke-width="7.10075"
        id="line6-3" />
     <!-- List row 3 -->

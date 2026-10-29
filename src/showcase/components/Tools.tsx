@@ -96,7 +96,7 @@ export default function Tools({ content }: MarkdownBlockProps) {
 
         <div className="showcase-tools-layout">
           <div className="showcase-tools-copy">
-            <ul className="showcase-tools">
+            <ul className="showcase-tools not-prose">
               {items.map((item, index) => (
                 <li key={item} className="showcase-tool">
                   <span className="showcase-tool-icon" aria-hidden="true" title={TOOL_LABELS[index]}>
