@@ -4,9 +4,10 @@ description: "Edit your copy in Obsidian and build with your coding agent."
 ---
 
 ::: lefolio-hero
-# Edit your Copy in Obsidian and build with your coding Agent
+A static site generator built for AI + Obsidian workflows
+# Edit your Copy in **Obsidian**, build your Site with your **Coding Agent**
 
-lefolio lets you focus on your copywriting in Obsidian while integrating with the design and code that your coding agent is building.
+**lefolio** lets you focus on your copywriting in Obsidian while your coding agent takes care of the design and code, so you can build **thoughtful** and **beautiful** websites.
 
 [Build your Site now](https://lefolio.github.io/app/)
 [Learn More](/#workflow)

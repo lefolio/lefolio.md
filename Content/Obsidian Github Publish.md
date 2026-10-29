@@ -9,6 +9,7 @@ description: Publish your Obsidian notes for free and in a few clicks with Quart
 The Obsidian Plugin allows you to publish your vault in minutes. The plugin uses [Quartz](https://quartz.jzhao.xyz/) as a site generator and GitHub Pages for hosting, and does the configuration setup for you.
 
 [Get the plugin](obsidian://show-plugin?id=github-publish)
+[View on GitHub](https://github.com/oilandrust/obsidian-github-publish)
 
 ![[setup_demo.gif]]
 

@@ -272,17 +272,17 @@
 }
 
 [data-template="showcase"] .showcase-hero-kicker {
-  margin: 1rem 0 0;
+  margin: 0 0 0.85rem;
   color: var(--color-text-muted);
   font-size: 0.95rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
 }
 
-[data-template="showcase"] .showcase-hero-kicker p {
-  margin: 0;
-}
-
-[data-template="showcase"] .showcase-hero-kicker a {
-  color: var(--color-primary);
+[data-template="showcase"] .showcase-hero-title strong.showcase-accent--green {
+  color: #0c7a45;
+  font-weight: inherit;
 }
 
 [data-template="showcase"] .showcase-hero-actions {

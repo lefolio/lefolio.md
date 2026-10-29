@@ -3,15 +3,8 @@
 import { useCallback, useLayoutEffect, useState, type ReactNode } from 'react';
 import { MarkdownBody } from '@lefolio/engine/markdown';
 import type { MarkdownBlockProps } from '@lefolio/engine/template';
-import {
-  extractFirstImage,
-  extractLinks,
-  firstHeading,
-  paragraphs,
-  stripHeading,
-  stripImages,
-} from '@lefolio/engine/parse';
 import { AccentedText } from '../lib/accented';
+import { parseLefolioHero } from '../lib/parseLefolioHero';
 import HeroDemoLightbox from '../views/HeroDemoLightbox';
 import HeroAgentWorking from './HeroAgentWorking';
 import HeroMarkdownTypewriter from './HeroMarkdownTypewriter';
@@ -66,13 +59,7 @@ function prefersReducedMotion() {
 }
 
 export default function LefolioHero({ content }: MarkdownBlockProps) {
-  const image = extractFirstImage(content);
-  const title = firstHeading(content);
-  const kicker = firstHeading(stripHeading(content, title), 3);
-  let rest = stripImages(stripHeading(content, title));
-  rest = stripHeading(rest, kicker);
-  const actions = extractLinks(rest);
-  const lead = paragraphs(rest).find((block) => !block.startsWith('[')) ?? '';
+  const { kicker, title, lead, actions, image } = parseLefolioHero(content);
 
   // Default to the looping live demo (return visits / SSR). Before paint, start
   // the typing prelude only on a first visit without reduced motion.
@@ -122,6 +109,9 @@ export default function LefolioHero({ content }: MarkdownBlockProps) {
     <div className="showcase-hero-rendered">
       <div className="showcase-hero-top">
         <div className="showcase-hero-copy">
+          {kicker ? (
+            <p className="showcase-hero-kicker">{kicker}</p>
+          ) : null}
           {title ? (
             <h1 className="showcase-hero-title">
               <AccentedText text={title} palette="green" />
@@ -131,15 +121,6 @@ export default function LefolioHero({ content }: MarkdownBlockProps) {
             <div className="showcase-hero-lead">
               <MarkdownBody
                 content={lead}
-                preprocessColumnBlocks={false}
-                preprocessComponentBlocks={false}
-              />
-            </div>
-          ) : null}
-          {kicker ? (
-            <div className="showcase-hero-kicker">
-              <MarkdownBody
-                content={kicker}
                 preprocessColumnBlocks={false}
                 preprocessComponentBlocks={false}
               />
