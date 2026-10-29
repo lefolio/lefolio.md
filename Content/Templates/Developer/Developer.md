@@ -1,5 +1,6 @@
 ---
 title: Developer
+description: "Developer portfolio — projects, writing, links."
 subtitle: Developer portfolio — projects, writing, links
 order: 5
 thumbnail: screenshot.jpg

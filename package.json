@@ -6,13 +6,13 @@
   "scripts": {
     "sync": "lefolio sync",
     "dev": "lefolio dev",
-    "build": "lefolio build"
+    "build": "lefolio build && node scripts/postbuild.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
-    "@lefolio/engine": "^0.4.1",
+    "@lefolio/engine": "^0.4.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0"

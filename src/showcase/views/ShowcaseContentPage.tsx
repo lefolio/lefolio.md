@@ -23,6 +23,15 @@ function formatDate(value: string | null | undefined): string | null {
 }
 
 export default function ShowcaseContentPage({ page }: ShowcaseContentPageProps) {
+  const opensWithHero = /:::\s*(?:hero|lefolio-hero)\b/.test(page.processedBody ?? '');
+  if (opensWithHero) {
+    return (
+      <article className="showcase-landing">
+        <MarkdownRenderer content={page.processedBody} />
+      </article>
+    );
+  }
+
   const liveUrl = externalUrl(page.frontmatter?.live_url);
   const githubUrl = externalUrl(page.frontmatter?.github_url);
   const sourceUrl = externalUrl(page.frontmatter?.source_url);

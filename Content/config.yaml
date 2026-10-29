@@ -1,6 +1,6 @@
 site:
   title: "lefolio.md"
-  description: "Build maintainable and easy-to-edit AI-generated Websites."
+  description: "Open-source tools to publish websites based on Markdown with Obsidian."
   url: "https://lefolio.md"
   basePath: ""
 
@@ -19,7 +19,8 @@ author:
     github: "https://github.com/lefolio/lefolio.md"
 
 navigation:
-  - Templates
+  - "lefolio Engine"
+  - "GitHub Publish": "Obsidian Github Publish.md"
   - Tutorials
   - Blog
   - About

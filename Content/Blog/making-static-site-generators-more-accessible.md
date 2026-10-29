@@ -1,5 +1,6 @@
 ---
 title: Making static site generators more accessible
+description: "Making static site generators more accessible."
 subtitle:
 published: 2025-07-14
 order: 2

@@ -65,7 +65,7 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export default function Hero({ content }: MarkdownBlockProps) {
+export default function LefolioHero({ content }: MarkdownBlockProps) {
   const image = extractFirstImage(content);
   const title = firstHeading(content);
   const kicker = firstHeading(stripHeading(content, title), 3);

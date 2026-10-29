@@ -1,5 +1,6 @@
 ---
 title: Showcase
+description: "Product and docs site — the template powering lefolio.md."
 subtitle: Product and docs site — this template
 order: 3
 thumbnail: "[[screenshot.png]]"

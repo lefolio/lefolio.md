@@ -97,7 +97,7 @@ export default function Navbar({ manifest }: NavbarProps) {
   });
 
   return (
-    <header className={`showcase-header sticky top-0 z-50 border-b backdrop-blur${menuOpen ? ' is-open' : ''}`}>
+    <header className={`showcase-header sticky top-0 z-50 border-b${menuOpen ? ' is-open' : ''}`}>
       <div className="showcase-container showcase-header-inner">
         <Link href="/" className="showcase-brand flex items-center gap-3 no-underline" onClick={closeMenu}>
           <BrandName name={siteTitle} className="showcase-brand-name--nav" />

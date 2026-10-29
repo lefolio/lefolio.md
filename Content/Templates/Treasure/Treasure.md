@@ -1,5 +1,6 @@
 ---
 title: Treasure
+description: "Share your treasures to your heart's content."
 subtitle: Share your Treasures to your Heart's content
 order: 4
 thumbnail: "[[lefolio.md/Content/Templates/Treasure/screenshot.jpg]]"

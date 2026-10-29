@@ -1,5 +1,6 @@
 ---
 title: Academic
+description: "A full-featured modern template for academics and researchers."
 subtitle: A full-featured modern template for academics and researchers
 order: 1
 thumbnail: screenshot.jpg

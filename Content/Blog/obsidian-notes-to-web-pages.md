@@ -1,5 +1,6 @@
 ---
 title: Converting Obsidian notes to web pages
+description: "How to publish sites from Obsidian — current patterns."
 subtitle: How to publish sites from Obsidian - Current Patterns
 published: 2025-05-18
 order: 3

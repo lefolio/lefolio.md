@@ -1,5 +1,6 @@
 ---
 title: Build your first lefolio home page and website
+description: "Design what the site is about, then build your first lefolio home page."
 ---
 
 # Design and Research first!

@@ -1,3 +1,8 @@
+---
+title: About
+description: "Olivier Rouiller, software engineer in France, building lefolio.md."
+---
+
 ![[lefolio.md/Content/Assets/profile.jpg|200|left|wrap]]
 
 Hi, I'm Olivier, Software Engineer based in France developing **lefolio.md**.

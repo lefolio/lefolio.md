@@ -1,5 +1,6 @@
 ---
 title: Seting up your environment with Obsidian to Take Ownership of a lefolio site
+description: "Set up Obsidian and a local environment to edit a lefolio site that is already on GitHub."
 ---
 Welcome! I'm glad you're taking some time to try lefolio.
 This tutorial is intended for someone who **already** has a lefolio site on GitHub and wants to set up their local environment to edit it.

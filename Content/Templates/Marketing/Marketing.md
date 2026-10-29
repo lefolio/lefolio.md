@@ -1,5 +1,6 @@
 ---
 title: Marketing
+description: "Single landing page — one offer, one CTA."
 subtitle: Single landing page — one offer, one CTA
 order: 6
 thumbnail: screenshot.jpg

@@ -1,5 +1,6 @@
 ---
 title: Blog
+description: "Notes on building lefolio.md, Obsidian-friendly publishing, and static sites that stay easy to edit."
 sort: date
 display: list
 ---

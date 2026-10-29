@@ -1,5 +1,6 @@
 ---
 title: A workflow I like for building editable websites
+description: "Shipping V0 prototypes with a headless CMS."
 subtitle: Shipping V0 prototypes with a headless CMS
 published: 2026-02-24
 order: 1
