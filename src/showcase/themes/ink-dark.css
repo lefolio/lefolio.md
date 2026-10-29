@@ -1,4 +1,4 @@
-/* Showcase shell: white page, black type. Markdown previews keep their own ink. */
+/* Showcase shell: white page, black type. Markdown panels stay light. */
 [data-template="showcase"] {
   --color-bg: #ffffff;
   --color-bg-alt: #f4f4f4;
@@ -20,23 +20,20 @@
   --tw-prose-links: var(--color-text);
   --tw-prose-bold: var(--color-text);
   --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--color-text);
   --tw-prose-pre-bg: var(--color-bg-alt);
   --tw-prose-hr: var(--color-border);
   --tw-prose-quotes: var(--color-text-muted);
   --tw-prose-quote-borders: var(--color-border);
 }
 
-/* Syntax colors in the engine-page markdown preview stay on a dark panel. */
+/* Markdown preview panels: light surface, black copy, purple/gray accents. */
 [data-template="showcase"] .showcase-hero-md,
 [data-template="showcase"] .showcase-workflow-demo-panel,
 [data-template="showcase"] .showcase-workflow-transform-source {
-  --color-text: #ececec;
-  --color-text-muted: #bdbdbd;
-  --color-bg: #1b1b1b;
-  --color-bg-elevated: #242424;
-  --color-border: #333333;
-  --color-primary: #8eb6ff;
-  --color-primary-hover: #b7d0ff;
-  background: #1b1b1b;
-  color: #ececec;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+  outline: none;
 }

@@ -13,6 +13,7 @@ import Connect from './components/Connect';
 import Steps from './components/Steps';
 import Split from './components/Split';
 import Features from './components/Features';
+import ContactForm from './components/ContactForm';
 import type { TemplateModule } from '@lefolio/engine/template';
 
 export const showcaseTemplate: TemplateModule = {
@@ -36,6 +37,7 @@ export const showcaseTemplate: TemplateModule = {
     steps: Steps,
     split: Split,
     features: Features,
+    contact: ContactForm,
   },
 };
 

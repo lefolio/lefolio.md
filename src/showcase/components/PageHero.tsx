@@ -8,6 +8,7 @@ import {
   stripHeading,
   stripImages,
 } from '@lefolio/engine/parse';
+import { AccentedText } from '../lib/accented';
 
 interface Stat {
   value: string;
@@ -56,8 +57,16 @@ export default function PageHero({ content }: MarkdownBlockProps) {
 
   const copy = (
     <div className="page-hero-copy">
-      {title ? <h1 className="page-hero-title">{title}</h1> : null}
-      {support ? <p className="page-hero-support">{support}</p> : null}
+      {title ? (
+        <h1 className="page-hero-title">
+          <AccentedText text={title} palette="purple" />
+        </h1>
+      ) : null}
+      {support ? (
+        <p className="page-hero-support">
+          <AccentedText text={support} palette="purple" />
+        </p>
+      ) : null}
       {prose ? (
         <div className="page-hero-lead">
           <MarkdownBody

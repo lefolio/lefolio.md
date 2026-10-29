@@ -34,8 +34,12 @@ export default function Split({ content }: MarkdownBlockProps) {
           ) : null}
           {actions.length > 0 ? (
             <div className="page-hero-actions">
-              {actions.map((action) => (
-                <a key={action.href + action.text} href={action.href} className="showcase-cta-secondary">
+              {actions.map((action, index) => (
+                <a
+                  key={action.href + action.text}
+                  href={action.href}
+                  className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
+                >
                   {action.text}
                 </a>
               ))}

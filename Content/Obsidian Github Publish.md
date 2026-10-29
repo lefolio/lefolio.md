@@ -1,12 +1,12 @@
 ---
 title: Obsidian GitHub Publish
-description: Publish your Obsidian notes for free with Quartz and GitHub Pages.
+description: Publish your Obsidian notes for free and in a few clicks with Quartz and GitHub Pages.
 ---
 
 ::: hero
-## The easiest way to publish your Obsidian notes for free
-# Publish your notes for free in a few clicks with Quartz and GitHub Pages
-The Obsidian Plugin allows you to publish your vault in minutes without the configuration and learning curve of the free solutions. The plugin uses [Quartz](https://quartz.jzhao.xyz/) as a site generator and GitHub Pages for hosting, but does all the configuration setup for you.
+## The easiest way to publish your **Obsidian** notes for free
+# Publish your notes for free in a few clicks with **Quartz** and **GitHub Pages**
+The Obsidian Plugin allows you to publish your vault in minutes. The plugin uses [Quartz](https://quartz.jzhao.xyz/) as a site generator and GitHub Pages for hosting, and does the configuration setup for you.
 
 [Get the plugin](obsidian://show-plugin?id=github-publish)
 
@@ -28,10 +28,10 @@ The Obsidian Plugin allows you to publish your vault in minutes without the conf
 
 ::: split
 ## Publish with Quartz for maximum compatibility and configurability
-Quartz supports many Obsidian features such as wikilinks, callouts, graph view, and more, so that you can be confident that your note will be rendered accurately.
-On top of that, Quartz supports plugins that allow you to customize your site and add functionality.
+Quartz supports many Obsidian features such as **wikilinks**, **callouts**, **graph view**, and more, so that you can be confident that your note will be rendered accurately.
+On top of that, **Quartz plugins** allow you to customize your site and add functionality.
 
-[Get in Touch for Custom Quartz plugin development]
+[Get in Touch for Custom Quartz plugin development](/contact/?topic=Custom%20Quartz%20plugin)
 
 ![[example-site.png]]
 :::

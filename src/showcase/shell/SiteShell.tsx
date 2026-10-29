@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import Navbar from './Navbar';
+import { SiteConfigProvider } from '../lib/site';
 import type { ContentManifest } from '@lefolio/engine/template';
 
 interface SiteShellProps {
@@ -13,7 +14,9 @@ export default function SiteShell({ manifest, children }: SiteShellProps) {
   return (
     <div className="showcase-shell min-h-screen">
       <Navbar manifest={manifest} />
-      <main className="showcase-main">{children}</main>
+      <SiteConfigProvider config={manifest.config}>
+        <main className="showcase-main">{children}</main>
+      </SiteConfigProvider>
       <footer className="showcase-footer border-t">
         <div className="showcase-container flex flex-wrap items-center justify-between gap-3 py-8 text-sm">
           <p className="text-muted">{manifest.config.site.title}</p>

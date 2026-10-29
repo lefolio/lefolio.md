@@ -18,9 +18,14 @@ author:
   links:
     github: "https://github.com/lefolio/lefolio.md"
 
+contact:
+  email: "o.rouiller@gmail.com"
+  form: "https://formspree.io/f/xjygnblk"
+
 navigation:
   - "lefolio Engine"
   - "GitHub Publish": "Obsidian Github Publish.md"
   - Tutorials
   - Blog
   - About
+  - Contact

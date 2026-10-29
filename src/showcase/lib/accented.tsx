@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type AccentPalette = 'auto' | 'yellow-green' | 'green';
+export type AccentPalette = 'auto' | 'yellow-green' | 'green' | 'purple';
 
 /** Pick yellow / green / blue accent from the bold phrase itself. */
 function accentClassFor(chunk: string): string {
@@ -53,11 +53,13 @@ export function AccentedText({
       nodes.push(text.slice(last, match.index));
     }
     const className =
-      palette === 'green'
-        ? 'showcase-accent showcase-accent--green'
-        : palette === 'yellow-green'
-          ? alternateClass(accentIndex)
-          : accentClassFor(match[1]);
+      palette === 'purple'
+        ? 'showcase-accent showcase-accent--purple'
+        : palette === 'green'
+          ? 'showcase-accent showcase-accent--green'
+          : palette === 'yellow-green'
+            ? alternateClass(accentIndex)
+            : accentClassFor(match[1]);
     nodes.push(
       <strong key={key} className={className}>
         {match[1]}
