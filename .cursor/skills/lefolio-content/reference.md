@@ -15,6 +15,7 @@
 | `author.*` | Sidebar profile |
 | `navigation` | Navbar entries |
 | `analytics.google` | GA4 measurement ID (`G-XXXXXXXXXX`); core layout injects gtag when set |
+| `analytics.goatcounter` | GoatCounter count endpoint (e.g. `https://lefolio.goatcounter.com/count`); showcase shell injects `count.js` when set |
 
 ## Author link keys
 
