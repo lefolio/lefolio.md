@@ -11,10 +11,22 @@ function shotLabel(index: number, alt: string): string {
   return index === 0 ? 'Editing in Obsidian' : 'Published site';
 }
 
+const BUILD_PROMPT = `Use lefolio engine to create my website from this Home.md draft.
+
+Use the ::: component blocks to structure the content.
+
+For the style, refer to Design.md`;
+
+/** Primary CTA that opens a copyable agent prompt instead of leaving the page. */
+function isBuildPromptAction(action: { text: string; href: string }): boolean {
+  return /build your site now/i.test(action.text) || /lefolio\.github\.io\/app\/?$/i.test(action.href);
+}
+
 export default function LefolioHero({ content }: MarkdownBlockProps) {
   const { kicker, title, lead, actions, images } = parseLefolioHero(content);
   const [front, setFront] = useState(() => Math.max(0, images.length - 1));
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [promptOpen, setPromptOpen] = useState(false);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
 
@@ -34,6 +46,34 @@ export default function LefolioHero({ content }: MarkdownBlockProps) {
       window.removeEventListener('keydown', onKey);
     };
   }, [lightbox, closeLightbox]);
+
+  useEffect(() => {
+    if (!promptOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setPromptOpen(false);
+    };
+    const onPointer = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (document.querySelector('.showcase-hero-prompt')?.contains(target)) return;
+      setPromptOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('mousedown', onPointer);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('mousedown', onPointer);
+    };
+  }, [promptOpen]);
+
+  const copyPrompt = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(BUILD_PROMPT);
+    } catch {
+      // Clipboard can fail without a secure context; still close the bubble.
+    }
+    setPromptOpen(false);
+  }, []);
 
   const active = lightbox !== null ? images[lightbox] : null;
 
@@ -63,18 +103,39 @@ export default function LefolioHero({ content }: MarkdownBlockProps) {
 
               {actions.length > 0 ? (
                 <div className="showcase-hero-actions">
-                  {actions.map((action, index) => (
-                    <a
-                      key={action.href + action.text}
-                      href={action.href}
-                      className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
-                      {...(/^https?:/i.test(action.href)
-                        ? { target: '_blank', rel: 'noopener noreferrer' }
-                        : {})}
-                    >
-                      {action.text}
-                    </a>
-                  ))}
+                  {actions.map((action, index) =>
+                    isBuildPromptAction(action) ? (
+                      <div key={action.href + action.text} className="showcase-hero-prompt">
+                        {promptOpen ? (
+                          <div className="showcase-hero-prompt-popover" role="dialog" aria-label="Agent prompt">
+                            <pre className="showcase-hero-prompt-text">{BUILD_PROMPT}</pre>
+                            <button type="button" className="showcase-cta-primary" onClick={copyPrompt}>
+                              Copy to clipboard
+                            </button>
+                          </div>
+                        ) : null}
+                        <button
+                          type="button"
+                          className="showcase-cta-primary"
+                          aria-expanded={promptOpen}
+                          onClick={() => setPromptOpen((open) => !open)}
+                        >
+                          {action.text}
+                        </button>
+                      </div>
+                    ) : (
+                      <a
+                        key={action.href + action.text}
+                        href={action.href}
+                        className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
+                        {...(/^https?:/i.test(action.href)
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {})}
+                      >
+                        {action.text}
+                      </a>
+                    ),
+                  )}
                 </div>
               ) : null}
             </div>
