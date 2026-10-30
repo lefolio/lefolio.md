@@ -1,221 +1,136 @@
 'use client';
 
-import { useCallback, useLayoutEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MarkdownBody } from '@lefolio/engine/markdown';
 import type { MarkdownBlockProps } from '@lefolio/engine/template';
 import { AccentedText } from '../lib/accented';
 import { parseLefolioHero } from '../lib/parseLefolioHero';
-import HeroDemoLightbox from '../views/HeroDemoLightbox';
-import HeroAgentWorking from './HeroAgentWorking';
-import HeroMarkdownTypewriter from './HeroMarkdownTypewriter';
-import LiveMarkdownTransform from './LiveMarkdownTransform';
 
-type HeroPhase = 'typing' | 'working' | 'live';
-
-/** Persist across visits in the same browser (not only the tab session). */
-const INTRO_PLAYED_KEY = 'lefolio.heroIntro.played';
-
-/** Demo markdown typed beside the live hero (not the page's own hero body). */
-const DEMO_SOURCE = `::: hero
-# My Brand
-## We build stuff that we care about
-
-![Hero image](Assets/hero-image.png)
-
-[Buy our stuff](/our-stuff)
-[Learn more about us](/about-us)
-:::
-`;
-
-/** Sample used by the live markdown ↔ preview transform after the agent lines. */
-const LIVE_SOURCE = `::: hero
-## My Brand
-### We build stuff that we care about
-
-[Buy our stuff](/our-stuff)
-[Learn more about us](/about-us)
-:::
-`;
-
-function hasPlayedIntro() {
-  try {
-    return localStorage.getItem(INTRO_PLAYED_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
-function markIntroPlayed() {
-  try {
-    localStorage.setItem(INTRO_PLAYED_KEY, '1');
-  } catch {
-    // ignore
-  }
-}
-
-function prefersReducedMotion() {
-  if (typeof window === 'undefined') return false;
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function shotLabel(index: number, alt: string): string {
+  if (alt) return alt;
+  return index === 0 ? 'Editing in Obsidian' : 'Published site';
 }
 
 export default function LefolioHero({ content }: MarkdownBlockProps) {
-  const { kicker, title, lead, actions, image } = parseLefolioHero(content);
+  const { kicker, title, lead, actions, images } = parseLefolioHero(content);
+  const [front, setFront] = useState(() => Math.max(0, images.length - 1));
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
-  // Default to the looping live demo (return visits / SSR). Before paint, start
-  // the typing prelude only on a first visit without reduced motion.
-  const [phase, setPhase] = useState<HeroPhase>('live');
-  const [playId, setPlayId] = useState(0);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
 
-  useLayoutEffect(() => {
-    if (hasPlayedIntro() || prefersReducedMotion()) {
-      setPhase('live');
-      return;
-    }
-    setPhase('typing');
-  }, []);
+  useEffect(() => {
+    if (lightbox === null) return;
 
-  const skipToLive = useCallback(() => {
-    markIntroPlayed();
-    setPhase('live');
-  }, []);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeLightbox();
+    };
 
-  const onTypingComplete = useCallback(() => {
-    setPhase((current) => {
-      if (current !== 'typing') return current;
-      if (prefersReducedMotion()) {
-        markIntroPlayed();
-        return 'live';
-      }
-      return 'working';
-    });
-  }, []);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
 
-  const onAgentComplete = useCallback(() => {
-    setPhase((current) => {
-      if (current !== 'working') return current;
-      markIntroPlayed();
-      return 'live';
-    });
-  }, []);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [lightbox, closeLightbox]);
 
-  const replayIntro = useCallback(() => {
-    setPlayId((id) => id + 1);
-    setPhase('typing');
-  }, []);
+  const active = lightbox !== null ? images[lightbox] : null;
 
-  const canSkipPrelude = phase === 'typing' || phase === 'working';
+  return (
+    <section className="showcase-hero" id="top">
+      <div className="showcase-container showcase-hero-inner">
+        <div className={`showcase-hero-stage${images.length > 0 ? ' is-media-split' : ''}`}>
+          <div className="showcase-hero-rendered">
+            <div className="showcase-hero-top">
+              <div className="showcase-hero-copy">
+                {kicker ? <p className="showcase-hero-kicker">{kicker}</p> : null}
+                {title ? (
+                  <h1 className="showcase-hero-title">
+                    <AccentedText text={title} palette="green" />
+                  </h1>
+                ) : null}
+                {lead ? (
+                  <div className="showcase-hero-lead">
+                    <MarkdownBody
+                      content={lead}
+                      preprocessColumnBlocks={false}
+                      preprocessComponentBlocks={false}
+                    />
+                  </div>
+                ) : null}
+              </div>
 
-  const renderedHero = (
-    <div className="showcase-hero-rendered">
-      <div className="showcase-hero-top">
-        <div className="showcase-hero-copy">
-          {kicker ? (
-            <p className="showcase-hero-kicker">{kicker}</p>
-          ) : null}
-          {title ? (
-            <h1 className="showcase-hero-title">
-              <AccentedText text={title} palette="green" />
-            </h1>
-          ) : null}
-          {lead ? (
-            <div className="showcase-hero-lead">
-              <MarkdownBody
-                content={lead}
-                preprocessColumnBlocks={false}
-                preprocessComponentBlocks={false}
-              />
+              {actions.length > 0 ? (
+                <div className="showcase-hero-actions">
+                  {actions.map((action, index) => (
+                    <a
+                      key={action.href + action.text}
+                      href={action.href}
+                      className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
+                      {...(/^https?:/i.test(action.href)
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                    >
+                      {action.text}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          {images.length > 0 ? (
+            <div className="showcase-hero-stack" aria-label="Obsidian edit and published site">
+              {images.map((image, index) => {
+                const label = shotLabel(index, image.alt);
+                const isFront = front === index;
+                return (
+                  <button
+                    key={image.src}
+                    type="button"
+                    className={`showcase-hero-shot${isFront ? ' is-front' : ''}`}
+                    style={{ zIndex: isFront ? 8 : index + 1 }}
+                    onMouseEnter={() => setFront(index)}
+                    onFocus={() => setFront(index)}
+                    onClick={() => setLightbox(index)}
+                    aria-label={`Enlarge ${label}`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={image.src} alt={label} draggable={false} />
+                  </button>
+                );
+              })}
             </div>
           ) : null}
         </div>
-
-        {actions.length > 0 ? (
-          <div className="showcase-hero-actions">
-            {actions.map((action, index) => (
-              <a
-                key={action.href + action.text}
-                href={action.href}
-                className={index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'}
-                {...(/^https?:/i.test(action.href)
-                  ? { target: '_blank', rel: 'noopener noreferrer' }
-                  : {})}
-              >
-                {action.text}
-              </a>
-            ))}
-          </div>
-        ) : null}
       </div>
 
-      {image ? (
-        <div className="showcase-hero-media">
-          <HeroDemoLightbox src={image.src} alt={image.alt || 'lefolio.md live preview'} />
-        </div>
-      ) : null}
-    </div>
-  );
-
-  let introContent: ReactNode = null;
-  if (phase === 'typing') {
-    introContent = (
-      <HeroMarkdownTypewriter
-        key={`type-${playId}`}
-        source={DEMO_SOURCE}
-        onComplete={onTypingComplete}
-      />
-    );
-  } else if (phase === 'working') {
-    introContent = (
-      <HeroAgentWorking key={`agent-${playId}`} onComplete={onAgentComplete} />
-    );
-  } else {
-    introContent = (
-      <LiveMarkdownTransform
-        key={`live-${playId}`}
-        code={LIVE_SOURCE}
-        className="is-hero-intro"
-      />
-    );
-  }
-
-  return (
-    <section
-      className={`showcase-hero${canSkipPrelude ? ' is-intro' : ''}`}
-      id="top"
-      suppressHydrationWarning
-      onClick={canSkipPrelude ? skipToLive : undefined}
-      title={canSkipPrelude ? 'Click to skip' : undefined}
-    >
-      {phase === 'live' ? (
-        <button
-          type="button"
-          className="showcase-hero-replay"
-          onClick={(event) => {
-            event.stopPropagation();
-            replayIntro();
-          }}
-          title="Replay introduction"
-          aria-label="Replay introduction"
+      {active ? (
+        <div
+          className="showcase-hero-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={shotLabel(lightbox!, active.alt)}
+          onClick={closeLightbox}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <polyline points="1 4 1 10 7 10" />
-            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
-          </svg>
-        </button>
-      ) : null}
-
-      <div className="showcase-container showcase-hero-inner">
-        <div className="showcase-hero-stage is-intro-split">
-          <div
-            className={`showcase-hero-intro${phase === 'working' ? ' is-agent' : ''}${
-              phase === 'live' ? ' is-live' : ''
-            }`}
+          <button
+            type="button"
+            className="showcase-hero-lightbox-close"
+            onClick={closeLightbox}
+            aria-label="Close"
           >
-            {introContent}
-          </div>
-
-          {renderedHero}
+            ×
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={active.src}
+            alt={shotLabel(lightbox!, active.alt)}
+            className="showcase-hero-lightbox-image"
+            onClick={(event) => event.stopPropagation()}
+          />
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

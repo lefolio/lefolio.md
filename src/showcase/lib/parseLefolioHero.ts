@@ -1,5 +1,5 @@
 import {
-  extractFirstImage,
+  extractAllImages,
   extractLinks,
   firstPlainLine,
   paragraphs,
@@ -18,7 +18,8 @@ export interface LefolioHeroContent {
   /** First prose paragraph after the title (links stripped). */
   lead: string;
   actions: MdLink[];
-  image: MdImage | null;
+  /** Stacked hero screenshots (Obsidian edit, published site, …). */
+  images: MdImage[];
 }
 
 /**
@@ -32,10 +33,13 @@ export interface LefolioHeroContent {
  *
  * [Primary](/)
  * [Secondary](/more)
+ *
+ * ![[hero-obsidian.png]]
+ * ![[hero-published-site.png]]
  * ```
  */
 export function parseLefolioHero(content: string): LefolioHeroContent {
-  const image = extractFirstImage(content);
+  const images = extractAllImages(content);
   const withoutImages = stripImages(content);
   const { intro, sections } = splitByHeading(withoutImages, 1);
   const title = sections[0]?.title ?? null;
@@ -49,5 +53,5 @@ export function parseLefolioHero(content: string): LefolioHeroContent {
   const lead =
     paragraphs(stripLinks(body)).find((block) => !block.startsWith('#')) ?? '';
 
-  return { kicker, title, lead, actions, image };
+  return { kicker, title, lead, actions, images };
 }
