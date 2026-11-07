@@ -4,8 +4,6 @@ site:
   url: "https://lefolio.md"
   basePath: ""
 
-template: showcase
-
 home: "Home.md"
 
 analytics:

@@ -1,0 +1,27 @@
+import type { NavSection } from '@lefolio/engine/content';
+import MarkdownRenderer from '@lefolio/engine/markdown';
+import SectionPageList from './SectionPageList';
+
+export default function SectionIndex({ section }: { section: NavSection }) {
+  const title = section.index?.title || section.name;
+  const showDefaultIntro = !section.index?.processedBody;
+  const wide = section.display === 'grid';
+
+  return (
+    <article className={wide ? 'showcase-wide' : undefined}>
+      <h1 className="text-heading mb-2 text-3xl font-bold">{title}</h1>
+
+      {section.index?.processedBody ? (
+        <div className="mb-2">
+          <MarkdownRenderer content={section.index.processedBody} />
+        </div>
+      ) : null}
+
+      {showDefaultIntro ? (
+        <p className="text-muted mb-8">Pages in this section.</p>
+      ) : null}
+
+      <SectionPageList display={section.display} pages={section.pages} />
+    </article>
+  );
+}

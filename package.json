@@ -2,7 +2,7 @@
   "name": "lefolio.md",
   "private": true,
   "version": "0.1.0",
-  "description": "lefolio marketing site — showcase template + Content vault",
+  "description": "lefolio marketing site",
   "scripts": {
     "sync": "lefolio sync",
     "dev": "lefolio dev",
@@ -12,10 +12,14 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@lefolio/engine": "^0.4.6",
+    "@lefolio/engine": "^0.5.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.16",
+    "next": "^16.4.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
     "@types/node": "^22.17.2",

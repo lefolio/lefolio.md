@@ -17,7 +17,7 @@ A static site generator built for AI + Obsidian workflows
 
 ::: workflow
 ## Build a maintainable site you can edit in Obsidian and code with AI
-Write a draft, choose the style, prompt your agent: you're set to focus on your message.
+Write a draft, choose the style, and prompt your agent: you're set to focus on your message.
 #### Draft your Hero, CTA, and Sections.
 Use the `::: component` syntax for Markdown to structure your message; free your mind to squeeze all the value out of your business or product.
 ```
