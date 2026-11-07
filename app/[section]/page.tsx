@@ -4,6 +4,8 @@ import { metadataForHref } from '@lefolio/engine/seo';
 import SectionIndex from '@/views/SectionIndex';
 import StandalonePage from '@/views/StandalonePage';
 
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {

@@ -3,6 +3,8 @@ import { getPage, loadManifest, pageParams } from '@lefolio/engine/content';
 import { metadataForHref } from '@lefolio/engine/seo';
 import ShowcaseContentPage from '@/views/ShowcaseContentPage';
 
+export const dynamicParams = false;
+
 function joinSlug(slug: string | string[]): string {
   return Array.isArray(slug) ? slug.join('/') : slug;
 }
