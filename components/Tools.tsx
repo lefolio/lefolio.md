@@ -6,6 +6,7 @@ import {
   extractLinks,
   extractListItems,
   firstHeading,
+  slugify,
   stripHeading,
   stripLinks,
   stripList,
@@ -87,7 +88,10 @@ export default function Tools({ content }: MarkdownBlockProps) {
   const intro = stripLinks(stripList(stripHeading(content, title)));
 
   return (
-    <section className="showcase-block showcase-block--alt" id="tools">
+    <section
+      className="showcase-block showcase-block--alt showcase-tools-section"
+      id={slugify(title) || 'tools'}
+    >
       <div className="showcase-container">
         <h2 className="showcase-block-title">
           <AccentedText text={title} />

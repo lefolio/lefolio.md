@@ -3,6 +3,7 @@ import ContactForm from '@/components/ContactForm';
 import Features from '@/components/Features';
 import LefolioHero from '@/components/Hero';
 import PageHero from '@/components/PageHero';
+import Portfolio from '@/components/Portfolio';
 import Showcase from '@/components/Showcase';
 import Split from '@/components/Split';
 import Steps from '@/components/Steps';
@@ -17,6 +18,9 @@ export const markdownComponents = {
   'use-cases': UseCases,
   showcase: Showcase,
   tools: Tools,
+  portfolio: Portfolio,
+  // Common misspelling of the fence name in drafts.
+  portefolio: Portfolio,
   connect: Connect,
   steps: Steps,
   split: Split,

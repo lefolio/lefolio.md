@@ -6,5 +6,5 @@ seo:
 ---
 
 ::: contact
-Tell me what you want to build. I usually reply within a couple of days.
+Need help with one of our tools, or would like a custom plugin or web design service with lefolio? Get in touch. I usually reply pretty quickly.
 :::

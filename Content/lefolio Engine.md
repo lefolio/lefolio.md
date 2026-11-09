@@ -1,10 +1,10 @@
 ---
 title: lefolio Engine
-description: "Edit your copy in Obsidian and build with your coding agent."
+description: A static site generator built for Obsidian
 ---
 ::: lefolio-hero
 A static site generator built for AI + Obsidian workflows
-# **Stop editing your Copy in HTML** or asking your Coding Agent to do it; use **Obsidian**!
+# Edit and publish a **full professional website** in the comfort of **Obsidian**!
 
 **lefolio** separates code and content to let you focus on your copywriting in Obsidian while your agent takes care of the code, so you can build **thoughtful** and **beautiful** websites.
 

@@ -4,19 +4,18 @@ import { MarkdownBody } from '@lefolio/engine/markdown';
 import type { MarkdownBlockProps } from '@lefolio/engine/markdown';
 import {
   extractFirstImage,
-  extractLinks,
+  extractStandaloneActions,
   firstHeading,
   stripHeading,
   stripImages,
-  stripLinks,
 } from '@lefolio/engine/markdown';
 
 export default function Split({ content }: MarkdownBlockProps) {
   const title = firstHeading(content, 2);
   const image = extractFirstImage(content);
-  let rest = stripImages(stripHeading(content, title));
-  const actions = extractLinks(rest);
-  rest = stripLinks(rest).trim();
+  const { prose: rest, actions } = extractStandaloneActions(
+    stripImages(stripHeading(content, title)),
+  );
 
   return (
     <section className="page-split">
