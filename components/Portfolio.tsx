@@ -47,13 +47,11 @@ export default function Portfolio({ content }: MarkdownBlockProps) {
                 ) : null}
                 {item.actions.length > 0 ? (
                   <div className="showcase-portfolio-card-actions">
-                    {item.actions.map((action, index) => (
+                    {item.actions.map((action) => (
                       <a
                         key={action.href + action.text}
                         href={action.href}
-                        className={
-                          index === 0 ? 'showcase-cta-primary' : 'showcase-cta-secondary'
-                        }
+                        className="showcase-cta-secondary"
                         {...(isExternal(action.href)
                           ? { target: '_blank', rel: 'noopener noreferrer' }
                           : {})}
